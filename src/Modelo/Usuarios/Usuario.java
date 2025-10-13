@@ -17,9 +17,9 @@ public abstract class Usuario {
         this.id = id;
     }
 
-    //---------------------FIN CONSTRUCTORES------------------------------//
+    ///---------------------FIN CONSTRUCTORES------------------------------///
 
-    //-----------------------GETTERS AND SETTERS ----------------------//
+    ///-----------------------GETTERS AND SETTERS ----------------------///
 
     public UUID getId() {
         return id;
@@ -32,6 +32,6 @@ public abstract class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    //-------------------- FIN GETTERS AND SETTERS-------------------------//
+    ///-------------------- FIN GETTERS AND SETTERS-------------------------///
 
 }
