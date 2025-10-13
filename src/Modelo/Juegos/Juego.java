@@ -7,7 +7,7 @@ public abstract class Juego implements Pagador {
     private String nombre;
     private static int contadorId = 0;
 
-    /// CONSTRUCTORES
+    /// --------------------- CONSTRUCTORES --------------------------------------
     public Juego(String nombre) {
         this.nombre = nombre;
         id = contadorId;
@@ -19,9 +19,9 @@ public abstract class Juego implements Pagador {
         id = contadorId;
         contadorId++;
     }
-    /// FIN CONSTRUCTORES
+    /// -------------------- FIN CONSTRUCTORES -----------------------------------
 
-    /// GETTERS AND SETTERS
+    /// --------------------- GETTERS AND SETTERS -------------------------------
     public String getNombre() {
         return nombre;
     }
@@ -37,7 +37,7 @@ public abstract class Juego implements Pagador {
     public int getId() {
         return id;
     }
-    /// FIN GETTERS AND SETTERS
+    /// -------------------- FIN GETTERS AND SETTERS -----------------------------
 
-    /// METODOS
+    /// --------------------------- METODOS --------------------------------------
 }
