@@ -11,6 +11,6 @@ public enum ENumerosRuleta{
             7(7,"rojo","impar","menor","primeraDocena","primeraColumna"),
             8(8,"negro","par","menor","primeraDocena","segundaColumna"),
             9(9,"rojo","impar","menor","primeraDocena","terceraColumna"),
-    
+
 
 }
