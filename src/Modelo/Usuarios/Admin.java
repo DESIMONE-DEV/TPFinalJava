@@ -14,5 +14,5 @@ public class Admin extends Usuario {
     }
     /// -----------FUNCIONES DE ADMIN---------------///
 
-    /// ---------FIN DE DUNCIONES DE ADMIN-------------////////
+    /// ---------FIN DE FUNCIONES DE ADMIN-------------////////
 }
