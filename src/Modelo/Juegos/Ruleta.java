@@ -1,26 +1,44 @@
 package Modelo.Juegos;
 
+import Enums.ENumerosRuleta;
+
+import java.util.Random;
 import java.util.UUID;
 
 public class Ruleta {
 
-    private UUID numeroSalidor:
+    Random randomGenerador = new Random();
+    private int numeroSalidor;
+    private ENumerosRuleta enumRuleta;
 
     public Ruleta() {
-        this.numeroSalidor = UUID.randomUUID();
+        this.numeroSalidor = 0;
+        this.enumRuleta=ENumerosRuleta.N1;
     }
 
-    public UUID getNumeroSalidor() {
+    public int getNumeroSalidor() {
         return numeroSalidor;
     }
 
-    public int pleno (int numeroApostador){
-        int pleno = 0;
-        if(numeroApostador== numeroSalidor){
-            return pleno+36;
+    public int girarLaRuleta(){
+        numeroSalidor = randomGenerador.nextInt(38);
+    return numeroSalidor;
+    }
+    public int pleno (int numeroApostado , int numeroSalidor) {
+        int valor = 0;
+        if (numeroSalidor == numeroApostado) {
+             36;
+            return valor;
         }
-        return pleno;
+        return valor;
     }
 
-    public int calle
+    public int color (int numeroApostado , int numeroSalidor) {
+        int valor = 0;
+        ENumerosRuleta col = enumRuleta;
+
+    }
 }
+
+
+
