@@ -1,11 +1,10 @@
 package Modelo.Juegos;
 
 import Exceptions.MazoVacioException;
-import Interfaces.IJuegos;
 import Interfaces.IRepartidor;
 import Modelo.Juegos.MazoCartas.Carta;
 import Modelo.Juegos.MazoCartas.Mazo;
-import Modelo.Usuarios.Usuario;
+import Modelo.Usuarios.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,15 +76,11 @@ public class TriPoker extends Juego implements IRepartidor {
     /// ------------------------ METODOS ---------------------------------------------
 
     @Override
-    public void jugar(Usuario jugador) {
+    public void jugar(Cliente jugador) {
 
+        System.out.println("Bienvenido a TriPoker");
     }
 
-
-    @Override
-    public boolean pagarFichas() {
-        return false;
-    }
 
     @Override
     public void repartir(int cantUsuarios) throws MazoVacioException {
@@ -115,6 +110,10 @@ public class TriPoker extends Juego implements IRepartidor {
         mano3.clear();
     }
 
+    @Override
+    public boolean pagarFichas(Cliente jugador) {
+        return false;
+    }
 
     /// --------------------------- FIN METODOS --------------------------------------
 

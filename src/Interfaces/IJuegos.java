@@ -1,8 +1,8 @@
 package Interfaces;
 
-import Modelo.Usuarios.Usuario;
+import Modelo.Usuarios.Cliente;
 
 public interface IJuegos {
-    boolean pagarFichas();
-    void jugar(Usuario jugador);
+    boolean pagarFichas(Cliente jugador);
+    void jugar(Cliente jugador);
 }

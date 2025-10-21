@@ -1,8 +1,7 @@
 package Modelo.Juegos;
 
 import Enums.ENumerosRuleta;
-import Interfaces.IJuegos;
-import Modelo.Usuarios.Usuario;
+import Modelo.Usuarios.Cliente;
 
 import java.util.*;
 
@@ -112,12 +111,12 @@ public class Ruleta extends Juego {
 
 
     @Override
-    public void jugar(Usuario jugador) {
-        
+    public void jugar(Cliente jugador) {
+
     }
 
     @Override
-    public boolean pagarFichas() {
+    public boolean pagarFichas(Cliente jugador) {
         return false;
     }
 }
