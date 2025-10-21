@@ -1,8 +1,8 @@
 package Enums;
 
 public enum ENumerosRuleta {
-    N1 (0,"verde"),
-    N0(1,"rojo"),
+    N0 (0,"verde"),
+    N1(1,"rojo"),
     N2(2,"negro"),
     N3(3,"rojo"),
     N4(4,"negro"),
@@ -46,10 +46,10 @@ public enum ENumerosRuleta {
         this.numero = numero;
         this.color = color ;
     }
-    public int getNumero() {
+    public int getNumero(int numeroSalidor) {
         return numero;
     }
-    public String getDescripcion() {
+    public String getColor() {
         return color ;
     }
 
