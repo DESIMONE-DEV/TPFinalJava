@@ -40,17 +40,17 @@ public enum ENumerosRuleta {
     N36(36,"rojo");
 
     private int numero;
-    private String descripcion;
+    private String color;
 
-    ENumerosRuleta(int numero){
+    ENumerosRuleta(int  numero, String color) {
         this.numero = numero;
-        this.descripcion = descripcion;
+        this.color = color ;
     }
     public int getNumero() {
         return numero;
     }
     public String getDescripcion() {
-        return descripcion;
+        return color ;
     }
 
 

@@ -1,5 +1,5 @@
 package Interfaces;
 
-public interface Pagador {
+public interface IPagador {
     boolean pagarFichas();
 }

@@ -1,8 +1,8 @@
 package Modelo.Juegos;
 
-import Interfaces.Pagador;
+import Interfaces.IPagador;
 
-public abstract class Juego implements Pagador {
+public abstract class Juego implements IPagador {
     private int id;
     private String nombre;
     private static int contadorId = 0;

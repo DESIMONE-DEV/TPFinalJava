@@ -1,5 +1,5 @@
 package Interfaces;
 
-public interface Repartidor {
+public interface IRepartidor {
     void repartir();
 }

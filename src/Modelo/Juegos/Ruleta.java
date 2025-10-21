@@ -1,15 +1,17 @@
 package Modelo.Juegos;
 
 import Enums.ENumerosRuleta;
+import Interfaces.IPagador;
 
+import java.util.HashMap;
 import java.util.Random;
-import java.util.UUID;
 
-public class Ruleta {
+public class Ruleta implements IPagador {
 
-    Random randomGenerador = new Random();
+    private HashMap<String , Integer> apuestas ;
     private int numeroSalidor;
     private ENumerosRuleta enumRuleta;
+    Random randomGenerador = new Random();
 
     public Ruleta() {
         this.numeroSalidor = 0;
