@@ -49,7 +49,7 @@ public enum ENumerosRuleta {
     public int getNumero(int numeroSalidor) {
         return numero;
     }
-    public String getDescripcion() {
+    public String getColor() {
         return color ;
     }
 

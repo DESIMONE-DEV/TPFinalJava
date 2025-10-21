@@ -42,6 +42,7 @@ public class Ruleta implements IPagador {
         ENumerosRuleta col = enumRuleta;
         col.getNumero(numeroSalidor)
 
+                col.d
         for( String key : apuestas.keySet() ){
 
         }
