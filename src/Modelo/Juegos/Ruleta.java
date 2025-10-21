@@ -15,6 +15,7 @@ public class Ruleta extends Juego {
     public Ruleta() {
         this.numeroSalidor = 0;
         this.enumRuleta = ENumerosRuleta.N1;
+        this.apuestas = new HashMap<>();
     }
 
     public int getNumeroSalidor() {
@@ -27,6 +28,10 @@ public class Ruleta extends Juego {
     public int girarLaRuleta(){
         numeroSalidor = randomGenerador.nextInt(38);
         return numeroSalidor;
+    }
+
+    public void partesRuleta (String clave , double valor ){
+        apuestas.put(clave, valor);
     }
 
 
@@ -67,11 +72,11 @@ public class Ruleta extends Juego {
         double valor = 0;
         String docena = null;
         if (numeroSalidor > 0 && numeroSalidor <= 12) {
-            docena = "primera";
+            docena = "primera docena";
         } else if (numeroSalidor > 12 && numeroSalidor <= 24) {
-            docena = "segunda";
+            docena = "segunda docena";
         } else {
-            docena = "tercera";
+            docena = "tercera docena";
         }
         for (String key : apuestas.keySet()) {
             if (docena.equals(key)) {
@@ -136,10 +141,21 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    public void apuestas (String apuesta, double valor ) {
 
+        for (String key : apuestas.keySet()){
+            if(key.equals(apuesta)){
+                apuestas.put(apuesta,valor);
+            }
+        }
+    }
     @Override
     public double pagarFichas() {
-        return 0;
+        double ganancia = 0;
+        ganancia = pleno(numeroSalidor)+color(numeroSalidor)+docenas(numeroSalidor)
+                +columna(numeroSalidor)+parImpar(numeroSalidor)+menorMayor(numeroSalidor);
+
+        return ganancia;
     }
     /// -------------------- FIN METODOS -----------------------------------
 
