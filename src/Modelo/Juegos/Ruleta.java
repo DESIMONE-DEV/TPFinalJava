@@ -1,11 +1,12 @@
 package Modelo.Juegos;
 
 import Enums.ENumerosRuleta;
-import Interfaces.IPagador;
+import Interfaces.IJuegos;
+import Modelo.Usuarios.Usuario;
 
 import java.util.*;
 
-public class Ruleta implements IPagador {
+public class Ruleta extends Juego {
 
     private HashMap<String , Double> apuestas ;
     private int numeroSalidor;
@@ -109,6 +110,11 @@ public class Ruleta implements IPagador {
         return valor ;
     }
 
+
+    @Override
+    public void jugar(Usuario jugador) {
+        
+    }
 
     @Override
     public boolean pagarFichas() {

@@ -1,15 +1,16 @@
 package Modelo.Juegos;
 
 import Exceptions.MazoVacioException;
-import Interfaces.IPagador;
+import Interfaces.IJuegos;
 import Interfaces.IRepartidor;
 import Modelo.Juegos.MazoCartas.Carta;
 import Modelo.Juegos.MazoCartas.Mazo;
+import Modelo.Usuarios.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TriPoker implements IPagador, IRepartidor {
+public class TriPoker extends Juego implements IRepartidor {
     private Mazo mazo;
     private List<Carta> mano1;
     private List<Carta> mano2;
@@ -71,8 +72,14 @@ public class TriPoker implements IPagador, IRepartidor {
 
     /// ----------------------- FIN GETTERS AND SETTERS ------------------------------
 
+
+
     /// ------------------------ METODOS ---------------------------------------------
 
+    @Override
+    public void jugar(Usuario jugador) {
+
+    }
 
 
     @Override
