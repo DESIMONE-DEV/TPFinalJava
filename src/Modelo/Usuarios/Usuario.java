@@ -7,7 +7,7 @@ public abstract class Usuario {
     private UUID id;
     private String nombre;
     private Long dni;
-    private String password
+    private String password;
 
 
 
