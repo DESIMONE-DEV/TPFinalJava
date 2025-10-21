@@ -24,12 +24,12 @@ public class Admin extends Usuario {
     /// -----------FUNCIONES DE ADMIN---------------///
 
     //Modificar fichas
-    public Boolean addFichas(Cliente g,Double monto) {
+    public Boolean agregarFichas(Cliente g,Double monto) {
        g.setSaldo(g.getSaldo()+monto);
         return true;
     }
 
-    public Boolean addFichas(Cliente g,Double monto) {
+    public Boolean quitarFichas(Cliente g,Double monto) {
         g.setSaldo(g.getSaldo()-monto);
         return true;
     }
@@ -37,6 +37,7 @@ public class Admin extends Usuario {
     //Bloquear Cliente
     public  Boolean bloquear(Cliente g,Boolean b) {
         g.setEstadoCuenta(b);
+        return true;
     }
 
     /// ---------FIN DE FUNCIONES DE ADMIN-------------////////

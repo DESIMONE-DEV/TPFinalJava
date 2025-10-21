@@ -27,9 +27,6 @@ public abstract class Usuario {
         this.dni = dni;
     }
 
-    public Usuario() {
-
-    }
 
     ///---------------------FIN CONSTRUCTORES------------------------------///
 
