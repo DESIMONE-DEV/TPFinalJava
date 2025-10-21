@@ -3,22 +3,22 @@ import Enums.EValorCarta;
 import Enums.EPaloCarta;
 public class Carta {
     private EPaloCarta palo;
-    private String valor;
+    private EValorCarta valor;
 
-    public Carta(EPaloCarta palo, String valor) {
+    public Carta(EPaloCarta palo, EValorCarta valor) {
         this.palo = palo;
         this.valor = valor;
     }
     public EPaloCarta getPalo() {
         return palo;
     }
-    public String getValor() {
+    public EValorCarta getValor() {
         return valor;
     }
 
     @Override
     public String toString() {
-        return valor + " de " + palo;
+        return valor.getValorSimb() + " de " + palo.getPalo();
     }
 
 }
