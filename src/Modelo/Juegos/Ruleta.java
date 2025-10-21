@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Ruleta implements IPagador {
 
-    private HashMap<String , Integer> apuestas ;
+    private HashMap<String , Double> apuestas ;
     private int numeroSalidor;
     private ENumerosRuleta enumRuleta;
     Random randomGenerador = new Random();
@@ -26,19 +26,26 @@ public class Ruleta implements IPagador {
         numeroSalidor = randomGenerador.nextInt(38);
     return numeroSalidor;
     }
-    public int pleno (int numeroApostado , int numeroSalidor) {
-        int valor = 0;
-        if (numeroSalidor == numeroApostado) {
-             36;
-            return valor;
+    public double pleno ( int numeroSalidor) {
+        double valor= 0;
+        for( String key : apuestas.keySet() ){
+            int num = Integer.parseInt( key );
+            if( numeroSalidor == num ){
+                valor += apuestas.get(key)*36;
+            }
         }
         return valor;
     }
 
-    public int color (int numeroApostado , int numeroSalidor) {
-        int valor = 0;
+    public double color ( int numeroSalidor) {
+        double valor = 0;
         ENumerosRuleta col = enumRuleta;
 
+    }
+
+    @Override
+    public boolean pagarFichas() {
+        return false;
     }
 }
 
