@@ -92,6 +92,22 @@ public class Ruleta implements IPagador {
         }
         return valor;
     }
+    public double menorMayor (int numeroSalidor) {
+        double valor = 0;
+        String menorMayor = null;
+        if(numeroSalidor > 0 && numeroSalidor <= 18){
+            menorMayor = "menor";
+        }else if(numeroSalidor > 18 && numeroSalidor <= 36){
+            menorMayor = "mayor";
+        }
+        for(String key : apuestas.keySet() ){
+            if(menorMayor.equals(key)){
+                valor = apuestas.get(key)*2;
+            }
+
+        }
+        return valor ;
+    }
 
 
     @Override
