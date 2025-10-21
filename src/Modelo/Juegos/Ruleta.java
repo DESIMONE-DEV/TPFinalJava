@@ -56,6 +56,23 @@ public class Ruleta implements IPagador {
         }
         return valor;
     }
+    public double docenas (int numeroSalidor) {
+        double valor = 0;
+        String docena = null;
+        if(numeroSalidor > 0 && numeroSalidor <= 12){
+            docena = "primera";
+        }else if(numeroSalidor > 12 && numeroSalidor <= 24){
+            docena = "segunda";
+        }else{
+            docena = "tercera";
+        }
+        for(String key : apuestas.keySet() ){
+            if(docena.equals(key)){
+                valor = apuestas.get(key)*3;
+            }
+        }
+        return valor;
+    }
 
     @Override
     public boolean pagarFichas() {
