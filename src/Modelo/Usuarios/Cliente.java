@@ -9,11 +9,15 @@ public class Cliente extends Usuario {
 
 
     /// ------------------------Constructores------------------///
-    public Cliente(String nombre, Long dni, String cuentaBancaria) {
-        super(nombre, dni);
+    public Cliente(String nombre, Long dni,String password, String cuentaBancaria) {
+        super(nombre, dni,password);
         this.saldo = 0.00;
         this.cuentaBancaria = cuentaBancaria;
         this.estadoCuenta = true;
+    }
+
+    public Cliente(Long dni){
+        super(dni);
     }
 
     /// -----------------------FIN DE CONSTRUCTORES-----------------------///
@@ -28,20 +32,39 @@ public class Cliente extends Usuario {
         return cuentaBancaria;
     }
 
-    public void setCuentaBancaria(String cuentaBancaria) {
-        this.cuentaBancaria = cuentaBancaria;
+    public Boolean getEstadoCuenta() {
+        return estadoCuenta;
+    }
+
+    public String getCuentaBancaria() {
+        return cuentaBancaria;
+    }
+
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setEstadoCuenta(Boolean estadoCuenta) {
+        this.estadoCuenta = estadoCuenta;
     }
 
     /// ---------------------------FIN DE GETTERS AND SETTERS-----------------///
 
     /// -----------------------METODOS DE CLIENTES-------------///
 
-    public void cargarSaldo(Double monto) {
+    public Boolean cargarSaldo(Double monto) { ///(AGREGAR EXCEPCIONES VARIAS)
         saldo += monto;
+        return true;
     }
 
-    public String retirarSaldo(Double monto) {
-        return "Saldo retirado correctamente: " + monto;
+    public Boolean retirarSaldo(Double monto) {  ///(AGREGAR EXCEPCIONES VARIAS)
+
+        saldo -= monto;
+        return true;
+    }
+
+    public boolean cambioBancario(String nuevaBancaria) { ///(AGREGAR EXCEPCIONES VARIAS)
+       return true;
     }
     /// ----------------------FIN METODOS CLIENTES -----------------------///
 

@@ -26,6 +26,7 @@ public abstract class Usuario {
     public Usuario(Long dni) {
         this.dni = dni;
     }
+
     public Usuario() {
 
     }
