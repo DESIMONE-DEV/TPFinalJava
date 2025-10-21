@@ -37,6 +37,8 @@ public abstract class Juego implements IJuegos {
     public int getId() {
         return id;
     }
+
+    public abstract double pagarFichas();
     /// -------------------- FIN GETTERS AND SETTERS -----------------------------
 
     /// --------------------------- METODOS --------------------------------------

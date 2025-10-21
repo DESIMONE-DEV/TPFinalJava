@@ -22,43 +22,27 @@ public class Ruleta extends Juego {
     }
     /// -------------------- FIN CONSTRUCTORES -----------------------------------
 
-<<<<<<< Updated upstream
     /// -------------------- METODOS -----------------------------------
-    ///
+
     public int girarLaRuleta(){
-=======
-    public int girarLaRuleta() {
->>>>>>> Stashed changes
         numeroSalidor = randomGenerador.nextInt(38);
         return numeroSalidor;
     }
 
-<<<<<<< Updated upstream
-    public double pleno ( int numeroSalidor) {
-        double valor= 0;
-        for( String key : apuestas.keySet() ){
-            int num = Integer.parseInt( key );
-            if( numeroSalidor == num ){
-                valor += apuestas.get(key)*36;
-=======
+
     public double pleno(int numeroSalidor) {
         double valor = 0;
         for (String key : apuestas.keySet()) {
             int num = Integer.parseInt(key);
             if (numeroSalidor == num) {
                 valor += apuestas.get(key) * 36;
->>>>>>> Stashed changes
+
             }
         }
         return valor;
     }
 
-<<<<<<< Updated upstream
-
     public double color (int numeroSalidor) {
-=======
-    public double color(int numeroSalidor) {
->>>>>>> Stashed changes
         double valor = 0;
         List<Integer> rojo = Arrays.asList(1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36);
         List<Integer> negro = Arrays.asList(2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35);
@@ -79,11 +63,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-<<<<<<< Updated upstream
     public double docenas (int numeroSalidor) {
-=======
-    public double docenas(int numeroSalidor) {
->>>>>>> Stashed changes
         double valor = 0;
         String docena = null;
         if (numeroSalidor > 0 && numeroSalidor <= 12) {
@@ -101,11 +81,8 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-<<<<<<< Updated upstream
-    public double columna (int numeroSalidor) {
-=======
     public double columna(int numeroSalidor) {
->>>>>>> Stashed changes
+
         double valor = 0;
         String columna = null;
         if (numeroSalidor % 3 == 0 && numeroSalidor != 0) {
@@ -125,11 +102,8 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-<<<<<<< Updated upstream
-    public double menorMayor (int numeroSalidor) {
-=======
     public double menorMayor(int numeroSalidor) {
->>>>>>> Stashed changes
+
         double valor = 0;
         String menorMayor = null;
         if (numeroSalidor > 0 && numeroSalidor <= 18) {
@@ -146,7 +120,6 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-<<<<<<< Updated upstream
     public double parImpar(int numeroSalidor) {
         double valor = 0;
         String parImpar = null;
@@ -163,8 +136,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-=======
->>>>>>> Stashed changes
+
     @Override
     public double pagarFichas() {
         return 0;
