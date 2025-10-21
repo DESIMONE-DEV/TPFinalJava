@@ -12,6 +12,7 @@ public class Ruleta extends Juego {
     private int numeroSalidor;
     private ENumerosRuleta enumRuleta;
     Random randomGenerador = new Random();
+    /// -------------------- CONSTRUCTORES -----------------------------------
 
     public Ruleta() {
         this.numeroSalidor = 0;
@@ -21,11 +22,15 @@ public class Ruleta extends Juego {
     public int getNumeroSalidor() {
         return numeroSalidor;
     }
+    /// -------------------- FIN CONSTRUCTORES -----------------------------------
 
+    /// -------------------- METODOS -----------------------------------
+    ///
     public int girarLaRuleta(){
         numeroSalidor = randomGenerador.nextInt(38);
     return numeroSalidor;
     }
+
     public double pleno ( int numeroSalidor) {
         double valor= 0;
         for( String key : apuestas.keySet() ){
@@ -37,7 +42,8 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-    public double color ( int numeroSalidor) {
+
+    public double color (int numeroSalidor) {
         double valor = 0;
         List<Integer> rojo = Arrays.asList(1,3,5,7,9,12,14,16,18,19,21,23,25,27, 30,32,34,36);
         List<Integer> negro = Arrays.asList(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
@@ -57,6 +63,7 @@ public class Ruleta extends Juego {
         }
         return valor;
     }
+
     public double docenas (int numeroSalidor) {
         double valor = 0;
         String docena = null;
@@ -74,6 +81,7 @@ public class Ruleta extends Juego {
         }
         return valor;
     }
+
     public double columna (int numeroSalidor) {
         double valor = 0;
         String columna = null;
@@ -93,6 +101,7 @@ public class Ruleta extends Juego {
         }
         return valor;
     }
+
     public double menorMayor (int numeroSalidor) {
         double valor = 0;
         String menorMayor = null;
@@ -110,6 +119,22 @@ public class Ruleta extends Juego {
         return valor ;
     }
 
+    public double parImpar(int numeroSalidor) {
+        double valor = 0;
+        String parImpar = null;
+        if(numeroSalidor / 2 == 0){
+            parImpar = "par";
+        }else if(numeroSalidor / 2 == 1){
+            parImpar = "impar";
+        }
+        for(String key : apuestas.keySet() ){
+            if(parImpar.equals(key)){
+                valor = apuestas.get(key)*2;
+            }
+        }
+        return valor;
+    }
+
 
     @Override
     public void jugar(Usuario jugador) {
@@ -120,6 +145,8 @@ public class Ruleta extends Juego {
     public boolean pagarFichas() {
         return false;
     }
+    /// -------------------- FIN METODOS -----------------------------------
+
 }
 
 
