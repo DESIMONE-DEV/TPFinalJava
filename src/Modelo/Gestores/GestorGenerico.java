@@ -1,4 +1,6 @@
-package Modelo;
+package Modelo.Gestores;
+
+import Exceptions.ColleccionVaciaException;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -44,7 +46,7 @@ public class GestorGenerico <T>{
      *
      * @param datoRecibido ingresar un NEW dato(atributo utilizado en el equals)
      */
-    public T getDato(T datoRecibido){
+    public T getDato(T datoRecibido) throws ColleccionVaciaException{
         if(existe(datoRecibido)){
             T retorno;
             Iterator it = conjunto.iterator();
@@ -54,16 +56,22 @@ public class GestorGenerico <T>{
                     return retorno;
                 }
             }
+        }else if(conjunto.isEmpty()){   // Si no existe el dato compruebo si la colleccion esta vacia para lanzar la excepcion
+            throw new ColleccionVaciaException();
         }
         return null;
     }
 
-    public String listar(){
+    public String listar() throws ColleccionVaciaException {
         StringBuilder msj = new StringBuilder();
-        Iterator it = conjunto.iterator();
-        while(it.hasNext()){
-            msj.append("-" + it.next() + " ");
+        if(conjunto.isEmpty()){
+            throw new ColleccionVaciaException();
+        }else {
+            Iterator it = conjunto.iterator();
+            while (it.hasNext()) {
+                msj.append("-" + it.next() + " ");
+            }
+            return msj.toString();
         }
-        return msj.toString();
     }
 }
