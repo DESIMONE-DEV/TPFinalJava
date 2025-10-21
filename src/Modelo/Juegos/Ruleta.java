@@ -1,7 +1,6 @@
 package Modelo.Juegos;
 
 import Enums.ENumerosRuleta;
-import Modelo.Usuarios.Cliente;
 
 import java.util.*;
 
@@ -134,15 +133,9 @@ public class Ruleta extends Juego {
         return valor;
     }
 
-
     @Override
-    public void jugar(Cliente jugador) {
-
-    }
-
-    @Override
-    public boolean pagarFichas(Cliente jugador, int cantFichas) {
-        return false;
+    public double pagarFichas() {
+        return 0;
     }
     /// -------------------- FIN METODOS -----------------------------------
 
