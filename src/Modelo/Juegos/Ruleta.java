@@ -141,7 +141,7 @@ public class Ruleta extends Juego {
     }
 
     @Override
-    public boolean pagarFichas(Cliente jugador) {
+    public boolean pagarFichas(Cliente jugador, int cantFichas) {
         return false;
     }
     /// -------------------- FIN METODOS -----------------------------------

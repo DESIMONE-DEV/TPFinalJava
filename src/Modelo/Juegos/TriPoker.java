@@ -111,7 +111,7 @@ public class TriPoker extends Juego implements IRepartidor {
     }
 
     @Override
-    public boolean pagarFichas(Cliente jugador) {
+    public boolean pagarFichas(Cliente jugador, int cantFichas) {
         return false;
     }
 
