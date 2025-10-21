@@ -3,8 +3,7 @@ package Modelo.Juegos;
 import Enums.ENumerosRuleta;
 import Interfaces.IPagador;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class Ruleta implements IPagador {
 
@@ -39,14 +38,23 @@ public class Ruleta implements IPagador {
 
     public double color ( int numeroSalidor) {
         double valor = 0;
-        ENumerosRuleta col = enumRuleta;
-        col.getNumero(numeroSalidor)
+        List<Integer> rojo = Arrays.asList(1,3,5,7,9,12,14,16,18,19,21,23,25,27, 30,32,34,36);
+        List<Integer> negro = Arrays.asList(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
+        String color = null;
 
-                col.d
-        for( String key : apuestas.keySet() ){
-
+        if(rojo.contains(numeroSalidor)){
+            color = "rojo";
+        }else if(negro.contains(numeroSalidor)){
+            color = "negro";
+        }else{
+            color = "verde";
         }
-
+        for(String key : apuestas.keySet() ){
+            if(color.equals(key)){
+                valor = apuestas.get(key) * 2;
+            }
+        }
+        return valor;
     }
 
     @Override

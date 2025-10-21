@@ -53,5 +53,5 @@ public enum ENumerosRuleta {
         return color ;
     }
 
-
+    
 }
