@@ -73,6 +73,26 @@ public class Ruleta implements IPagador {
         }
         return valor;
     }
+    public double columna (int numeroSalidor) {
+        double valor = 0;
+        String columna = null;
+        if(numeroSalidor %3 == 0 && numeroSalidor != 0) {
+            columna = "tercer columna";
+        }else if((numeroSalidor + 1) % 3 == 0){
+            columna = "segunda columna";
+        }else if((numeroSalidor + 2) % 3 == 0){
+            columna = "primera columna";
+        }else{
+            columna = "Cero";
+        }
+        for(String key : apuestas.keySet() ){
+            if(columna.equals(key)){
+                valor = apuestas.get(key)*3;
+            }
+        }
+        return valor;
+    }
+
 
     @Override
     public boolean pagarFichas() {
