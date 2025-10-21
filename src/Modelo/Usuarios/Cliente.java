@@ -4,13 +4,16 @@ import java.util.UUID;
 
 public class Cliente extends Usuario {
     private Double saldo;
-    private String CuentaBancaria;
+    private String cuentaBancaria;
+    private Boolean estadoCuenta;
+
 
     /// ------------------------Constructores------------------///
     public Cliente(String nombre, Long dni, String cuentaBancaria) {
         super(nombre, dni);
         this.saldo = 0.00;
-        this.CuentaBancaria = cuentaBancaria;
+        this.cuentaBancaria = cuentaBancaria;
+        this.estadoCuenta = true;
     }
 
     /// -----------------------FIN DE CONSTRUCTORES-----------------------///
@@ -21,15 +24,28 @@ public class Cliente extends Usuario {
         return saldo;
     }
 
-    public String getCuentaBancaria() {
-        return CuentaBancaria;
+    public String getcuentaBancaria() {
+        return cuentaBancaria;
     }
 
     public void setCuentaBancaria(String cuentaBancaria) {
-        CuentaBancaria = cuentaBancaria;
+        this.cuentaBancaria = cuentaBancaria;
     }
 
     /// ---------------------------FIN DE GETTERS AND SETTERS-----------------///
+
+    /// -----------------------METODOS DE CLIENTES-------------///
+
+    public void cargarSaldo(Double monto) {
+        saldo += monto;
+    }
+
+    public String retirarSaldo(Double monto) {
+        return "Saldo retirado correctamente: " + monto;
+    }
+    /// ----------------------FIN METODOS CLIENTES -----------------------///
+
+
 
 }
 

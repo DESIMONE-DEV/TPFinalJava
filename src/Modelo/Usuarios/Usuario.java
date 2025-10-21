@@ -1,18 +1,23 @@
 package Modelo.Usuarios;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Usuario {
     private UUID id;
     private String nombre;
     private Long dni;
+    private String password
+
 
 
     //---------------------- CONSTRUCTORES--------------------- //
-    public Usuario(String nombre, Long dni) {
+    public Usuario(String nombre, Long dni,String password) {
         this.id = UUID.randomUUID();
         this.nombre = nombre;
         this.dni = dni;
+        this.password = password; ///Agregar funcion de ema!!!!!!!!!!!!!!!!! codifica pass!!!!
+
     }
 
     public Usuario(UUID id) {
@@ -20,6 +25,9 @@ public abstract class Usuario {
     }
     public Usuario(Long dni) {
         this.dni = dni;
+    }
+    public Usuario() {
+
     }
 
     ///---------------------FIN CONSTRUCTORES------------------------------///
@@ -42,5 +50,17 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
     ///-------------------- FIN GETTERS AND SETTERS-------------------------///
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Usuario usuario)) return false;
+        return Objects.equals(dni, usuario.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(dni);
+    }
+
 
 }
