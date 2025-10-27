@@ -100,6 +100,34 @@ public class TriPoker extends Juego implements IRepartidor {
         mano3.getCartas().clear();
     }
 
+    public void asignarBetMano1(){
+        mano1.setBet(mano1.getAnte());
+    }
+    public void asignarBetMano2(){
+        mano2.setBet(mano2.getAnte());
+    }
+    public void asignarBetMano3(){
+        mano3.setBet(mano3.getAnte());
+    }
+
+    public void removerApuestaMano1(){
+        mano1.setAnte(0);
+        mano1.setBonus(0);
+        mano1.setBet(0);
+    }
+
+    public void removerApuestaMano2(){
+        mano2.setAnte(0);
+        mano2.setBonus(0);
+        mano2.setBet(0);
+    }
+
+    public void removerApuestaMano3(){
+        mano3.setAnte(0);
+        mano3.setBonus(0);
+        mano3.setBet(0);
+    }
+
     public boolean esPoker(ManoTriPoker mano){
         /// si las 3 cartas son iguales tiene poker
         if(mano.getCartas().get(0).getValor() == mano.getCartas().get(1).getValor() &&
@@ -245,6 +273,47 @@ public class TriPoker extends Juego implements IRepartidor {
         }
 
         return sumaPago;
+    }
+
+    public String listarBancaConJuego(){
+        return"             BANCA\n     "+manoBanca.getCartas().get(0).toString()+ " - " +
+                manoBanca.getCartas().get(1).toString() + " - " + manoBanca.getCartas().get(2).toString();
+    }
+
+    public String listarBancaVacia(){
+        return"             BANCA\n     "+ "* de *" + " - " +
+                "* de *" + " - " + "* de *";
+    }
+
+    public String listarManos(int cantAsientos){
+        StringBuilder msj = new StringBuilder();
+
+        if(cantAsientos == 1){
+            msj.append("\n\n    MANO 1\n    "
+                    + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
+                    "\n     BONUS: " + mano1.getBonus() +
+                    "\n     ANTE: " + mano1.getAnte() +
+                    "\n     BET: " + mano1.getBet()
+            );
+        }else if(cantAsientos == 2){
+            msj.append("\n\n    MANO 1              MANO 2\n    "
+                    + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
+                    "       " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
+                    "\n     BONUS: " + mano1.getBonus() + "         BONUS: " + mano2.getBonus() +
+                    "\n     ANTE: " + mano1.getAnte() +   "         ANTE: " + mano2.getAnte() +
+                    "\n     BET: " + mano1.getBet() +     "         BET: " + mano2.getBet()
+            );
+        }else if(cantAsientos == 3){
+            msj.append("\n\n    MANO 1              MANO 2          MANO 3\n    "
+                    + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
+                    "       " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
+                    "       " + mano3.getCartas().get(0).toString() + " - " + mano3.getCartas().get(1).toString() + " - " + mano3.getCartas().get(2).toString() +
+                    "\n     BONUS: " + mano1.getBonus() + "         BONUS: " + mano2.getBonus() + "         BONUS: " + mano3.getBonus() +
+                    "\n     ANTE: " + mano1.getAnte() +   "         ANTE: " + mano2.getAnte() +   "         ANTE: " + mano3.getAnte() +
+                    "\n     BET: " + mano1.getBet() +     "         BET: " + mano2.getBet() +     "         BET: " + mano3.getBet()
+            );
+        }
+        return msj.toString();
     }
 
     /// --------------------------- FIN METODOS --------------------------------------
