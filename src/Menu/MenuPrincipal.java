@@ -1,14 +1,14 @@
 package Menu;
 
 import Exceptions.ColleccionVaciaException;
+import Exceptions.UsuarioContrañaIncorrectaException;
 import Modelo.Gestores.GestorGenerico;
 import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
 
-public class MenuPrincipal <T>{
+public class MenuPrincipal  {
 
-    public static Usuario mLoginCliente(Long dni, String pass, GestorGenerico <Usuario> T){
-        Usuario u = null;
+    public static Usuario mLoginCliente(Long dni, String pass, GestorGenerico <Usuario> T)throws UsuarioContrañaIncorrectaException {
         for (Usuario User : T.getConjunto()) {
             if (User.getDni().equals(dni)){
                 if(User.getPassword().equals(pass)){
@@ -16,7 +16,12 @@ public class MenuPrincipal <T>{
                 }
             }
         }
-        return u;/// ACA VAN EXCEPCIONES!!!!!!!!!!!!!!!!!!!!!
+        throw new UsuarioContrañaIncorrectaException();
     }
+
+
+
+
+
 
 }
