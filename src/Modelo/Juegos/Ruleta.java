@@ -161,6 +161,7 @@ public class Ruleta extends Juego {
     @Override
     public double pagarFichas() {
         double ganancia = 0;
+        numeroSalidor = girarLaRuleta();
         ganancia = pleno(numeroSalidor)+color(numeroSalidor)+docenas(numeroSalidor)
                 +columna(numeroSalidor)+parImpar(numeroSalidor)+menorMayor(numeroSalidor);
 
