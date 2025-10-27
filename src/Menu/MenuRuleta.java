@@ -6,6 +6,11 @@ import Modelo.Usuarios.Cliente;
 import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import Exceptions.ColorNoExisteException;
+import Exceptions.SaldoInsuficienteException;
+import Exceptions.NumeroFueraDeRango;
+
 public class MenuRuleta {
     public static void Start(Cliente jugador) {
 
