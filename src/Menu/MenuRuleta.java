@@ -1,7 +1,7 @@
 package Menu;
 
 import Exceptions.DatoIncorrectoException;
-import Exceptions.NumeroFueraDeRango;
+import Exceptions.NumeroFueraDeRangoException;
 import Exceptions.SaldoInsuficienteException;
 import Modelo.Juegos.Ruleta;
 import Modelo.Usuarios.Cliente;
@@ -69,7 +69,7 @@ public class MenuRuleta {
                             int num = sc.nextInt();
                             sc.nextLine();
                             if (num < 0 || num > 36) {
-                                throw new NumeroFueraDeRango();
+                                throw new NumeroFueraDeRangoException();
                             }
                             System.out.println("Ingrese monto a apostar: ");
                             double monto = sc.nextDouble();
@@ -133,7 +133,7 @@ public class MenuRuleta {
                             } else if (num == 3) {
                                 doc = "tercera docena";
                             } else {
-                                throw new NumeroFueraDeRango();
+                                throw new NumeroFueraDeRangoException();
                             }
 
                             System.out.println("Ingrese monto a apostar: ");
@@ -169,7 +169,7 @@ public class MenuRuleta {
                             } else if (num == 3) {
                                 col = "tercera columna";
                             } else {
-                                throw new NumeroFueraDeRango();
+                                throw new NumeroFueraDeRangoException();
                             }
 
                             System.out.println("Ingrese monto a apostar: ");
