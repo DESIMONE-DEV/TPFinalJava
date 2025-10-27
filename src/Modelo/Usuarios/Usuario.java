@@ -27,7 +27,10 @@ public abstract class Usuario {
         this.dni = dni;
     }
 
-
+    public Usuario(Long dni, String password) {
+        this.dni = dni;
+        this.password = password;
+    }
     ///---------------------FIN CONSTRUCTORES------------------------------///
 
     ///-----------------------GETTERS AND SETTERS ----------------------///
@@ -42,6 +45,10 @@ public abstract class Usuario {
 
     public Long getDni() {
         return dni;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setNombre(String nombre) {

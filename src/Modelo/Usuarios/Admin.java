@@ -1,10 +1,5 @@
 package Modelo.Usuarios;
 
-import Exceptions.ColleccionVaciaException;
-import Modelo.Gestores.GestorGenerico;
-
-import java.util.UUID;
-
 public class Admin extends Usuario {
 
 
@@ -16,10 +11,9 @@ public class Admin extends Usuario {
         super(dni);
     }
 
-    public Admin(UUID id) {
-        super(id);
+    public Admin(Long dni, String password) {
+        super(dni, password);
     }
-
 
     /// -----------FUNCIONES DE ADMIN---------------///
 
