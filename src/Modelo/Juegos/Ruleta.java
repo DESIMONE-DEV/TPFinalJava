@@ -68,11 +68,9 @@ public class Ruleta extends Juego {
             color = "rojo";
         } else if (negro.contains(numeroSalidor)) {
             color = "negro";
-        } else {
-            color = "verde";
         }
         for (String key : apuestas.keySet()) {
-            if (color.equals(key)) {
+            if (color != null && color.equals(key)) {
                 valor = apuestas.get(key) * 2;
             }
         }
@@ -102,7 +100,7 @@ public class Ruleta extends Juego {
         double valor = 0;
         String columna = null;
         if (numeroSalidor % 3 == 0 && numeroSalidor != 0) {
-            columna = "tercer columna";
+            columna = "tercera columna";
         } else if ((numeroSalidor + 1) % 3 == 0) {
             columna = "segunda columna";
         } else if ((numeroSalidor + 2) % 3 == 0) {
@@ -128,6 +126,7 @@ public class Ruleta extends Juego {
         } else if (numeroSalidor > 18 && numeroSalidor <= 36) {
             menorMayor = "mayor";
         }
+
         for (String key : apuestas.keySet()) {
             if (menorMayor != null && menorMayor.equals(key)) {
                 valor = apuestas.get(key) * 2;
@@ -158,14 +157,26 @@ public class Ruleta extends Juego {
         apuestas.put (apuesta, valor);
     }
 
+    public void limpiarApuestas() {
+        inicializarRuleta();
+    }
+
     @Override
     public double pagarFichas() {
         double ganancia = 0;
-        numeroSalidor = girarLaRuleta();
-        ganancia = pleno(numeroSalidor)+color(numeroSalidor)+docenas(numeroSalidor)
-                +columna(numeroSalidor)+parImpar(numeroSalidor)+menorMayor(numeroSalidor);
+        double totalApostado = 0;
 
-        return ganancia;
+        numeroSalidor = girarLaRuleta();
+
+        ganancia = pleno(numeroSalidor) + color(numeroSalidor) + docenas(numeroSalidor)
+                + columna(numeroSalidor) + parImpar(numeroSalidor) + menorMayor(numeroSalidor);
+
+        for(Double apuesta : apuestas.values()){
+            totalApostado += apuesta;
+        }
+        double gananciaTotal = ganancia - totalApostado;
+
+        return gananciaTotal;
     }
     /// -------------------- FIN METODOS -----------------------------------
 

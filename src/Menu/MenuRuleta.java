@@ -24,7 +24,7 @@ public class MenuRuleta {
 
             do {
                 System.out.println("Ingrese un numero: ");
-                int opcion = sc.next().charAt(0);
+                int opcion = sc.nextInt();
                 switch (opcion) {
                     case 1:
                         Ruleta ruleta = new Ruleta();
@@ -60,6 +60,7 @@ public class MenuRuleta {
                 System.out.println("8. Salir");
 
                 opcion = sc.nextInt();
+                sc.nextLine();
 
                 switch (opcion) {
                     case 1:
@@ -75,9 +76,10 @@ public class MenuRuleta {
                             double monto = sc.nextDouble();
                             sc.nextLine();
 
-                            if(jugador.getSaldo() <= monto){
+                            if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+                            jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(String.valueOf(num), monto);
 
@@ -102,9 +104,10 @@ public class MenuRuleta {
                             System.out.println("Ingrese monto a apostar: ");
                             double monto = sc.nextDouble();
                             sc.nextLine();
-                            if(jugador.getSaldo() <= monto){
+                            if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+                            jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(color, monto);
 
@@ -139,9 +142,10 @@ public class MenuRuleta {
                             System.out.println("Ingrese monto a apostar: ");
                             double monto = sc.nextDouble();
                             sc.nextLine();
-                            if(jugador.getSaldo() <= monto){
+                            if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+                            jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(doc, monto);
 
@@ -175,9 +179,10 @@ public class MenuRuleta {
                             System.out.println("Ingrese monto a apostar: ");
                             double monto = sc.nextDouble();
                             sc.nextLine();
-                            if(jugador.getSaldo() <= monto){
+                            if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+                            jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(col, monto);
 
@@ -202,9 +207,10 @@ public class MenuRuleta {
                             System.out.println("Ingrese monto a apostar: ");
                             double monto = sc.nextDouble();
                             sc.nextLine();
-                            if(jugador.getSaldo() <= monto){
+                            if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+                            jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(menorMayor, monto);
 
@@ -230,9 +236,11 @@ public class MenuRuleta {
                             System.out.println("Ingrese monto a apostar: ");
                             double monto = sc.nextDouble();
                             sc.nextLine();
-                            if(jugador.getSaldo() <= monto){
+                            if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+                            jugador.setSaldo(jugador.getSaldo() - monto);
+
                             ruleta.apostar(parImpar, monto);
 
                             System.out.println("Apuesta realizada a " + parImpar);
@@ -247,8 +255,19 @@ public class MenuRuleta {
                         break;
 
                     case 7:
-                        ruleta.pagarFichas();
+                        double ganancia = ruleta.pagarFichas();
+                        jugador.setSaldo(jugador.getSaldo() + ganancia);
+                        System.out.println("Numero ganador: " + ruleta.getNumeroSalidor());
+                        System.out.println("Ganancia / Perdida " + ganancia);
+                        System.out.println("Nuevo saldo: " + jugador.getSaldo());
 
+                        ruleta.limpiarApuestas();
+
+                        break;
+                    case 8:
+                        System.out.println("Saliendo de la mesa");
+                        ruleta.limpiarApuestas();
+                        break;
                     default:
                         System.out.println("Opcion invalida");
                 }
