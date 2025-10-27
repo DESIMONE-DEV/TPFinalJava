@@ -1,6 +1,7 @@
 package Menu;
 
 import Exceptions.CantidadPosicionesInvalidaException;
+import Exceptions.MazoVacioException;
 import Exceptions.SaldoInsuficienteException;
 import Modelo.Juegos.TriPoker;
 import Modelo.Usuarios.Cliente;
@@ -14,11 +15,13 @@ public class MenuTriPoker {
 
         TriPoker juego = new TriPoker();
         int opcion = 777, salir = 1, asientos = 0;
+        double bonus, bet;
+
         System.out.println("----- Bienvenido a TriPoker -----");
 
         do {
-            menuInicial();
             try {
+                menuInicial();
                 opcion = scan.nextInt();
             } catch (RuntimeException e) {
                 System.out.println("Ingrese un numero");
@@ -43,7 +46,6 @@ public class MenuTriPoker {
 
                     } catch (CantidadPosicionesInvalidaException e) {
                         System.out.println(e.getMessage());
-                        scan.nextLine();
                         break;
                     } catch (RuntimeException e) {
                         System.out.println("Debe ingresar un numero entre 1 y 3");
@@ -52,7 +54,26 @@ public class MenuTriPoker {
                     }
                     ingresarApuestas(asientos, juego, jugador);
 
-                    /// FALTA TERMINAR DESDE ACAAAAAA
+                    try {
+                        juego.repartir(asientos);
+                    }catch (MazoVacioException e){
+                        System.out.println(e.getMessage());
+                    }
+
+                    limpiarPantalla();      /// MUESTRO BANCA Y MANOS
+                    System.out.println(juego.listarBancaVacia());
+                    System.out.println(juego.listarManos(asientos));
+
+                    apuestaBet(asientos, juego); /// PREGUNTO SI SIGUE APOSTANDO
+
+                    limpiarPantalla();  /// MUESTRO BANCA CON JUEGO Y MANOS
+                    System.out.println(juego.listarBancaConJuego());
+                    System.out.println(juego.listarManos(asientos));
+
+                    mostrarPagoBonus(juego);
+
+                    /// FALTA TERMINAR DE ACAAAAAAAAAAAAAAAA
+                    
                     break;
 
                 default:
@@ -155,5 +176,74 @@ public class MenuTriPoker {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public static void apuestaBet(int asientos, TriPoker juego){
+        char yesNo;
+        if(asientos >= 1){
+            System.out.print("Apuesta en mano 1? (s/n): ");
+            yesNo =  scan.nextLine().toLowerCase().charAt(0);
+            if(yesNo == 's'){
+                juego.asignarBetMano1();
+            }else{
+                juego.removerApuestaMano1();
+            }
+        }
+        if(asientos >= 2){
+            System.out.print("Apuesta en mano 2? (s/n): ");
+            yesNo =  scan.nextLine().toLowerCase().charAt(0);
+            if(yesNo == 's'){
+                juego.asignarBetMano2();
+            }else{
+                juego.removerApuestaMano2();
+            }
+        }
+        if(asientos >= 3){
+            System.out.print("Apuesta en mano 3? (s/n): ");
+            yesNo =  scan.nextLine().toLowerCase().charAt(0);
+            if(yesNo == 's'){
+                juego.asignarBetMano3();
+            }else{
+                juego.removerApuestaMano3();
+            }
+        }
+    }
+
+    public static void mostrarPagoBonus(TriPoker juego){
+        double bonus;
+        System.out.println("\nMano 1:");
+        if(juego.pagarBonus(juego.getMano1()) > 0){
+            bonus = juego.pagarBonus(juego.getMano1());
+            System.out.println("GANA BONUS: $" + bonus);
+        }else{
+            System.out.println("PIERDE BONUS");
+        }
+
+        System.out.println("\nMano 2:");
+        if(juego.pagarBonus(juego.getMano2()) > 0){
+            bonus = juego.pagarBonus(juego.getMano2());
+            System.out.println("GANA BONUS: $" + bonus);
+        }else{
+            System.out.println("PIERDE BONUS");
+        }
+
+        System.out.println("\nMano 3:");
+        if(juego.pagarBonus(juego.getMano3()) > 0){
+            bonus = juego.pagarBonus(juego.getMano3());
+            System.out.println("GANA BONUS: $" + bonus);
+        }else{
+            System.out.println("PIERDE BONUS");
+        }
+    }
+
+    public static void limpiarPantalla(){
+        for(int i = 0; i<25; i++){
+            System.out.println(" ");
+        }
+    }
+
+    public static void enterContinue(){
+        System.out.println("Presione enter para continuar...");
+        scan.nextLine();
     }
 }

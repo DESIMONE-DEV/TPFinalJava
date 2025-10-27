@@ -16,6 +16,10 @@ public class Cliente extends Usuario {
         this.estadoCuenta = true;
     }
 
+    public Cliente(Long dni, String password) {
+        super(dni, password);
+    }
+
     public Cliente(Long dni){
         super(dni);
     }
@@ -40,6 +44,8 @@ public class Cliente extends Usuario {
         return cuentaBancaria;
     }
 
+
+
     public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
@@ -52,22 +58,21 @@ public class Cliente extends Usuario {
 
     /// -----------------------METODOS DE CLIENTES-------------///
 
-    public Boolean cargarSaldo(Double monto) { ///(AGREGAR EXCEPCIONES VARIAS)
+    public Boolean cargarSaldo(Double monto) {
         saldo += monto;
         return true;
     }
 
-    public Boolean retirarSaldo(Double monto) {  ///(AGREGAR EXCEPCIONES VARIAS)
+    public Boolean retirarSaldo(Double monto) {
 
         saldo -= monto;
         return true;
     }
 
-    public boolean cambioBancario(String nuevaBancaria) { ///(AGREGAR EXCEPCIONES VARIAS)
+    public boolean cambioBancario(String nuevaBancaria) {
        return true;
     }
     /// ----------------------FIN METODOS CLIENTES -----------------------///
-
 
 
 }

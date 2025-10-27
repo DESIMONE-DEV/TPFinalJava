@@ -1,7 +1,7 @@
 package Modelo.Juegos.MazoCartas;
 import Enums.EValorCarta;
 import Enums.EPaloCarta;
-public class Carta {
+public class Carta implements Comparable{
     private EPaloCarta palo;
     private EValorCarta valor;
 
@@ -21,4 +21,12 @@ public class Carta {
         return valor.getValorSimb() + " de " + palo.getPalo();
     }
 
+    @Override
+    public int compareTo(Object o) {
+        if(o instanceof Carta){
+            Carta recibida = (Carta) o;
+            return valor.getValorNum() - recibida.getValor().getValorNum();
+        }
+        return 0;
+    }
 }
