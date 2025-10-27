@@ -1,6 +1,4 @@
-package Modelo.Juegos;
-
-import Modelo.Juegos.MazoCartas.Carta;
+package Modelo.Juegos.MazoCartas;
 
 import java.util.ArrayList;
 import java.util.List;

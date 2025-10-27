@@ -45,6 +45,7 @@ public class GestorGenerico <T>{
         RETORNAR EL OBJETO DENTRO DEL CONJUNTO CON TODOS SUS ATRIBUTOS CORRESPONDIENTES A LO QUE SE BUSCA
      *
      * @param datoRecibido ingresar un NEW dato(atributo utilizado en el equals)
+     * @return retorna el Objeto dentro del gestor
      */
     public T getDato(T datoRecibido) throws ColleccionVaciaException{
         if(existe(datoRecibido)){
