@@ -63,8 +63,13 @@ public class GestionMenu {
         String nombre = sc.nextLine();
 
         System.out.print("Ingrese DNI: ");
-        int dni = sc.nextInt();
-        sc.nextLine();
+        int dni=0;
+        try{
+            dni = sc.nextInt();
+            sc.nextLine();
+        }catch(InputMismatchException e){
+            System.out.println("No sea  malo ingrese un numero");
+        }
 
         System.out.print("Ingrese password: ");
         String password = sc.nextLine();
@@ -84,6 +89,7 @@ public class GestionMenu {
         }catch (CampoVacioException e){
             System.out.println(e.getMessage());
         }
+
     }
     ///
     /// /// --------------ACCOUNT ADMIN -------------///

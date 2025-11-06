@@ -7,6 +7,8 @@ import Modelo.Usuarios.Admin;
 import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
 
+import java.util.InputMismatchException;
+
 
 public class MenuPrincipal  {
 
@@ -38,7 +40,7 @@ public class MenuPrincipal  {
     ///
     /// -------------------------METODOS PARA CREAR ACCOUNT------------------------///
     public static void createAccountCLient (String nombre,int dni,String password,String cuentaBancaria)
-            throws CampoVacioException, CaracteresMinimoException , CaracteresMaximoException {
+            throws CampoVacioException, CaracteresMinimoException , CaracteresMaximoException, InputMismatchException {
         /// ---------SI PONE 1 ESPACIO O QUEDA VACIO-------/////
         if (nombre == null || nombre.equals("") ||
                 password == null || password.equals("") ||
@@ -65,6 +67,7 @@ public class MenuPrincipal  {
         if (dni > 100000000) {
             throw  new CaracteresMaximoException("Ingrese un dni valido");
         }
+
         Usuario u =new Cliente(nombre,dni,password,cuentaBancaria);
         GestionMenu.User.agregar(u);
     }
