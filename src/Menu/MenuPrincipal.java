@@ -69,7 +69,11 @@ public class MenuPrincipal  {
         }
 
         Usuario u =new Cliente(nombre,dni,password,cuentaBancaria);
-        GestionMenu.User.agregar(u);
+        try {
+            GestionMenu.User.agregar(u);
+        } catch (CuentaExistenteException e) {
+            System.out.println("La cuenta ya existe");
+        }
     }
     ///
     /// /// -------------------------METODOS PARA CREAR ACCOUNT ADMINISTRADOR------------------------///
@@ -102,12 +106,16 @@ public class MenuPrincipal  {
         if (dni > 100000000) {
             throw  new CaracteresMaximoException("Ingrese un dni valido");
         }
-        if(codigo!="ABC123"){
+        if(!codigo.equals("ABC123")){
             throw new CodigoIncorrectoException("Solicite el Codigo a un Administrador");
         }
         Usuario b =new Admin(nombre,dni,password);
 
-        GestionMenu.User.agregar(b);
+        try {
+            GestionMenu.User.agregar(b);
+        } catch (CuentaExistenteException e) {
+            System.out.println("La cuenta ya existe");
+        }
     }
     ///
     /// -------------------------FIN METODO PARA CREAR ACCOUNT-------------------///

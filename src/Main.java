@@ -18,6 +18,7 @@ public class Main {
                                     crearCuentaCliente();
                                     break;
                                     case 2:
+                                        crearCuentaAdmin();
                                         break;
 
                             }

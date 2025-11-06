@@ -3,11 +3,14 @@ package Menu;
 import Exceptions.CampoVacioException;
 import Exceptions.CaracteresMaximoException;
 import Exceptions.CaracteresMinimoException;
+import Exceptions.CodigoIncorrectoException;
 import Modelo.Gestores.GestorGenerico;
 import java.io.IO;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static Menu.MenuPrincipal.createAccountAdmin;
 import static Menu.MenuPrincipal.createAccountCLient;
 
 
@@ -70,18 +73,13 @@ public class GestionMenu {
         }catch(InputMismatchException e){
             System.out.println("No sea  malo ingrese un numero");
         }
-
         System.out.print("Ingrese password: ");
         String password = sc.nextLine();
-
-
         System.out.print("Ingrese CBU: ");
         String cta = sc.nextLine();
 
         try {
-
             createAccountCLient(nombre, dni, password, cta);
-
         }catch (CaracteresMinimoException e){
             System.out.println(e.getMessage());
         }catch (CaracteresMaximoException e){
@@ -93,7 +91,38 @@ public class GestionMenu {
     }
     ///
     /// /// --------------ACCOUNT ADMIN -------------///
+    ///
+    public static void crearCuentaAdmin(){
 
+        System.out.print("Ingrese nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Ingrese DNI: ");
+        int dni=0;
+        try{
+            dni = sc.nextInt();
+            sc.nextLine();
+        }catch(InputMismatchException e){
+            System.out.println("No sea  malo ingrese un numero");
+        }
+        System.out.print("Ingrese password: ");
+        String password = sc.nextLine();
+        System.out.print("Ingrese CODIGO MEGASECRETO: ");
+        String cod = sc.nextLine();
+
+        try {
+            createAccountAdmin(nombre, dni, password,cod);
+        }catch (CaracteresMinimoException e){
+            System.out.println(e.getMessage());
+        }catch (CaracteresMaximoException e){
+            System.out.println(e.getMessage());
+        }catch (CampoVacioException e){
+            System.out.println(e.getMessage());
+        }catch (CodigoIncorrectoException e){
+            System.out.println(e.getMessage());
+        }
+
+    }
     /// -----------------FIN INGRESO DATOS CREATE ACCOUNT------------------///
 
  }
