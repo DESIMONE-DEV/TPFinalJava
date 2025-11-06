@@ -1,4 +1,4 @@
-package Modelo.Statics;
+package Modelo.Utiles;
 
 import org.json.JSONArray;
 import org.json.JSONException;
