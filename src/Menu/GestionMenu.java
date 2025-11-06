@@ -56,6 +56,7 @@ public class GestionMenu {
     ///
     /// --------------INGRESO DATOS CREATE ACCOUNT -------------///
     ///
+    /// /// --------------ACCOUNT CLIENTE -------------///
     public static void crearCuentaCliente(){
 
         System.out.print("Ingrese nombre: ");
@@ -84,7 +85,10 @@ public class GestionMenu {
             System.out.println(e.getMessage());
         }
     }
+    ///
+    /// /// --------------ACCOUNT ADMIN -------------///
 
+    /// -----------------FIN INGRESO DATOS CREATE ACCOUNT------------------///
 
  }
 

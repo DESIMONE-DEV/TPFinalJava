@@ -1,4 +1,4 @@
-package Modelo.Statics;
+package Modelo.Utiles;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

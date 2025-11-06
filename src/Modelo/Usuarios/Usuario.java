@@ -1,6 +1,6 @@
 package Modelo.Usuarios;
 
-import Modelo.Statics.CodPassword;
+import Modelo.Utiles.CodPassword;
 
 import java.util.Objects;
 import java.util.UUID;
