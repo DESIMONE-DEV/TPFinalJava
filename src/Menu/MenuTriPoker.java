@@ -70,9 +70,12 @@ public class MenuTriPoker {
                     System.out.println(juego.listarBancaConJuego());
                     System.out.println(juego.listarManos(asientos));
 
-                    mostrarPagoBonus(juego);
+                    mostrarPagoBonus(juego, asientos);
+                    mostrarPagoBet(juego, asientos);
+                    jugador.cargarSaldo(juego.pagarFichas());
 
-                    /// FALTA TERMINAR DE ACAAAAAAAAAAAAAAAA
+                    enterContinue();
+                    limpiarPantalla();
 
                     break;
 
@@ -209,30 +212,77 @@ public class MenuTriPoker {
         }
     }
 
-    public static void mostrarPagoBonus(TriPoker juego){
+    public static void mostrarPagoBonus(TriPoker juego, int asientos){
         double bonus;
-        System.out.println("\nMano 1:");
-        if(juego.pagarBonus(juego.getMano1()) > 0){
-            bonus = juego.pagarBonus(juego.getMano1());
-            System.out.println("GANA BONUS: $" + bonus);
-        }else{
-            System.out.println("PIERDE BONUS");
+        if(asientos >=1) {
+            System.out.println("\nMano 1:");
+            if (juego.pagarBonus(juego.getMano1()) > 0) {
+                bonus = juego.pagarBonus(juego.getMano1());
+                System.out.println("GANA BONUS: $" + bonus);
+            } else {
+                System.out.println("PIERDE BONUS");
+            }
         }
-
-        System.out.println("\nMano 2:");
-        if(juego.pagarBonus(juego.getMano2()) > 0){
-            bonus = juego.pagarBonus(juego.getMano2());
-            System.out.println("GANA BONUS: $" + bonus);
-        }else{
-            System.out.println("PIERDE BONUS");
+        if(asientos >=2) {
+            System.out.println("\nMano 2:");
+            if (juego.pagarBonus(juego.getMano2()) > 0) {
+                bonus = juego.pagarBonus(juego.getMano2());
+                System.out.println("GANA BONUS: $" + bonus);
+            } else {
+                System.out.println("PIERDE BONUS");
+            }
         }
+        if(asientos >=3) {
+            System.out.println("\nMano 3:");
+            if (juego.pagarBonus(juego.getMano3()) > 0) {
+                bonus = juego.pagarBonus(juego.getMano3());
+                System.out.println("GANA BONUS: $" + bonus);
+            } else {
+                System.out.println("PIERDE BONUS");
+            }
+        }
+    }
 
-        System.out.println("\nMano 3:");
-        if(juego.pagarBonus(juego.getMano3()) > 0){
-            bonus = juego.pagarBonus(juego.getMano3());
-            System.out.println("GANA BONUS: $" + bonus);
-        }else{
-            System.out.println("PIERDE BONUS");
+    public static void mostrarPagoBet(TriPoker juego, int asientos){
+        double bet;
+        if(asientos >=1) {
+            System.out.println("\nMano 1:");
+            if (juego.jugadorGana(juego.getMano1()) > 0) {
+                bet = juego.pagarBet(juego.getMano1());
+                System.out.println("GANA BET: $" + bet);
+                System.out.println("GANA ANTE: $" + bet);
+
+            } else if(juego.jugadorGana(juego.getMano1()) < 0){
+                System.out.println("PIERDE BET");
+            }else{
+                System.out.println("HAY EMPATE, RECUPERA SU APUESTA");
+            }
+        }
+        if(asientos >=2) {
+            System.out.println("\nMano 2:");
+            if (juego.jugadorGana(juego.getMano2()) > 0) {
+                bet = juego.pagarBet(juego.getMano2());
+                System.out.println("GANA BET: $" + bet);
+                System.out.println("GANA ANTE: $" + bet);
+
+            } else if(juego.jugadorGana(juego.getMano2()) < 0){
+                System.out.println("PIERDE BET");
+            }else{
+                System.out.println("HAY EMPATE, RECUPERA SU APUESTA");
+            }
+        }
+        if(asientos >=3) {
+            System.out.println("\nMano 3:");
+            if (juego.jugadorGana(juego.getMano3()) > 0) {
+                bet = juego.pagarBet(juego.getMano3());
+                System.out.println("GANA BET: $" + bet);
+                System.out.println("GANA ANTE: $" + bet);
+
+            } else if(juego.jugadorGana(juego.getMano3()) < 0){
+                System.out.println("PIERDE BET");
+            }else{
+                System.out.println("HAY EMPATE, RECUPERA SU APUESTA");
+            }
         }
     }
 
