@@ -1,26 +1,28 @@
 
+import static Menu.GestionMenu.opcionesMenu;
+
 public class Main {
     public static void main(String[] args) {
 
         do {
 
-            switch ("1") {
-                case "1":
+            switch (opcionesMenu()) {
+                case 1:
 
                     break;
-                case "2":
+                case 2:
 
                     break;
-                case "3":
+                case 3:
 
                     break;
-                case "4":
+                case 4:
 
                     break;
-                case "5":
+                case 5:
 
                     break;
-                case "6":
+                case 6:
 
                     break;
 
