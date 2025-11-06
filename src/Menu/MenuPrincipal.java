@@ -14,17 +14,18 @@ public class MenuPrincipal  {
 
     ///----------------------- METODO PARA LOGUEAR------------------------------///
     ///
-    public static Usuario mLoginUsuario(int dni, String pass, GestorGenerico <Usuario> T)throws UsuarioContraseñaIncorrectaException {
-       pass = CodPassword.codificarPassword(pass);
-        for (Usuario User : T.getConjunto()) {
-            if (User.getDni() == dni){
-                if(User.getPassword().equals(pass)){
-                    return User;
-                }
+    public static Usuario mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException {
+        pass = CodPassword.codificarPassword(pass);
+
+        for (Usuario user : T.getConjunto()) {
+            if (user.getDni() == dni && user.getPassword().equals(pass)) {
+                return user;
             }
         }
-        throw new UsuarioContraseñaIncorrectaException();
+
+        throw new UsuarioContraseñaIncorrectaException("DNI o contraseña incorrectos");
     }
+
     ///----------------------- FIN METODO PARA LOGUEAR ---------------------------///
     ///
     ///

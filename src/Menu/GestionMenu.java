@@ -1,23 +1,19 @@
 package Menu;
 
-import Exceptions.CampoVacioException;
-import Exceptions.CaracteresMaximoException;
-import Exceptions.CaracteresMinimoException;
-import Exceptions.CodigoIncorrectoException;
+import Exceptions.*;
 import Modelo.Gestores.GestorGenerico;
 import java.io.IO;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static Menu.MenuPrincipal.createAccountAdmin;
-import static Menu.MenuPrincipal.createAccountCLient;
+import static Menu.MenuPrincipal.*;
 
 
 public class GestionMenu {
 
-    static Scanner sc = new Scanner(System.in);
-   public static GestorGenerico User = new GestorGenerico();
+    public static Scanner sc = new Scanner(System.in);
+    public static GestorGenerico User = new GestorGenerico();
 
     /// ------------------METODO OPCIONES MENU CON EXCEPCION INPUT------////
     public static int opcionesMenu(){
@@ -124,6 +120,35 @@ public class GestionMenu {
 
     }
     /// -----------------FIN INGRESO DATOS CREATE ACCOUNT------------------///
+    ///
+    /// -----------------METODO INGRESO DE DATOS lOGUEO ------------------///
+    ///
+    public static void loguearCuenta(){
+        System.out.print("Ingrese DNI: ");
+        int dni=0;
+        String password="a";
+        try{
+            dni = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Ingrese password: ");
+            password= sc.nextLine();
 
+        }catch(InputMismatchException e) {
+            System.out.println("No sea  malo ingrese un numero correcto");
+        }
+
+
+        try {
+            System.out.println(mLoginUsuario(dni, password,User).toString());
+        } catch (UsuarioContraseñaIncorrectaException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+
+    }
+
+    ///
+    /// -----------------FIN METODO INGRESO DE DATOS LOGUEO-----------------///
  }
 

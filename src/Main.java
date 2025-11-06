@@ -10,7 +10,7 @@ public class Main {
 
             switch (opcionesMenu()) {
                 case 1:
-
+                    loguearCuenta();
                     break;
                 case 2:
                             switch (opcionCuentaClientAdmin()) {
