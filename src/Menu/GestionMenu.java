@@ -1,13 +1,20 @@
 package Menu;
 
+import Exceptions.CampoVacioException;
+import Exceptions.CaracteresMaximoException;
+import Exceptions.CaracteresMinimoException;
+import Modelo.Gestores.GestorGenerico;
 import java.io.IO;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import static Menu.MenuPrincipal.createAccountCLient;
+
 
 public class GestionMenu {
 
     static Scanner sc = new Scanner(System.in);
+   public static GestorGenerico User = new GestorGenerico();
 
     /// ------------------METODO OPCIONES MENU CON EXCEPCION INPUT------////
     public static int opcionesMenu(){
@@ -28,5 +35,56 @@ public class GestionMenu {
 
     }
     /// ----------------FIN METODO OPCIONES MENU CON EXCEPCION INPUT------////
-}
+
+    /// ------------------METODO CREACION/SELECION TIPO DE CUENTA CON EXCEPCION INPUT------////
+    public static int opcionCuentaClientAdmin(){
+
+        IO.println("1: Create Client Account");
+        IO.println("2: Create Admin Account");
+
+        try {
+            return sc.nextInt();
+        }catch(InputMismatchException e){
+            System.out.println("No sea  malo ingrese un numero");
+        }finally {
+            sc.nextLine();
+        }
+        return 0;
+
+    }
+    /// ----------------FIN METODO OPCIONES MENU CON EXCEPCION INPUT------////
+    ///
+    /// --------------INGRESO DATOS CREATE ACCOUNT -------------///
+    ///
+    public static void crearCuentaCliente(){
+
+        System.out.print("Ingrese nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Ingrese DNI: ");
+        int dni = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Ingrese password: ");
+        String password = sc.nextLine();
+
+
+        System.out.print("Ingrese CBU: ");
+        String cta = sc.nextLine();
+
+        try {
+
+            createAccountCLient(nombre, dni, password, cta);
+
+        }catch (CaracteresMinimoException e){
+            System.out.println(e.getMessage());
+        }catch (CaracteresMaximoException e){
+            System.out.println(e.getMessage());
+        }catch (CampoVacioException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+ }
 

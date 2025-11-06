@@ -1,7 +1,5 @@
 package Modelo.Usuarios;
 
-import java.util.UUID;
-
 public class Cliente extends Usuario {
     private Double saldo;
     private String cuentaBancaria;
@@ -9,18 +7,18 @@ public class Cliente extends Usuario {
 
 
     /// ------------------------Constructores------------------///
-    public Cliente(String nombre, Long dni,String password, String cuentaBancaria) {
+    public Cliente(String nombre, int dni,String password, String cuentaBancaria) {
         super(nombre, dni,password);
         this.saldo = 0.00;
         this.cuentaBancaria = cuentaBancaria;
         this.estadoCuenta = true;
     }
 
-    public Cliente(Long dni, String password) {
+    public Cliente(int dni, String password) {
         super(dni, password);
     }
 
-    public Cliente(Long dni){
+    public Cliente(int dni){
         super(dni);
     }
 

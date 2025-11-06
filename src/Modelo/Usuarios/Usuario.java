@@ -1,39 +1,45 @@
 package Modelo.Usuarios;
 
+import Modelo.Statics.CodPassword;
+
 import java.util.Objects;
 import java.util.UUID;
 
 public abstract class Usuario {
     private UUID id;
     private String nombre;
-    private Long dni;
+    private int dni;
     private String password;
 
 
 
-    //---------------------- CONSTRUCTORES--------------------- //
-    public Usuario(String nombre, Long dni,String password) {
+    ///---------------------- CONSTRUCTORES--------------------- ///
+    /// ----------------------COMPLETO PARA LOGIN---------------///
+    ///
+    public Usuario(String nombre, int dni,String password) {
         this.id = UUID.randomUUID();
         this.nombre = nombre;
         this.dni = dni;
-        this.password = password; ///Agregar funcion de ema!!!!!!!!!!!!!!!!! codifica pass!!!!
+        this.password = CodPassword.codificarPassword(password) ; ///Funcion que codifica password!!!!
 
     }
-
+    /// -------------------------------------------------------------
     public Usuario(UUID id) {
         this.id = id;
     }
-    public Usuario(Long dni) {
+    public Usuario(int dni) {
         this.dni = dni;
     }
 
-    public Usuario(Long dni, String password) {
+    public Usuario(int dni, String password) {
         this.dni = dni;
-        this.password = password;
+        this.password = CodPassword.codificarPassword(password) ;
     }
+    ///
     ///---------------------FIN CONSTRUCTORES------------------------------///
 
     ///-----------------------GETTERS AND SETTERS ----------------------///
+    ///
 
     public UUID getId() {
         return id;
@@ -43,7 +49,7 @@ public abstract class Usuario {
         return nombre;
     }
 
-    public Long getDni() {
+    public int getDni() {
         return dni;
     }
 
@@ -55,6 +61,9 @@ public abstract class Usuario {
         this.nombre = nombre;
     }
     ///-------------------- FIN GETTERS AND SETTERS-------------------------///
+    ///
+
+    /// -------------------HASHCODE E EQUALS POR DNI------------------------///
 
     @Override
     public boolean equals(Object o) {
@@ -67,5 +76,21 @@ public abstract class Usuario {
         return Objects.hashCode(dni);
     }
 
+    ///
+    /// ---------------- FIN DE HASCODE E EQUALS--------------------------------////
+    ///
+    ///
+    ///-----------------METODO TO STRING ------------------------------////
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", dni=" + dni +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    /// ---------------- FIN DE METODO TO STRING--------------------------------////
 
 }

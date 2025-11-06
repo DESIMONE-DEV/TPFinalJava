@@ -3,15 +3,15 @@ package Modelo.Usuarios;
 public class Admin extends Usuario {
 
 
-    public Admin(String nombre, Long dni ,String password) {
+    public Admin(String nombre, int dni ,String password) {
         super(nombre,dni, password);
     }
 
-    public Admin(Long dni){
+    public Admin(int dni){
         super(dni);
     }
 
-    public Admin(Long dni, String password) {
+    public Admin(int dni, String password) {
         super(dni, password);
     }
 

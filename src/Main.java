@@ -1,8 +1,10 @@
+import Menu.MenuPrincipal;
 
-import static Menu.GestionMenu.opcionesMenu;
+import static Menu.GestionMenu.*;
 
 public class Main {
     public static void main(String[] args) {
+
 
         do {
 
@@ -11,10 +13,21 @@ public class Main {
 
                     break;
                 case 2:
+                            switch (opcionCuentaClientAdmin()) {
+                                case 1:
+                                    crearCuentaCliente();
+                                    break;
+                                    case 2:
+                                        break;
 
+                            }
                     break;
                 case 3:
-
+                       try{
+                           System.out.println(User.listar());
+                       }catch(Exception e){
+                           System.out.println(e.getMessage());
+                       }
                     break;
                 case 4:
 

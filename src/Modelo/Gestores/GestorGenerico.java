@@ -1,6 +1,7 @@
 package Modelo.Gestores;
 
 import Exceptions.ColleccionVaciaException;
+import Exceptions.CuentaExistenteException;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -28,8 +29,10 @@ public class GestorGenerico <T>{
 
     /// -------------------- METODOS -------------------------------------
 
-    public boolean agregar(T nuevoDato){
-        return conjunto.add(nuevoDato);
+    public boolean agregar(T nuevoDato)throws CuentaExistenteException {
+        if (conjunto.add(nuevoDato)){
+            return true;
+        }throw new CuentaExistenteException("La cuenta ya existe en el sistema");
     }
 
     public boolean eliminar(T dato){
