@@ -64,31 +64,34 @@ public class MenuRuleta {
 
                 switch (opcion) {
                     case 1:
-                        System.out.println("Apuesta plenos:");
+                        System.out.println("Apuesta plenos: ");
                         try {
-                            System.out.println("Ingrese numero al que quiera apostar: ");
-                            int num = sc.nextInt();
-                            sc.nextLine();
+                            System.out.println("Ingrese numero al que quiera apostar (0 - 36): ");
+                            String ingrNum =  sc.nextLine();
+                            int num =  Integer.parseInt(ingrNum);
+
                             if (num < 0 || num > 36) {
                                 throw new NumeroFueraDeRangoException();
                             }
+
                             System.out.println("Ingrese monto a apostar: ");
-                            double monto = sc.nextDouble();
-                            sc.nextLine();
+                            String ingrMonto =  sc.nextLine();
+                            double monto =   Double.parseDouble(ingrMonto);
 
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(String.valueOf(num), monto);
 
                             System.out.println("Apuesta realizada a " + num);
 
-                        } catch (RuntimeException e) {
-                            throw new RuntimeException(e);
-                        } finally {
-                            sc.nextLine();
+                        } catch (NumberFormatException e) { //Excepcion en caso de que se ingrese un string
+                            System.out.println("Error: debe ingresar un numero valido");
+                        } catch (NumeroFueraDeRangoException | SaldoInsuficienteException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
@@ -102,21 +105,23 @@ public class MenuRuleta {
                                 throw new DatoIncorrectoException();
                             }
                             System.out.println("Ingrese monto a apostar: ");
-                            double monto = sc.nextDouble();
-                            sc.nextLine();
+                            String  ingrMonto =  sc.nextLine();
+                            double monto =   Double.parseDouble(ingrMonto);
+
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
+
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(color, monto);
 
                             System.out.println("Apuesta realizada a " + color);
 
-                        } catch (RuntimeException | DatoIncorrectoException e) {
-                            throw new RuntimeException();
-                        } finally {
-                            sc.nextLine();
+                        } catch (NumberFormatException e){
+                            System.out.println("Error: debe ingresar un numero valido");
+                        }catch (DatoIncorrectoException | SaldoInsuficienteException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
@@ -124,8 +129,8 @@ public class MenuRuleta {
                         System.out.println("Apuesta de docenas:");
                         try {
                             System.out.println("Ingrese la docena a la que quiera apostar (1 / 2 / 3): ");
-                            int num = sc.nextInt();
-                            sc.nextLine();
+                            String ingrDocena = sc.nextLine();
+                            int num = Integer.parseInt(ingrDocena);
 
                             String doc;
 
@@ -140,8 +145,9 @@ public class MenuRuleta {
                             }
 
                             System.out.println("Ingrese monto a apostar: ");
-                            double monto = sc.nextDouble();
-                            sc.nextLine();
+                            String ingrMonto =  sc.nextLine();
+                            double monto =   Double.parseDouble(ingrMonto);
+
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
@@ -151,10 +157,10 @@ public class MenuRuleta {
 
                             System.out.println("Apuesta realizada a " + doc);
 
-                        } catch (RuntimeException e) {
-                            throw new RuntimeException();
-                        } finally {
-                            sc.nextLine();
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: debe ingresar un numero valido");
+                        }catch (NumeroFueraDeRangoException | SaldoInsuficienteException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
@@ -162,8 +168,8 @@ public class MenuRuleta {
                         System.out.println("Apuesta de columnas:");
                         try {
                             System.out.println("Ingrese la columna a la que quiera apostar (1 / 2 / 3): ");
-                            int num = sc.nextInt();
-                            sc.nextLine();
+                            String ingrColumna = sc.nextLine();
+                            int num = Integer.parseInt(ingrColumna);
 
                             String col;
                             if (num == 1) {
@@ -177,8 +183,9 @@ public class MenuRuleta {
                             }
 
                             System.out.println("Ingrese monto a apostar: ");
-                            double monto = sc.nextDouble();
-                            sc.nextLine();
+                            String ingrMonto =  sc.nextLine();
+                            double monto =   Double.parseDouble(ingrMonto);
+
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
@@ -188,25 +195,26 @@ public class MenuRuleta {
 
                             System.out.println("Apuesta realizada a " + col);
 
-                        } catch (RuntimeException e) {
-                            throw new RuntimeException();
-                        } finally {
-                            sc.nextLine();
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: debe ingresar un numero valido");
+                        } catch (NumeroFueraDeRangoException | SaldoInsuficienteException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
                     case 5:
                         System.out.println("Apuesta de mayor o menor:");
                         try {
-                            System.out.println("Escriba si quiere apostar a menor (1 - 18) o mayor (19 - 36): ");
+                            System.out.println("Escriba si quiere apostar a MENOR (1 - 18) o MAYOR (19 - 36): ");
                             String menorMayor = sc.nextLine().toLowerCase();
 
                             if (!menorMayor.equals("menor") && (!menorMayor.equals("mayor"))) {
                                 throw new DatoIncorrectoException();
                             }
                             System.out.println("Ingrese monto a apostar: ");
-                            double monto = sc.nextDouble();
-                            sc.nextLine();
+                            String ingrMonto =  sc.nextLine();
+                            double monto =   Double.parseDouble(ingrMonto);
+
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
@@ -216,17 +224,17 @@ public class MenuRuleta {
 
                             System.out.println("Apuesta realizada a " + menorMayor);
 
-                        } catch (RuntimeException | DatoIncorrectoException e) {
-                            throw new RuntimeException();
-                        } finally {
-                            sc.nextLine();
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: debe ingresar un numero valido");
+                        } catch (DatoIncorrectoException | SaldoInsuficienteException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
                     case 6:
                         System.out.println("Apuesta de par o impar:");
                         try {
-                            System.out.println("Escriba si quiere apostar a par o impar: ");
+                            System.out.println("Escriba si quiere apostar a PAR o IMPAR: ");
                             String parImpar = sc.nextLine().toLowerCase();
 
                             if (!parImpar.equals("par") && (!parImpar.equals("impar"))) {
@@ -234,8 +242,9 @@ public class MenuRuleta {
                             }
 
                             System.out.println("Ingrese monto a apostar: ");
-                            double monto = sc.nextDouble();
-                            sc.nextLine();
+                            String ingrMonto =  sc.nextLine();
+                            double monto =   Double.parseDouble(ingrMonto);
+
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
                             }
@@ -245,12 +254,10 @@ public class MenuRuleta {
 
                             System.out.println("Apuesta realizada a " + parImpar);
 
-                        } catch (RuntimeException e) {
-                            throw new RuntimeException();
-                        } catch (DatoIncorrectoException e) {
-                            throw new RuntimeException(e);
-                        } finally {
-                            sc.nextLine();
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: debe ingresar un numero valido");
+                        }catch (DatoIncorrectoException | SaldoInsuficienteException e) {
+                            System.out.println("Error: " + e.getMessage());
                         }
                         break;
 
@@ -258,7 +265,7 @@ public class MenuRuleta {
                         double ganancia = ruleta.pagarFichas();
                         jugador.setSaldo(jugador.getSaldo() + ganancia);
                         System.out.println("Numero ganador: " + ruleta.getNumeroSalidor());
-                        System.out.println("Ganancia / Perdida " + ganancia);
+                        System.out.println("Pago recibido: " + ganancia);
                         System.out.println("Nuevo saldo: " + jugador.getSaldo());
 
                         ruleta.limpiarApuestas();
