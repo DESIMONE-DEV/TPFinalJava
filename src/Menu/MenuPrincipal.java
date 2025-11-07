@@ -9,6 +9,8 @@ import Modelo.Usuarios.Usuario;
 
 import java.util.InputMismatchException;
 
+import static Menu.MenuCliente.menuInicialCliente;
+
 
 public class MenuPrincipal  {
 
