@@ -15,29 +15,29 @@ public class MenuAdmin {
 
             switch (opcion) {
                 case 1:
-
+                    /// Listar Usuarios
                     break;
                 case 2:
-
+                    /// Ingresos
                     break;
                 case 3:
-
+                    /// Retiros
                     break;
                 case 4:
-
+                    /// Cambiar password de Usuario que se aolvido
                     break;
                 case 5:
-
+                    /// cargar saldo
                     break;
                 case 0:
                     System.out.println("Cerrando sesion, hasta la proxima " + admin.getNombre());
-                    break;
+                    return;
                 default:
                     System.out.println("Opcion invalida, intente nuevamente");
                     break;
             }
 
 
-        } while (opcion != 0);
+        } while (true);
     }
 }

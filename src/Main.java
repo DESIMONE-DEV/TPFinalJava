@@ -20,7 +20,6 @@ public class Main {
                                     case 2:
                                         crearCuentaAdmin();
                                         break;
-
                             }
                     break;
                 case 3:

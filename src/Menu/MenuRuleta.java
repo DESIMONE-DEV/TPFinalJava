@@ -32,7 +32,7 @@ public class MenuRuleta {
                         break;
                     case 0:
                         salir = 0;
-                        return;
+                        break;
                 }
             } while (salir == 1);
 

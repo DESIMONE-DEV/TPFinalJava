@@ -17,16 +17,18 @@ public class MenuPrincipal  {
 
     ///----------------------- METODO PARA LOGUEAR------------------------------///
     ///
-    public static void mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException {
+    public static boolean mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException {
         pass = CodPassword.codificarPassword(pass);
 
         for (Usuario user : T.getConjunto()) {
             if (user.getDni() == dni && user.getPassword().equals(pass)) {
                 if (user instanceof Admin) {
                     menuInicialAdmin((Admin) user);
+                    return true;
                 }
                 if (user instanceof Cliente) {
                     menuInicialCliente((Cliente)user);
+                    return true;
                 }
             }
         }
