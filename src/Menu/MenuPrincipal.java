@@ -9,6 +9,8 @@ import Modelo.Usuarios.Usuario;
 
 import java.util.InputMismatchException;
 
+import static Menu.MenuCliente.menuInicialCliente;
+
 
 public class MenuPrincipal  {
 
@@ -32,7 +34,7 @@ public class MenuPrincipal  {
     /// --------------------METODO PARA IR A MENU ADMIN/CLIENTE--------------------///
     ///
     public static void adminOcliente(Usuario u){
-       // u instanceof Admin ? menuAdmin(u):menuCliente(u);
+       u instanceof Admin ? menuInicialAdmin(u):menuInicialCliente(u);
     }
     /// -------------------FIN METODO PARA IR A MENU ADMIN/CLIENTE----------------///
     ///
