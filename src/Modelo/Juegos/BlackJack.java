@@ -102,7 +102,7 @@ public class BlackJack extends Juego implements IRepartidor {
 
 
     @Override
-    public void repartir(int cantUsuarios) throws MazoVacioException {
+    public void repartir() throws MazoVacioException {
         int suma = 0;
         banca.add((Carta) mazo.repartir(2));
         jugador.add((Carta)mazo.repartir(2));

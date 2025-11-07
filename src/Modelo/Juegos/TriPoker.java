@@ -78,16 +78,12 @@ public class TriPoker extends Juego implements IRepartidor {
     /// ------------------------ METODOS ---------------------------------------------
 
     @Override
-    public void repartir(int cantUsuarios) throws MazoVacioException {
+    public void repartir() throws MazoVacioException {
         mazo.mezclar();
-            if (cantUsuarios >= 1) {
-                mano1.setCartas(mazo.repartir(cantCartasJuego));
-                manoBanca.setCartas(mazo.repartir(cantCartasJuego));
-            }
-            if(cantUsuarios >=2)
-                mano2.setCartas(mazo.repartir(cantCartasJuego));
-            if(cantUsuarios >=3)
-                mano3.setCartas(mazo.repartir(cantCartasJuego));
+        mano1.setCartas(mazo.repartir(cantCartasJuego));
+        mano2.setCartas(mazo.repartir(cantCartasJuego));
+        mano3.setCartas(mazo.repartir(cantCartasJuego));
+        manoBanca.setCartas(mazo.repartir(cantCartasJuego));
     }
 
     public void recuperarMazo(){
@@ -98,6 +94,10 @@ public class TriPoker extends Juego implements IRepartidor {
         mano1.getCartas().clear();
         mano2.getCartas().clear();
         mano3.getCartas().clear();
+
+        removerApuestaMano1();
+        removerApuestaMano2();
+        removerApuestaMano3();
     }
 
     public void asignarBetMano1(){
@@ -178,14 +178,14 @@ public class TriPoker extends Juego implements IRepartidor {
         }
     }
 
-    public int valorizarJuego(ManoTriPoker mano){
+    public double valorizarJuego(ManoTriPoker mano){
         if(esEscaleraColor(mano)){
             return 41;
         }else if(esPoker(mano)){
             return 31;
         }else if(esEscalera(mano)){
             return 7;
-        }else if(esColor(mano)){
+         }else if(esColor(mano)){
             return 5;
         }else if(esPar(mano)){
             return 2;
@@ -200,8 +200,8 @@ public class TriPoker extends Juego implements IRepartidor {
      * @return -1 SI PIERDE, 0 SI HAY EMPATE, 1 SI GANA
     * */
     public int jugadorGana(ManoTriPoker mano){
-        int valorJugador = valorizarJuego(mano);
-        int valorBanca = valorizarJuego(manoBanca);
+        double valorJugador = valorizarJuego(mano);
+        double valorBanca = valorizarJuego(manoBanca);
 
         if(valorJugador > valorBanca){
             return 1;
@@ -296,21 +296,21 @@ public class TriPoker extends Juego implements IRepartidor {
                     "\n     BET: " + mano1.getBet()
             );
         }else if(cantAsientos == 2){
-            msj.append("\n\n    MANO 1              MANO 2\n    "
+            msj.append("\n\n    MANO 1                                                  MANO 2\n    "
                     + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
                     "       " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
-                    "\n     BONUS: " + mano1.getBonus() + "         BONUS: " + mano2.getBonus() +
-                    "\n     ANTE: " + mano1.getAnte() +   "         ANTE: " + mano2.getAnte() +
-                    "\n     BET: " + mano1.getBet() +     "         BET: " + mano2.getBet()
+                    "\n     BONUS: " + mano1.getBonus() + "                                                  BONUS: " + mano2.getBonus() +
+                    "\n     ANTE: " + mano1.getAnte() +   "                                                  ANTE: " + mano2.getAnte() +
+                    "\n     BET: " + mano1.getBet() +     "                                                  BET: " + mano2.getBet()
             );
         }else if(cantAsientos == 3){
-            msj.append("\n\n    MANO 1              MANO 2          MANO 3\n    "
+            msj.append("\n\n    MANO 1                                                  MANO 2                                          MANO 3\n    "
                     + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
                     "       " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
                     "       " + mano3.getCartas().get(0).toString() + " - " + mano3.getCartas().get(1).toString() + " - " + mano3.getCartas().get(2).toString() +
-                    "\n     BONUS: " + mano1.getBonus() + "         BONUS: " + mano2.getBonus() + "         BONUS: " + mano3.getBonus() +
-                    "\n     ANTE: " + mano1.getAnte() +   "         ANTE: " + mano2.getAnte() +   "         ANTE: " + mano3.getAnte() +
-                    "\n     BET: " + mano1.getBet() +     "         BET: " + mano2.getBet() +     "         BET: " + mano3.getBet()
+                    "\n     BONUS: " + mano1.getBonus() + "                                                     BONUS: " + mano2.getBonus() + "                                                  BONUS: " + mano3.getBonus() +
+                    "\n     ANTE: " + mano1.getAnte() +   "                                                     ANTE: " + mano2.getAnte() +   "                                                  ANTE: " + mano3.getAnte() +
+                    "\n     BET: " + mano1.getBet() +     "                                                     BET: " + mano2.getBet() +     "                                                  BET: " + mano3.getBet()
             );
         }
         return msj.toString();
