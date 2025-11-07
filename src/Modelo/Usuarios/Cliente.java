@@ -48,6 +48,8 @@ public class Cliente extends Usuario {
         this.saldo = saldo;
     }
 
+    public void setCuentaBancaria(String cuentaBancaria) { this.cuentaBancaria = cuentaBancaria; }
+
     public void setEstadoCuenta(Boolean estadoCuenta) {
         this.estadoCuenta = estadoCuenta;
     }
