@@ -1,11 +1,10 @@
 import Menu.MenuPrincipal;
 import Modelo.Usuarios.Cliente;
 
-//import static Menu.GestionMenu.*;
+import static Menu.GestionMenu.*;
 
 public class Main {
     public static void main(String[] args) {
-/*
 
         do {
 
@@ -44,15 +43,6 @@ public class Main {
             }
 
         }while(true);
-
-*/
-        Cliente ferchoElVicioso = new Cliente("Fercho", 42526262, "f123", "BritoCoin");
-
-        ferchoElVicioso.setSaldo(1000.00);
-
-        System.out.println("Prueba con: " + ferchoElVicioso.getNombre());
-        System.out.println("Saldo: " + ferchoElVicioso.getSaldo());
-
 
 
 
