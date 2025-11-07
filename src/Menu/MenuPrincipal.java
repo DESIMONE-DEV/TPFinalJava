@@ -9,6 +9,7 @@ import Modelo.Usuarios.Usuario;
 
 import java.util.InputMismatchException;
 
+import static Menu.MenuAdmin.menuInicialAdmin;
 import static Menu.MenuCliente.menuInicialCliente;
 
 
@@ -16,12 +17,17 @@ public class MenuPrincipal  {
 
     ///----------------------- METODO PARA LOGUEAR------------------------------///
     ///
-    public static Usuario mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException {
+    public static void mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException {
         pass = CodPassword.codificarPassword(pass);
 
         for (Usuario user : T.getConjunto()) {
             if (user.getDni() == dni && user.getPassword().equals(pass)) {
-                return user;
+                if (user instanceof Admin) {
+                    menuInicialAdmin((Admin) user);
+                }
+                if (user instanceof Cliente) {
+                    menuInicialCliente((Cliente)user);
+                }
             }
         }
 
@@ -30,13 +36,6 @@ public class MenuPrincipal  {
 
     ///----------------------- FIN METODO PARA LOGUEAR ---------------------------///
     ///
-    ///
-    /// --------------------METODO PARA IR A MENU ADMIN/CLIENTE--------------------///
-    ///
-    public static void adminOcliente(Usuario u){
-       u instanceof Admin ? menuInicialAdmin(u):menuInicialCliente(u);
-    }
-    /// -------------------FIN METODO PARA IR A MENU ADMIN/CLIENTE----------------///
     ///
     ///
     ////// -------------------------METODOS PARA CREAR ACCOUNT------------------------///

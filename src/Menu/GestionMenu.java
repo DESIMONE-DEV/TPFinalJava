@@ -2,8 +2,7 @@ package Menu;
 
 import Exceptions.*;
 import Modelo.Gestores.GestorGenerico;
-import java.io.IO;
-import java.io.IOException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,10 +17,10 @@ public class GestionMenu {
     /// ------------------METODO OPCIONES MENU CON EXCEPCION INPUT------////
     public static int opcionesMenu(){
 
-        IO.println("1: Login");
-        IO.println("2: Create Account");
-        IO.println("3: Creditos");
-        IO.println("4: Salir");
+        System.out.println("1: Login");
+        System.out.println("2: Create Account");
+        System.out.println("3: Creditos");
+        System.out.println("4: Salir");
 
         try {
             return sc.nextInt();
@@ -38,8 +37,8 @@ public class GestionMenu {
     /// ------------------METODO CREACION/SELECION TIPO DE CUENTA CON EXCEPCION INPUT------////
     public static int opcionCuentaClientAdmin(){
 
-        IO.println("1: Create Client Account");
-        IO.println("2: Create Admin Account");
+        System.out.println("1: Create Client Account");
+        System.out.println("2: Create Admin Account");
 
         try {
             return sc.nextInt();
@@ -140,7 +139,7 @@ public class GestionMenu {
         }
 
         try {
-           adminOcliente(mLoginUsuario(dni, password,User));
+           mLoginUsuario(dni, password,User);
         } catch (UsuarioContraseñaIncorrectaException e) {
             System.out.println(e.getMessage());
         }
