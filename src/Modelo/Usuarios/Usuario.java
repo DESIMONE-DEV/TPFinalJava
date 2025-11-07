@@ -60,6 +60,10 @@ public abstract class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     ///-------------------- FIN GETTERS AND SETTERS-------------------------///
     ///
 

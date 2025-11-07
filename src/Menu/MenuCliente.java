@@ -1,7 +1,8 @@
 package Menu;
-
+import Modelo.Utiles.CodPassword;
 import Menu.MenuRuleta;
 import Menu.MenuTriPoker;
+
 
 
 import Modelo.Usuarios.Cliente;
@@ -48,18 +49,8 @@ public class MenuCliente {
 
 
         }while(opcion!=0);
-
-
-        //jugar
-
-        //cargar
-        //retirar
-        //cambiar cuenta bancaria
-        //cambiar contrasenia
-        //salir
-
-
     }
+
     public static int menuInicial(){
         System.out.println("Elija una opcion");
         System.out.println("1. Lista de juegos");
@@ -134,7 +125,6 @@ public class MenuCliente {
             }
         }while(opcionJuego!=0);
     }
-
     ///---------- MENU DE CARGO DE SALDO ----------
     public static void cargarSaldo(Cliente cliente) {
         System.out.println("Carga de saldo");
@@ -149,8 +139,8 @@ public class MenuCliente {
                 System.out.println("Error: el monto debe ser positivo");
                 return;
             }
-            cliente.setSaldo(montoDouble);
-            System.out.println("Carga realiada exitosamente!");
+            cliente.cargarSaldo(montoDouble);
+            System.out.println("Carga realizada exitosamente!");
             System.out.println("Saldo actual: " + cliente.getSaldo());
         } catch (NumberFormatException e){
             System.out.println("Error: debe ingresar un numero valido");
@@ -174,7 +164,7 @@ public class MenuCliente {
             if(cliente.getSaldo() < montoDouble){
                 System.out.println("Error: saldo insuficiente para retirar");
             }else {
-                cliente.setSaldo(montoDouble);
+                cliente.retirarSaldo(montoDouble);
                 System.out.println("Carga realiada exitosamente!");
                 System.out.println("Saldo actual: " + cliente.getSaldo());
             }
@@ -194,27 +184,29 @@ public class MenuCliente {
 
         System.out.println("Cuenta bancaria actualizada: " + cliente.getCuentaBancaria());
     }
-
     ///---------- MENU DE CAMBIO DE CONTRASEÑA ----------
     public static void cambiarContrasenia(Cliente cliente) {
         System.out.println("Cambiar Contrasenia");
         System.out.println("Ingrese su contrasenia actual:");
         String contrasenia = sc.nextLine();
 
-        try{
-            System.out.println("Ingrese el monto que quiera cargar");
-            String monto = sc.nextLine();
-            Double montoDouble = Double.parseDouble(monto);
+        if(cliente.getPassword().equals(contrasenia)){
+            System.out.println("Ingrese una nueva contrasenia");
+            String nuevaContrasenia = sc.nextLine();
+            System.out.println("Confirme su nueva contrasenia");
+            String nuevaContrasenia2 = sc.nextLine();
 
-            if(montoDouble <= 0){
-                System.out.println("Error: el monto debe ser positivo");
-                return;
+            if (nuevaContrasenia.equals(nuevaContrasenia2)) {
+                if(nuevaContrasenia.isEmpty()){
+                    System.out.println("Error. La contrasenia no puede estar vacia");
+                } else {
+                    cliente.setPassword(CodPassword.codificarPassword(nuevaContrasenia));
+                }
+            } else {
+                System.out.println("Contrasenias no coinciden");
             }
-            cliente.setSaldo(montoDouble);
-            System.out.println("Carga realiada exitosamente!");
-            System.out.println("Saldo actual: " + cliente.getSaldo());
-        } catch (NumberFormatException e){
-            System.out.println("Error: debe ingresar un numero valido");
+        }else {
+            System.out.println("Contrasenia incorrecta");
         }
     }
 }
