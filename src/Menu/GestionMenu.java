@@ -124,10 +124,12 @@ public class GestionMenu {
     /// -----------------METODO INGRESO DE DATOS lOGUEO ------------------///
     ///
     public static void loguearCuenta(){
-        System.out.print("Ingrese DNI: ");
+
         int dni=0;
         String password="a";
+
         try{
+            System.out.print("Ingrese DNI: ");
             dni = sc.nextInt();
             sc.nextLine();
             System.out.print("Ingrese password: ");
@@ -137,14 +139,11 @@ public class GestionMenu {
             System.out.println("No sea  malo ingrese un numero correcto");
         }
 
-
         try {
-            System.out.println(mLoginUsuario(dni, password,User).toString());
+           adminOcliente(mLoginUsuario(dni, password,User));
         } catch (UsuarioContraseñaIncorrectaException e) {
             System.out.println(e.getMessage());
         }
-
-
 
     }
 
