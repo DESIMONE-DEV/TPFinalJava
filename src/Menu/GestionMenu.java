@@ -2,6 +2,8 @@ package Menu;
 
 import Exceptions.*;
 import Modelo.Gestores.GestorGenerico;
+import Modelo.Gestores.GestorStats;
+import Modelo.Stats.Estadistica;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -13,6 +15,7 @@ public class GestionMenu {
 
     public static Scanner sc = new Scanner(System.in);
     public static GestorGenerico User = new GestorGenerico();
+    public static GestorStats stats = new GestorStats();
 
     /// ------------------METODO OPCIONES MENU CON EXCEPCION INPUT------////
     public static int opcionesMenu(){
@@ -148,5 +151,11 @@ public class GestionMenu {
 
     ///
     /// -----------------FIN METODO INGRESO DE DATOS LOGUEO-----------------///
+
+    /// ---------------- CREACION ESTADISTICA NUEVA ---------------------- ////
+
+    public static void crearStats(String nombreJugador, String tipoMovimiento, double monto){
+        stats.agregarStats(new Estadistica(nombreJugador, tipoMovimiento, monto));
+    }
  }
 

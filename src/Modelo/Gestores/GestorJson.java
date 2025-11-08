@@ -1,6 +1,7 @@
 package Modelo.Gestores;
 
 import Menu.GestionMenu;
+import Modelo.Stats.Estadistica;
 import Modelo.Usuarios.Admin;
 import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
@@ -32,6 +33,12 @@ public class GestorJson {
 
     }
 
+    /// --------------  METODO GUARDADO DE ESTADISTICAS ---------------------- ////
+
+    public static void guardarEstadistica(JSONArray array){
+        JsonUtiles.grabarUnJson(array, "archivoStats.json");
+    }
+
     /// ---------------------------  CARGA DE JSON------------------------------//////////////////
     ///
     public static  void cargajson() {
@@ -50,11 +57,18 @@ public class GestorJson {
                 GestionMenu.User.agregar(new Cliente(objeto));
             }
         }
-
-
-
     }
-    ///
+    /// ------------------- CARGA DE JSON ESTADISTICAS ------------------------- ////////////
+
+    public static void cargarEstadisticas(){
+
+        String contenido = JsonUtiles.leer("archivoStats");
+        JSONArray array = new JSONArray(contenido);
+
+        for(int i=0; i<array.length(); i++){
+            GestionMenu.stats.agregarStats(new Estadistica(array.getJSONObject(i)));
+        }
+    }
 
 
 
