@@ -36,4 +36,12 @@ public class  ManoBlackJack {
     public void agregarCarta(List<Carta> carta) {
         mano.addAll(carta);
     }
+
+    public int cantidadDeCartas() {
+        return mano.size();
+    }
+    public Carta buscarCarta(int pos) {
+        return mano.get(pos);
+    }
+
 }
