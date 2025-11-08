@@ -12,7 +12,7 @@ public class MenuBlackJack {
     public static void start(Cliente jugador) {
         BlackJack21 blackJack21 = new BlackJack21();
         int opcion = 0;
-        String salir = "s";
+        String salir = "p";
 
         do {
             System.out.println("1-REPARTIR CARTAS");
@@ -23,7 +23,6 @@ public class MenuBlackJack {
             opcion = scan.nextInt();
             scan.nextLine();
 
-            opcion = scan.nextInt();
             switch (opcion) {
                 case 1:
                     try {
@@ -65,9 +64,11 @@ public class MenuBlackJack {
                     break;
 
             }
-            System.out.println("DESEA SALIR PRESIONE s");
+
+            System.out.println("DESEA Seguir PRESIONE s");
+            salir = scan.nextLine();
 
 
-        } while (salir != "s");
+        } while (salir.equalsIgnoreCase( "s"));
     }
 }

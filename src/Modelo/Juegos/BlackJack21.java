@@ -90,11 +90,11 @@ public class BlackJack21 extends Juego implements IRepartidor {
             for (int i = 0; i < banca.cantidadDeCartas(); i++) {
                 Carta carta = banca.buscarCarta(i);
                 if (true == encontrarAs(carta)) {
-                    suma = +11;
+                    suma +=11;
                 } else if (true == cambiarValores(carta)) {
-                    suma = +11;
+                    suma +=11;
                 } else {
-                    suma = +carta.getValor().getValorNum();
+                    suma +=carta.getValor().getValorNum();
                     if (suma > 16 && suma < 22) {
                         return suma;
                     }
@@ -102,13 +102,13 @@ public class BlackJack21 extends Juego implements IRepartidor {
             }
             if (suma < 16) {
                 banca.agregarCarta(mazo.repartir(1));
-                suma = +banca.buscarCarta(2).getValor().getValorNum();
+                suma +=banca.buscarCarta(2).getValor().getValorNum();
                 if (banca.getCarta().get(0).getValor().getValorSimb().equals("A") && suma < 21) {
-                    suma = -10;
+                    suma -=10;
                     banca.agregarCarta(mazo.repartir(1));
-                    suma = +banca.buscarCarta(3).getValor().getValorNum();
+                    suma +=banca.buscarCarta(3).getValor().getValorNum();
                 } else if (banca.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
-                    suma = -10;
+                    suma -=10;
                     banca.agregarCarta(mazo.repartir(1));
                     suma = +banca.buscarCarta(4).getValor().getValorNum();
                 } else if (suma > 21) {
@@ -126,11 +126,15 @@ public class BlackJack21 extends Juego implements IRepartidor {
         for (int i = 0 ; i < mano1.cantidadDeCartas() ; i++){
             Carta carta = mano1.buscarCarta(i);
             if ( true == encontrarAs(carta)){
-                suma =+ 11 ;
+                suma += 11 ;
             }else if ( true == cambiarValores(carta)){
-                suma =+ 11;
+                suma += 11;
             }else {
-                suma = +carta.getValor().getValorNum();
+                suma +=carta.getValor().getValorNum();
+            }
+            if (suma == 22){
+                mano1.getCarta().contains("A");
+                suma -=10;
             }
         }
         return suma;
@@ -142,27 +146,25 @@ public class BlackJack21 extends Juego implements IRepartidor {
             throw new MazoVacioException();
         } else
             mano1.agregarCarta(mazo.repartir(1));
-        suma = +mano1.buscarCarta(2).getValor().getValorNum();
+        suma +=mano1.buscarCarta(2).getValor().getValorNum();
         if (suma > 21) {
             if (mano1.getCarta().get(0).getValor().getValorSimb().equals("A") && suma > 21) {
-                suma = -10;
+                suma -=10;
                 mano1.agregarCarta(mazo.repartir(1));
-                suma = +mano1.buscarCarta(2).getValor().getValorNum();
+                suma +=mano1.buscarCarta(2).getValor().getValorNum();
                 return suma;
             } else if (mano1.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
-                suma = -10;
+                suma -=10;
                 mano1.agregarCarta(mazo.repartir(1));
-                suma = +mano1.buscarCarta(3).getValor().getValorNum();
+                suma +=mano1.buscarCarta(3).getValor().getValorNum();
                 return suma;
             } else if (mano1.getCarta().get(2).getValor().getValorSimb().equals("A") && suma > 21) {
-                suma = -10;
+                suma -=10;
                 mano1.agregarCarta(mazo.repartir(1));
-                suma = +mano1.buscarCarta(4).getValor().getValorNum();
-                return suma;
-            } else if (suma > 21) {
-                suma = -1;
+                suma +=mano1.buscarCarta(4).getValor().getValorNum();
                 return suma;
             }
+
         }
         return suma;
     }
