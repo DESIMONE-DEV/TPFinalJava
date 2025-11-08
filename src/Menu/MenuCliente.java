@@ -1,8 +1,5 @@
 package Menu;
 import Modelo.Utiles.CodPassword;
-import Menu.MenuRuleta;
-import Menu.MenuTriPoker;
-
 
 
 import Modelo.Usuarios.Cliente;
@@ -107,7 +104,7 @@ public class MenuCliente {
                     case 3:
                         System.out.println("Entrando a Blackjack...");
 
-                        /// FALTA PONER BLACKJACK ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                        MenuBlackJack.start(cliente);
 
                         System.out.println("Saliendo del Blackjack...");
                         break;
