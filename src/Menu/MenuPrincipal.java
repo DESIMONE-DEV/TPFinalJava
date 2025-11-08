@@ -2,6 +2,7 @@ package Menu;
 
 import Exceptions.*;
 import Modelo.Gestores.GestorGenerico;
+import Modelo.Gestores.GestorJson;
 import Modelo.Utiles.CodPassword;
 import Modelo.Usuarios.Admin;
 import Modelo.Usuarios.Cliente;
@@ -78,6 +79,8 @@ public class MenuPrincipal  {
         } catch (CuentaExistenteException e) {
             System.out.println("La cuenta ya existe");
         }
+
+        GestorJson.guardarJson(GestionMenu.User.getConjunto());
     }
     ///
     /// /// -------------------------METODOS PARA CREAR ACCOUNT ADMINISTRADOR------------------------///
@@ -120,6 +123,8 @@ public class MenuPrincipal  {
         } catch (CuentaExistenteException e) {
             System.out.println("La cuenta ya existe");
         }
+
+        GestorJson.guardarJson(GestionMenu.User.getConjunto());
     }
     ///
     /// -------------------------FIN METODO PARA CREAR ACCOUNT-------------------///

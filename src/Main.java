@@ -1,10 +1,13 @@
 import Menu.MenuPrincipal;
+import Modelo.Gestores.GestorJson;
 import Modelo.Usuarios.Cliente;
 
 import static Menu.GestionMenu.*;
 
 public class Main {
     public static void main(String[] args) {
+
+        GestorJson.cargajson();
 
         do {
 

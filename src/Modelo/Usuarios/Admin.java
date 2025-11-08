@@ -1,5 +1,10 @@
 package Modelo.Usuarios;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.UUID;
+
 public class Admin extends Usuario {
 
 
@@ -35,6 +40,30 @@ public class Admin extends Usuario {
     }
 
     /// ---------FIN DE FUNCIONES DE ADMIN-------------////////
+    ///
+    /// ----------------------TO JSON  -----------------------------///
+    ///
+    public JSONObject toJSON() throws JSONException {
 
+        JSONObject objeto = new JSONObject();
+
+        objeto.put("Tipo", "Admin");
+        objeto.put("Nombre",getNombre());
+        objeto.put("Id",getId());
+        objeto.put("Dni",getDni());
+        objeto.put("Password",getPassword());
+
+        return objeto;
+
+    }
+
+    /// ---------------------FROM JSON ----------------------------///
+    public Admin(JSONObject objeto) {
+        super( objeto.getString("Nombre") ,
+                UUID.fromString(objeto.getString("Id")),
+                objeto.getInt("Dni"),
+                objeto.getString("Password"));
+
+    }
 
 }

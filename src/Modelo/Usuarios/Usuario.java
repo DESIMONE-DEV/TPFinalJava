@@ -35,6 +35,14 @@ public abstract class Usuario {
         this.dni = dni;
         this.password = CodPassword.codificarPassword(password) ;
     }
+    /// -------------------CONSTRUCTOR CARGA-----------------------///
+    ///
+    public Usuario(String nombre, UUID id, int dni, String password) {
+        this.nombre = nombre;
+        this.id = id;
+        this.dni = dni;
+        this.password = password;
+    }
     ///
     ///---------------------FIN CONSTRUCTORES------------------------------///
 
