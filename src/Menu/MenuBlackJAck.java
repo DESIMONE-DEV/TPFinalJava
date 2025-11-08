@@ -24,6 +24,7 @@ public class MenuBlackJAck {
             System.out.println("4-VERIFICAR QUE SACO LA BANCA");
             System.out.println("5-COMPARA VALORES");
 
+            opcion = scan.nextInt();
             switch (opcion) {
                 case 1:
                     try {
