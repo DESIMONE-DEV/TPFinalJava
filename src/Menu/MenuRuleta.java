@@ -41,8 +41,12 @@ public class MenuRuleta {
             System.out.println("1. Jugar");
             System.out.println("0. Salir");
         }
+    public static void mostrarSaldo(Cliente jugador) {
+        System.out.println("----- Saldo actual: " + jugador.getSaldo());
+    }
 
-/// -------------------- Menu apuestas -----------------------------------
+
+    /// -------------------- Menu apuestas -----------------------------------
         public static void ingresarApuestas(Ruleta ruleta, Cliente jugador) throws RuntimeException, SaldoInsuficienteException {
             //Menu con opciones
 
@@ -64,6 +68,7 @@ public class MenuRuleta {
 
                 switch (opcion) {
                     case 1:
+                        mostrarSaldo(jugador);
                         System.out.println("Apuesta plenos: ");
                         try {
                             System.out.println("Ingrese numero al que quiera apostar (0 - 36): ");
@@ -96,6 +101,7 @@ public class MenuRuleta {
                         break;
 
                     case 2:
+                        mostrarSaldo(jugador);
                         System.out.println("Apuesta de color:");
                         try {
                             System.out.println("Ingrese un color para apostar (rojo/negro): ");
@@ -126,6 +132,7 @@ public class MenuRuleta {
                         break;
 
                     case 3:
+                        mostrarSaldo(jugador);
                         System.out.println("Apuesta de docenas:");
                         try {
                             System.out.println("Ingrese la docena a la que quiera apostar (1 / 2 / 3): ");
@@ -165,6 +172,7 @@ public class MenuRuleta {
                         break;
 
                     case 4:
+                        mostrarSaldo(jugador);
                         System.out.println("Apuesta de columnas:");
                         try {
                             System.out.println("Ingrese la columna a la que quiera apostar (1 / 2 / 3): ");
@@ -203,6 +211,7 @@ public class MenuRuleta {
                         break;
 
                     case 5:
+                        mostrarSaldo(jugador);
                         System.out.println("Apuesta de mayor o menor:");
                         try {
                             System.out.println("Escriba si quiere apostar a MENOR (1 - 18) o MAYOR (19 - 36): ");
@@ -232,6 +241,7 @@ public class MenuRuleta {
                         break;
 
                     case 6:
+                        mostrarSaldo(jugador);
                         System.out.println("Apuesta de par o impar:");
                         try {
                             System.out.println("Escriba si quiere apostar a PAR o IMPAR: ");
