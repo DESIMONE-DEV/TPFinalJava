@@ -30,16 +30,13 @@ public class MenuAdmin {
                     /// Retiros
                     break;
                 case 4:
-                    /// Cambiar password de Usuario que se aolvido
+
                     break;
                 case 5:
-                    /// cargar saldo
+                    cargarSaldo(a);
                     break;
                 case 6:
-                    /// bloquear cuenta
-                    break;
-                case 7:
-                    /// cargar saldo
+                    cambiarEstadoBaneo(a)
                     break;
                 case 0:
                     System.out.println("Cerrando sesion, hasta la proxima " + admin.getNombre());
@@ -59,6 +56,7 @@ public class MenuAdmin {
         System.out.println("3. Retiros");
         System.out.println("4. Cambiar password de usuario");
         System.out.println("5. Cargar saldo a usuario");
+        System.out.println("6. Bloquear/Desbloquear usuario");
         System.out.println("0. Salir");
 
         try {
@@ -82,9 +80,82 @@ public class MenuAdmin {
 
     }
 
-    public static void CargarSaldo(String usuario) {
+    public static void CargarSaldo(Admin a) {
+        try{
+            System.out.println("Ingrese el DNI del cliente a modificar el saldo: ");
+            int dni = sc.nextInt();
+            sc.nextLine();
+
+            System.out.println("Ingrese el monto a cargar: ");
+            double monto = sc.nextDouble();
+            sc.nextLine();
+
+            Cliente buscado = new Cliente(dni);
+
+            Usuario encontrado = GestionMenu.User.getDato(buscado);
+
+            if(encontrado != null && encontrado instanceof Cliente){
+                Cliente real = (Cliente) encontrado;
+
+                a.agregarFichas(real, monto);
+
+                System.out.println("Saldo cargado");
+                System.out.println("Nuevo saldo de " + real.getNombre() + ":" + real.getSaldo());
+
+            } else {
+                System.out.println("Cliente no encontrado");
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Error: DNI y monto deben ser numericos");
+        } catch (ColleccionVaciaException e){
+            System.out.println("Error. No hay usuarios");
+        }
+        
         
     }
+
+    public static void cambiarEstadoBaneo(Admin a) {
+        try{
+            System.out.println("Ingrese el DNI del cliente a banear / desbanear: ");
+            int dni = sc.nextInt();
+            sc.nextLine();
+
+            Cliente buscado = new Cliente(dni);
+
+            Usuario encontrado = GestionMenu.User.getDato(buscado);
+
+            if(encontrado != null && encontrado instanceof Cliente){
+                Cliente real = (Cliente) encontrado;
+
+                System.out.println("Que desea realizar?");
+                System.out.println("1. Bloquear usuario");
+                System.out.println("2. Desbloquear usuario");
+                int opc = sc.nextInt();
+                sc.nextLine();
+
+                boolean estado;
+                if(opc == 1){
+                    estado = false;
+                    System.out.println("Cuenta bloqueada");
+                } else {
+                    estado = true;
+                    System.out.println("Cuenta activada");
+                }
+
+                a.bloquear(real, estado);
+
+            } else {
+                System.out.println("Cliente no encontrado");
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Error: DNI debe ser numericos");
+        } catch (ColleccionVaciaException e){
+            System.out.println("Error. No hay usuarios");
+        }
+        
+        
+    }
+
 
 
 }
