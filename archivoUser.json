@@ -1,17 +1,19 @@
 [
     {
-        "Nombre": "Fercho",
-        "Tipo": "Admin",
-        "Dni": 43568956,
-        "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
-    },
-    {
-        "Nombre": "pepo",
+        "Nombre": "Ludopata Feroz",
         "Tipo": "Cliente",
         "Saldo": 0,
-        "CuentaBancaria": "963852741",
-        "Dni": 32659865,
+        "Id": "cf2ce8e1-7828-4cbc-84b3-a189ec1f2882",
+        "CuentaBancaria": "123456789",
+        "Dni": 3333333,
         "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
         "EstadoCuenta": true
+    },
+    {
+        "Nombre": "Desimone Oscar",
+        "Tipo": "Admin",
+        "Id": "da2a1399-dcbc-431e-adce-def4e8636b1d",
+        "Dni": 34955698,
+        "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
     }
 ]

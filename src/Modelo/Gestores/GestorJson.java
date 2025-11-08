@@ -1,5 +1,6 @@
 package Modelo.Gestores;
 
+import Menu.GestionMenu;
 import Modelo.Usuarios.Admin;
 import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
@@ -31,8 +32,28 @@ public class GestorJson {
 
     }
 
-    /// ---------------------------  GRABADO DE JSONARRAY ------------------------------//////////////////
+    /// ---------------------------  CARGA DE JSON------------------------------//////////////////
     ///
+    public static  void cargajson() {
+        JSONObject objeto = new JSONObject();
+
+        String contenido = JsonUtiles.leer("archivoUser");
+        JSONArray jsonArray = new JSONArray(contenido);
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            objeto = jsonArray.getJSONObject(i);
+            String tipo = objeto.getString("Tipo");
+            if (tipo.equals("Admin")) {
+                GestionMenu.User.agregar(new Admin(objeto));
+            }
+            else if (tipo.equals("Cliente")) {
+                GestionMenu.User.agregar(new Cliente(objeto));
+            }
+        }
+
+
+
+    }
     ///
 
 

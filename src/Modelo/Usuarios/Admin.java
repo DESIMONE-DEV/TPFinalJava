@@ -49,6 +49,7 @@ public class Admin extends Usuario {
 
         objeto.put("Tipo", "Admin");
         objeto.put("Nombre",getNombre());
+        objeto.put("Id",getId());
         objeto.put("Dni",getDni());
         objeto.put("Password",getPassword());
 
