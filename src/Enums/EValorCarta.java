@@ -1,7 +1,7 @@
 package Enums;
 
 public enum EValorCarta {
-    AS(1,"A"),
+    AS(14,"A"),
     DOS(2,"2"),
     TRES(3,"3"),
     CUATRO(4,"4"),

@@ -1,5 +1,6 @@
 package Modelo.Juegos;
 
+import Enums.EValorCarta;
 import Exceptions.MazoVacioException;
 import Interfaces.IRepartidor;
 import Modelo.Juegos.MazoCartas.Carta;
@@ -164,9 +165,15 @@ public class TriPoker extends Juego implements IRepartidor {
         Collections.sort(mano.getCartas()); /// ORDENO LAS CARTAS DE LA MANO
         /// COMPARO SI LA PRIMERA + 1 ES IGUAL A LA SEGUNDA Y LA SEGUNDA + 1 ES IGUAL A LA TERCERA
         if( (mano.getCartas().get(0).getValor().getValorNum() + 1) == mano.getCartas().get(1).getValor().getValorNum() &&
-                (mano.getCartas().get(1).getValor().getValorNum() + 1) == mano.getCartas().get(2).getValor().getValorNum()){
-
+                (mano.getCartas().get(1).getValor().getValorNum() + 1) == mano.getCartas().get(2).getValor().getValorNum()) {
+                    /// SI ESTAN EN ORDE NUMERICO ES ESCALERA
             return true;
+
+        }else if(mano.getCartas().get(0).getValor() == EValorCarta.AS && mano.getCartas().get(1).getValor() == EValorCarta.DOS
+                    && mano.getCartas().get(2).getValor() == EValorCarta.TRES){
+                /// COMPRUEBO CON EL AS COMO 1 QUE TAMBIEN ES ESCALERA
+            return true;
+
         }else return false;
     }
 
