@@ -3,6 +3,8 @@ package Modelo.Usuarios;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.UUID;
+
 public class Cliente extends Usuario {
     private Double saldo;
     private String cuentaBancaria;
@@ -84,6 +86,7 @@ public class Cliente extends Usuario {
         JSONObject objeto = new JSONObject();
 
         objeto.put("Tipo", "Cliente");
+        objeto.put("Id",getId());
         objeto.put("Nombre",getNombre());
         objeto.put("Dni",getDni());
         objeto.put("Password",getPassword());
@@ -92,6 +95,22 @@ public class Cliente extends Usuario {
         objeto.put("EstadoCuenta",getEstadoCuenta());
 
         return objeto;
+
+    }
+
+    /// --------------------FROM JSON -------------------------------------///
+    ///
+    public Cliente (JSONObject objeto)  {
+
+        super( objeto.getString("Nombre") ,
+                UUID.fromString(objeto.getString("Id")),
+                objeto.getInt("Dni"),
+                objeto.getString("Password"));
+
+        this.cuentaBancaria = objeto.getString("CuentaBancaria");
+        this.saldo = objeto.getDouble("Saldo");
+        this.estadoCuenta = objeto.getBoolean("EstadoCuenta");
+
 
     }
 
