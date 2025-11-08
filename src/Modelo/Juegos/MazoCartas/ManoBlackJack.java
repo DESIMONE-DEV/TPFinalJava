@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class  ManoBlackJack {
-    private List<Carta> carta;
+    private List<Carta> mano;
     private double blackJack;
 
     public ManoBlackJack () {
-        carta = new ArrayList<>();
+        mano = new ArrayList<>();
         this.blackJack = 0;
     }
 
@@ -23,10 +23,17 @@ public class  ManoBlackJack {
     }
 
     public List<Carta> getCarta() {
-        return carta;
+        return mano;
     }
 
     public void setCarta(List<Carta> carta) {
-        this.carta = carta;
+        this.mano = carta;
+    }
+
+    ///   ..........................METODOS .................................
+
+
+    public void agregarCarta(List<Carta> carta) {
+        mano.addAll(carta);
     }
 }
