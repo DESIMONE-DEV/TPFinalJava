@@ -1,0 +1,17 @@
+[
+    {
+        "Nombre": "Fercho",
+        "Tipo": "Admin",
+        "Dni": 43568956,
+        "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "Nombre": "pepo",
+        "Tipo": "Cliente",
+        "Saldo": 0,
+        "CuentaBancaria": "963852741",
+        "Dni": 32659865,
+        "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "EstadoCuenta": true
+    }
+]

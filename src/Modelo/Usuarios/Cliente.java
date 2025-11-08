@@ -1,5 +1,8 @@
 package Modelo.Usuarios;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Cliente extends Usuario {
     private Double saldo;
     private String cuentaBancaria;
@@ -73,7 +76,24 @@ public class Cliente extends Usuario {
        return true;
     }
     /// ----------------------FIN METODOS CLIENTES -----------------------///
+    ///
+    /// ----------------------TO JSON  -----------------------------///
+    ///
+    public  JSONObject toJSON() throws JSONException {
 
+        JSONObject objeto = new JSONObject();
+
+        objeto.put("Tipo", "Cliente");
+        objeto.put("Nombre",getNombre());
+        objeto.put("Dni",getDni());
+        objeto.put("Password",getPassword());
+        objeto.put("CuentaBancaria",getCuentaBancaria());
+        objeto.put("Saldo",getSaldo());
+        objeto.put("EstadoCuenta",getEstadoCuenta());
+
+        return objeto;
+
+    }
 
 }
 
