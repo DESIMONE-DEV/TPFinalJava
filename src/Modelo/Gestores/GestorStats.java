@@ -57,7 +57,7 @@ public class GestorStats {
         StringBuilder msj = new StringBuilder(" - jugador -           - fecha -           - nombreMovimiento -            - monto -\n");
         ArrayList<Estadistica> array = arrayJugador(nombreJugador);
 
-        for(int i=0; i<cantidadStats; i++){
+        for(int i= stats.size() - 1; i >= array.size() - cantidadStats && i >= 0; i--){
             msj.append(array.get(i).toString() + "\n");
         }
         return msj.toString();
