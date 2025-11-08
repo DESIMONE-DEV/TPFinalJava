@@ -2,14 +2,11 @@ package Menu;
 
 import Exceptions.MazoVacioException;
 import Modelo.Juegos.BlackJack21;
-import Modelo.Juegos.MazoCartas.Carta;
 import Modelo.Usuarios.Cliente;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class MenuBlackJAck {
+public class MenuBlackJack {
     public static Scanner scan = new Scanner(System.in);
 
     public static void start(Cliente jugador) {
@@ -23,6 +20,8 @@ public class MenuBlackJAck {
             System.out.println("3-AGREGAR CARTAS");
             System.out.println("4-VERIFICAR QUE SACO LA BANCA");
             System.out.println("5-COMPARA VALORES");
+            opcion = scan.nextInt();
+            scan.nextLine();
 
             opcion = scan.nextInt();
             switch (opcion) {
