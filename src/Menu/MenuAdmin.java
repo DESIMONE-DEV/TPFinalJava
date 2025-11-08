@@ -17,9 +17,11 @@ public class MenuAdmin {
         do {
             System.out.println("\n Menu Principal ");
 
+            opcion = menuInicial();
+
             switch (opcion) {
                 case 1:
-                    /// Listar Usuarios
+                    listarUsuarios();
                     break;
                 case 2:
                     /// Ingresos
@@ -31,6 +33,12 @@ public class MenuAdmin {
                     /// Cambiar password de Usuario que se aolvido
                     break;
                 case 5:
+                    /// cargar saldo
+                    break;
+                case 6:
+                    /// bloquear cuenta
+                    break;
+                case 7:
                     /// cargar saldo
                     break;
                 case 0:
@@ -64,7 +72,7 @@ public class MenuAdmin {
         }
     }
 
-    public static void listarUsuarios () throws ColleccionVaciaException {
+    public static void listarUsuarios () {
         try {
             String listaUsuarios = GestionMenu.User.listar();
             System.out.println("Lista de usuarios: \n" + listaUsuarios);
@@ -72,6 +80,10 @@ public class MenuAdmin {
             System.out.println("No hay usuarios en el sistema");
         }
 
+    }
+
+    public static void CargarSaldo(String usuario) {
+        
     }
 
 
