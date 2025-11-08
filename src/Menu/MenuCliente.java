@@ -123,6 +123,7 @@ public class MenuCliente {
         }while(opcionJuego!=0);
     }
     ///---------- MENU DE CARGO DE SALDO ----------
+    ///
     public static void cargarSaldo(Cliente cliente) {
         System.out.println("Carga de saldo");
         System.out.println("Saldo actual: " + cliente.getSaldo());
@@ -137,6 +138,9 @@ public class MenuCliente {
                 return;
             }
             cliente.cargarSaldo(montoDouble);
+
+
+
             System.out.println("Carga realizada exitosamente!");
             System.out.println("Saldo actual: " + cliente.getSaldo());
         } catch (NumberFormatException e){
