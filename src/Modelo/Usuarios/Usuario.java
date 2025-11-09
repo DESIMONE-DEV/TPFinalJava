@@ -96,12 +96,8 @@ public abstract class Usuario implements IJson {
     ///-----------------METODO TO STRING ------------------------------////
     @Override
     public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", dni=" + dni +
-                ", password='" + password + '\'' +
-                '}';
+        return "Nombre='" + nombre + '\'' +
+                ", Dni=" + dni ;
     }
 
     /// ---------------- FIN DE METODO TO STRING--------------------------------////
