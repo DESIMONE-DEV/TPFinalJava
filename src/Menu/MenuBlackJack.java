@@ -13,6 +13,7 @@ public class MenuBlackJack {
         BlackJack21 blackJack21 = new BlackJack21();
         int opcion = 0;
         String salir = "s";
+        int sal=1;
         int sumaJugador=0;
         int sumaBanca=0;
         double apostar=0;
@@ -22,7 +23,7 @@ public class MenuBlackJack {
         System.out.println("\n\n\n");
         dibujoCarta();
         do {
-            System.out.println("HAGA SU APUESTA PRECIONES  10");
+            System.out.println("HAGA SU APUESTA , presione 10");
             System.out.println("1-COMENZAR EL JEUEGO");
             System.out.println("4-VERIFICAR QUE SACO LA BANCA");
             System.out.println("5-COMPARA VALORES");
@@ -141,11 +142,11 @@ public class MenuBlackJack {
                                 System.out.println("JUGADOR PIERDE");
                             }
                         }
+                        sal=1;
                         break;
-
             }
-            salir = "s";
-        } while (salir.equalsIgnoreCase("s"));
+
+        } while (sal==1);
     }
 
     public static void limpiar() {

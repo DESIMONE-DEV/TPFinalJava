@@ -123,12 +123,12 @@ public class BlackJack21 extends Juego implements IRepartidor {
                             return suma;
                         }
                     }else if (suma<16){
-                        mano1.agregarCarta(mazo.repartir(1));
-                        suma += mano1.buscarCarta(mano1.cantidadDeCartas()-1).getValor().getValorNum();
+                        banca.agregarCarta(mazo.repartir(1));
+                        suma += banca.buscarCarta(banca.cantidadDeCartas()-1).getValor().getValorNum();
                         if (suma > 16 && suma < 22) {
                             return suma;
                         }
-                        if(mano1.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
+                        if(banca.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
                             suma -= 10;
                         }
                     }
@@ -153,11 +153,11 @@ public class BlackJack21 extends Juego implements IRepartidor {
                              return suma;
                          }
                     }else if (suma<16){
-                        suma += mano1.buscarCarta(mano1.cantidadDeCartas()-1).getValor().getValorNum();
+                        suma += banca.buscarCarta(banca.cantidadDeCartas()-1).getValor().getValorNum();
                         if (suma > 16 && suma < 22) {
                             return suma;
                         }
-                        if(mano1.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
+                        if(banca.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
                             suma -= 10;
                         }
                     }
@@ -233,13 +233,13 @@ public class BlackJack21 extends Juego implements IRepartidor {
         return suma;
     }
 
-    public void recuperarMazo (){
-        mazo.recibirCarta(mano1.getCarta());
-        mazo.recibirCarta(banca.getCarta());
+        public void recuperarMazo(){
+            mazo.recibirCarta(mano1.getCarta());
+            mazo.recibirCarta(banca.getCarta());
 
-        mano1.getCarta().clear();
-        banca.getCarta().clear();
-    }
+            mano1.getCarta().clear();
+            banca.getCarta().clear();
+        }
 
     @Override
     public double pagarFichas() {

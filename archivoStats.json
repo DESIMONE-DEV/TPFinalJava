@@ -1,3 +1,32 @@
 [
-
+    {
+        "fecha": "2025-11-09T01:07:08.616868",
+        "monto": 1558455,
+        "jugador": 3333333,
+        "nombreMovimiento": "Carga de Saldo"
+    },
+    {
+        "fecha": "2025-11-09T01:09:23.678428",
+        "monto": 5485222,
+        "jugador": 3333333,
+        "nombreMovimiento": "Carga de Saldo"
+    },
+    {
+        "fecha": "2025-11-09T01:26:14.173386900",
+        "monto": 5000,
+        "jugador": 3333333,
+        "nombreMovimiento": "Carga de Saldo"
+    },
+    {
+        "fecha": "2025-11-09T01:27:35.285603800",
+        "monto": 10000,
+        "jugador": 3333333,
+        "nombreMovimiento": "Carga de Saldo"
+    },
+    {
+        "fecha": "2025-11-09T01:29:25.587866300",
+        "monto": 1000,
+        "jugador": 3333333,
+        "nombreMovimiento": "Carga de Saldo"
+    }
 ]
