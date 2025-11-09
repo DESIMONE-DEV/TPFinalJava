@@ -46,20 +46,14 @@ public class Main {
                        }
                     break;
                 case 4:
-
+                    System.out.println("No se valla la suerte esta de su lado");
                     break;
-                case 5:
-
+                default:
+                    System.out.println("Opcion invalida");
                     break;
-                case 6:
-
-                    break;
-
             }
 
         }while(true);
-
-
 
     }
 }
