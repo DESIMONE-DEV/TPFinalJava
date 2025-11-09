@@ -133,7 +133,7 @@ public class MenuAdmin {
                     System.out.println("Error. La contrasenia no puede estar vacia");
                 } else {
                     encontrado.setPassword(CodPassword.codificarPassword(nuevaContrasenia));
-
+                    GestionMenu.guardadoAutomatico();
                     System.out.println("Contraseña reestablecida correctamente");
                 }
             } else {
@@ -167,10 +167,11 @@ public class MenuAdmin {
 
                 System.out.println("Saldo cargado");
                 System.out.println("Nuevo saldo de " + real.getNombre() + ":" + real.getSaldo());
-
+                GestionMenu.guardadoAutomatico();
             } else {
                 System.out.println("Cliente no encontrado");
             }
+
         } catch (InputMismatchException e){
             System.out.println("Error: DNI y monto deben ser numericos");
         } catch (ColleccionVaciaException e){
@@ -209,6 +210,7 @@ public class MenuAdmin {
                 }
 
                 a.bloquear(real, estado);
+                GestionMenu.guardadoAutomatico();
 
             } else {
                 System.out.println("Cliente no encontrado");
