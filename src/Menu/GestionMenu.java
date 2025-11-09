@@ -2,6 +2,7 @@ package Menu;
 
 import Exceptions.*;
 import Modelo.Gestores.GestorGenerico;
+import Modelo.Gestores.GestorJson;
 import Modelo.Gestores.GestorStats;
 import Modelo.Stats.Estadistica;
 import Modelo.Usuarios.Cliente;
@@ -43,6 +44,7 @@ public class GestionMenu {
 
         System.out.println("1: Create Client Account");
         System.out.println("2: Create Admin Account");
+        System.out.println("0: Atras");
 
         try {
             return sc.nextInt();
@@ -153,10 +155,18 @@ public class GestionMenu {
     ///
     /// -----------------FIN METODO INGRESO DE DATOS LOGUEO-----------------///
 
-    /// ---------------- CREACION ESTADISTICA NUEVA ---------------------- ////
+    /// ---------------- METODO CREACION ESTADISTICA NUEVA ---------------------- ////
 
     public static void crearStats(int jugador, String tipoMovimiento, double monto){
         stats.agregarStats(new Estadistica(jugador, tipoMovimiento, monto));
+    }
+
+    /// ---------------- FIN METODO CREACION ESTADISTICA NUEVA ---------------------- ////
+
+    /// ---------------- METODO GUARDADO AUTOMATICO ---------------------- ////
+    ///
+    public static void guardaoAutomatico(){
+        GestorJson.guardarJson(User.getConjunto());
     }
  }
 
