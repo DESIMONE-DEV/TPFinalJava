@@ -7,6 +7,7 @@ import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
 import Modelo.Utiles.JsonUtiles;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashSet;
@@ -35,8 +36,12 @@ public class GestorJson {
 
     /// --------------  METODO GUARDADO DE ESTADISTICAS ---------------------- ////
 
-    public static void guardarEstadistica(JSONArray array){
-        JsonUtiles.grabarUnJson(array, "archivoStats.json");
+    public static void guardarEstadistica(JSONArray array) {
+        try {
+            JsonUtiles.grabarUnJson(array, "archivoStats.json");
+        }catch(JSONException e){
+            System.out.println("No se pudo guardar el archivo");
+        }
     }
 
     /// ---------------------------  CARGA DE JSON------------------------------//////////////////

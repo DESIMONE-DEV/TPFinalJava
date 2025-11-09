@@ -17,6 +17,7 @@ public class MenuTriPoker {
 
         TriPoker juego = new TriPoker();
         int opcion = 777, salir = 1, asientos, flag = 0;
+        double pago;
 
         System.out.println("----- Bienvenido a TriPoker -----");
         System.out.println("Hola " + jugador.getNombre());
@@ -100,11 +101,19 @@ public class MenuTriPoker {
                     System.out.println(juego.listarManos(asientos));
 
                     mostrarPagos(juego, asientos);      /// SE REALIZAN LOS PAGOS Y SE MUESTRA CUANTO GANO
-                    jugador.cargarSaldo(juego.pagarFichas());
+                    pago = juego.pagarFichas();
+                    jugador.cargarSaldo(pago);
+
+                        /// CREO LAS STATS DE LA JUGADA QUE SE REALIZO
+                    if(pago > 0){
+                        GestionMenu.crearStats(jugador.getDni(), "Jugada TriPoker", pago - sumaApostado(juego) );
+                    }else{
+                        GestionMenu.crearStats(jugador.getDni(), "Jugada TriPoker", (-1)* sumaApostado(juego));
+                    }
                     System.out.println("\nJugador: " + jugador.getNombre() + " ---- Saldo: $" + jugador.getSaldo() + "\n");
 
                     enterContinue();
-                    juego.recuperarMazo();
+                    juego.recuperarMazo();  /// SE REINICIA EL JUEGO PARA VOLVER A COMENZAR
                     limpiarPantalla();
 
                     break;
@@ -307,6 +316,12 @@ public class MenuTriPoker {
                 System.out.println("ANTE Y BET: HAY EMPATE, RECUPERA SU APUESTA");
             }
         }
+    }
+
+    public static double sumaApostado(TriPoker juego){
+        return juego.getMano1().getAnte() + juego.getMano1().getBonus() + juego.getMano1().getBet() +
+                juego.getMano2().getAnte() + juego.getMano2().getBonus() + juego.getMano2().getBet() +
+                juego.getMano3().getAnte() + juego.getMano3().getBonus() + juego.getMano3().getBet();
     }
 
     public static void limpiarPantalla(){

@@ -18,7 +18,7 @@ public class Carta implements Comparable{
 
     @Override
     public String toString() {
-        return valor.getValorSimb() + " de " + palo.getPalo();
+        return valor.getValorSimb() + " " + palo.getPalo();
     }
 
     @Override

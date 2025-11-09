@@ -91,10 +91,12 @@ public class TriPoker extends Juego implements IRepartidor {
         mazo.recibirCarta(mano1.getCartas());
         mazo.recibirCarta(mano2.getCartas());
         mazo.recibirCarta(mano3.getCartas());
+        mazo.recibirCarta(manoBanca.getCartas());
 
         mano1.getCartas().clear();
         mano2.getCartas().clear();
         mano3.getCartas().clear();
+        manoBanca.getCartas().clear();
 
         removerApuestaMano1();
         removerApuestaMano2();
@@ -283,41 +285,41 @@ public class TriPoker extends Juego implements IRepartidor {
     }
 
     public String listarBancaConJuego(){
-        return"             BANCA\n     "+manoBanca.getCartas().get(0).toString()+ " - " +
+        return"         BANCA\n     "+manoBanca.getCartas().get(0).toString()+ " - " +
                 manoBanca.getCartas().get(1).toString() + " - " + manoBanca.getCartas().get(2).toString();
     }
 
     public String listarBancaVacia(){
-        return"             BANCA\n     "+ "* de *" + " - " +
-                "* de *" + " - " + "* de *";
+        return"           BANCA\n     "+ "* *" + " - " +
+                "* *" + " - " + "* *";
     }
 
     public String listarManos(int cantAsientos){
         StringBuilder msj = new StringBuilder();
 
         if(cantAsientos == 1){
-            msj.append("\n\n    MANO 1\n    "
+            msj.append("\n\n    MANO 1\n   "
                     + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
-                    "\n     BONUS: " + mano1.getBonus() +
-                    "\n     ANTE: " + mano1.getAnte() +
-                    "\n     BET: " + mano1.getBet()
+                    "\n   BONUS: " + mano1.getBonus() +
+                    "\n   ANTE: " + mano1.getAnte() +
+                    "\n   BET: " + mano1.getBet()
             );
         }else if(cantAsientos == 2){
-            msj.append("\n\n    MANO 1                                                  MANO 2\n    "
+            msj.append("\n\n    MANO 1                      MANO 2\n   "
                     + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
-                    "       " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
-                    "\n     BONUS: " + mano1.getBonus() + "                                                  BONUS: " + mano2.getBonus() +
-                    "\n     ANTE: " + mano1.getAnte() +   "                                                  ANTE: " + mano2.getAnte() +
-                    "\n     BET: " + mano1.getBet() +     "                                                  BET: " + mano2.getBet()
+                    "           " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
+                    "\n   BONUS: " + mano1.getBonus() + "             BONUS: " + mano2.getBonus() +
+                    "\n   ANTE: " + mano1.getAnte() +   "              ANTE: " + mano2.getAnte() +
+                    "\n   BET: " + mano1.getBet() +     "                 BET: " + mano2.getBet()
             );
         }else if(cantAsientos == 3){
-            msj.append("\n\n    MANO 1                                                  MANO 2                                          MANO 3\n    "
+            msj.append("\n\n    MANO 1                      MANO 2                      MANO 3\n   "
                     + mano1.getCartas().get(0).toString() + " - " + mano1.getCartas().get(1).toString() + " - " + mano1.getCartas().get(2).toString() +
-                    "       " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
-                    "       " + mano3.getCartas().get(0).toString() + " - " + mano3.getCartas().get(1).toString() + " - " + mano3.getCartas().get(2).toString() +
-                    "\n     BONUS: " + mano1.getBonus() + "                                                     BONUS: " + mano2.getBonus() + "                                                  BONUS: " + mano3.getBonus() +
-                    "\n     ANTE: " + mano1.getAnte() +   "                                                     ANTE: " + mano2.getAnte() +   "                                                  ANTE: " + mano3.getAnte() +
-                    "\n     BET: " + mano1.getBet() +     "                                                     BET: " + mano2.getBet() +     "                                                  BET: " + mano3.getBet()
+                    "           " + mano2.getCartas().get(0).toString() + " - " + mano2.getCartas().get(1).toString() + " - " + mano2.getCartas().get(2).toString() +
+                    "          " + mano3.getCartas().get(0).toString() + " - " + mano3.getCartas().get(1).toString() + " - " + mano3.getCartas().get(2).toString() +
+                    "\n   BONUS: " + mano1.getBonus() + "              BONUS: " + mano2.getBonus() + "              BONUS: " + mano3.getBonus() +
+                    "\n   ANTE: " + mano1.getAnte() +   "               ANTE: " + mano2.getAnte() +   "               ANTE: " + mano3.getAnte() +
+                    "\n   BET: " + mano1.getBet() +     "                 BET: " + mano2.getBet() +     "                BET: " + mano3.getBet()
             );
         }
         return msj.toString();

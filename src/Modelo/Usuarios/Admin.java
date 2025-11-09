@@ -42,7 +42,8 @@ public class Admin extends Usuario {
     /// ---------FIN DE FUNCIONES DE ADMIN-------------////////
     ///
     /// ----------------------TO JSON  -----------------------------///
-    ///
+
+    @Override
     public JSONObject toJSON() throws JSONException {
 
         JSONObject objeto = new JSONObject();

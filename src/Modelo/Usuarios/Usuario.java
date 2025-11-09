@@ -1,11 +1,12 @@
 package Modelo.Usuarios;
 
+import Interfaces.IJson;
 import Modelo.Utiles.CodPassword;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class Usuario {
+public abstract class Usuario implements IJson {
     private UUID id;
     private String nombre;
     private int dni;
