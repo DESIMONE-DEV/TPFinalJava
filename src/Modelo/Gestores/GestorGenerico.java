@@ -73,7 +73,7 @@ public class GestorGenerico <T>{
         }else {
             Iterator it = conjunto.iterator();
             while (it.hasNext()) {
-                msj.append("-" + it.next() + " ");
+                msj.append("-" + it.next() + " \n");
             }
             return msj.toString();
         }
