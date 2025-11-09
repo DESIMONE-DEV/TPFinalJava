@@ -80,7 +80,7 @@ public class MenuPrincipal  {
             System.out.println("La cuenta ya existe");
         }
 
-        GestorJson.guardarJson(GestionMenu.User.getConjunto());
+        GestionMenu.guardaoAutomatico();
     }
     ///
     /// /// -------------------------METODOS PARA CREAR ACCOUNT ADMINISTRADOR------------------------///
@@ -124,7 +124,7 @@ public class MenuPrincipal  {
             System.out.println("La cuenta ya existe");
         }
 
-        GestorJson.guardarJson(GestionMenu.User.getConjunto());
+        GestionMenu.guardaoAutomatico();
     }
     ///
     /// -------------------------FIN METODO PARA CREAR ACCOUNT-------------------///

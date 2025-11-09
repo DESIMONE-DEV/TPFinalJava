@@ -17,14 +17,26 @@ public class Main {
                     loguearCuenta();
                     break;
                 case 2:
-                            switch (opcionCuentaClientAdmin()) {
-                                case 1:
-                                    crearCuentaCliente();
-                                    break;
-                                    case 2:
-                                        crearCuentaAdmin();
-                                        break;
-                            }
+                    int opcion;
+                    do {
+                        opcion = opcionCuentaClientAdmin();
+
+                        switch (opcion) {
+                            case 1:
+                                crearCuentaCliente();
+                                break;
+                            case 2:
+                                crearCuentaAdmin();
+                                break;
+                            case 0:
+                                System.out.println("Volviendo al menú principal...");
+                                break;
+                            default:
+                                System.out.println("Opción inválida");
+                                break;
+                        }
+
+                    }while(opcion != 0);
                     break;
                 case 3:
                        try{
