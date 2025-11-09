@@ -1,5 +1,6 @@
 package Menu;
 
+import Enums.ENumerosRuleta;
 import Exceptions.DatoIncorrectoException;
 import Exceptions.NumeroFueraDeRangoException;
 import Exceptions.SaldoInsuficienteException;
@@ -31,6 +32,7 @@ public class MenuRuleta {
                     case 1:
                         Ruleta ruleta = new Ruleta();
                         ingresarApuestas(ruleta, jugador);
+                        salir = 0;
                         break;
                     case 0:
                         salir = 0;
@@ -46,6 +48,19 @@ public class MenuRuleta {
     public static void mostrarSaldo(Cliente jugador) {
         System.out.println("----- Saldo actual: " + jugador.getSaldo());
     }
+    public static void mostrarTablero() {
+        System.out.println("\n");
+        System.out.println("+---+-------------------------------------------------------------+---------+");
+        System.out.println("|   | ( 3) ( 6) ( 9) (12) (15) (18) (21) (24) (27) (30) (33) (36) | 3ra Col |");
+        System.out.println("| 0 | ( 2) ( 5) ( 8) (11) (14) (17) (20) (23) (26) (29) (32) (35) | 2da Col |");
+        System.out.println("|   | ( 1) ( 4) ( 7) (10) (13) (16) (19) (22) (25) (28) (31) (34) | 1ra Col |");
+        System.out.println("+---+-------------------------------------------------------------+---------+");
+        System.out.println("|   1ra Doc. (1-12)   |  2da Doc. (13-24)   |   3ra Doc. (25-36)  |");
+        System.out.println("+-------------------+-----------------+------------------------------------+");
+        System.out.println("|   1 al 18 (MENOR) |   PAR   |  ROJO | NEGRO |  IMPAR  | 19 al 36 (MAYOR) |");
+        System.out.println("+-------------------+---------+-------+-------+---------+------------------+");
+        System.out.println("\n");
+    }
 
 
     /// -------------------- Menu apuestas -----------------------------------
@@ -55,6 +70,8 @@ public class MenuRuleta {
             int opcion = 0;
 
             do {
+                mostrarTablero();
+
                 System.out.println("Elija las opciones");
                 System.out.println("1. Jugar plenos ");
                 System.out.println("2. Color ");
@@ -62,7 +79,7 @@ public class MenuRuleta {
                 System.out.println("4. Columnas ");
                 System.out.println("5. MayorMenor ");
                 System.out.println("6. ParImpar ");
-                System.out.println("7. Girar ruletas");
+                System.out.println("7. Girar ruleta");
                 System.out.println("8. Salir");
 
                 opcion = sc.nextInt();
@@ -282,9 +299,14 @@ public class MenuRuleta {
                     case 7:
                         double ganancia = ruleta.pagarFichas();
                         jugador.setSaldo(jugador.getSaldo() + ganancia);
-                        System.out.println("Numero ganador: " + ruleta.getNumeroSalidor());
+
+                        int numeroGanador = ruleta.getNumeroSalidor();
+                        String color = ENumerosRuleta.getColorMayuscula(numeroGanador);
+
+                        System.out.println("Numero ganador: " + numeroGanador + " - " + color);
                         System.out.println("Pago recibido: " + ganancia);
                         System.out.println("Nuevo saldo: " + jugador.getSaldo());
+
                         GestionMenu.guardadoAutomatico();
                         ruleta.limpiarApuestas();
 

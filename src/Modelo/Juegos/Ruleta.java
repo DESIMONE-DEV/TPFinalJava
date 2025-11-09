@@ -29,7 +29,7 @@ public class Ruleta extends Juego {
     //Genera el numero saliente de la ruleta
     public int girarLaRuleta(){
         numeroSalidor = randomGenerador.nextInt(37);
-        return numeroSalidor;
+        return 0;
     }
 
 

@@ -184,7 +184,7 @@ public class MenuCliente {
             }else {
                 cliente.retirarSaldo(monto);
                 GestionMenu.crearStats(cliente.getDni(), "Retiro de saldo", (-1)*monto);
-                System.out.println("Carga realiada exitosamente!");
+                System.out.println("Retiro realizado exitosamente!");
                 System.out.println("Saldo actual: " + cliente.getSaldo());
             }
 

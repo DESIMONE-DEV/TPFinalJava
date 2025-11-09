@@ -53,5 +53,15 @@ public enum ENumerosRuleta {
         return color ;
     }
 
+    public static String getColorMayuscula(int numeroSalidor) {
+        if (numeroSalidor >= 0 && numeroSalidor <= 36) {
+            ENumerosRuleta enumEncontrado = ENumerosRuleta.values()[numeroSalidor];
+
+            return enumEncontrado.getColor().toUpperCase();
+
+        }
+        return "VERDE";
+    }
+
     
 }
