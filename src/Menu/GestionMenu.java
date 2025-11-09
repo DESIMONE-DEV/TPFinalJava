@@ -5,7 +5,6 @@ import Modelo.Gestores.GestorGenerico;
 import Modelo.Gestores.GestorJson;
 import Modelo.Gestores.GestorStats;
 import Modelo.Stats.Estadistica;
-import Modelo.Usuarios.Cliente;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -165,7 +164,7 @@ public class GestionMenu {
 
     /// ---------------- METODO GUARDADO AUTOMATICO ---------------------- ////
     ///
-    public static void guardaoAutomatico(){
+    public static void guardadoAutomatico(){
         GestorJson.guardarJson(User.getConjunto());
     }
  }

@@ -103,6 +103,7 @@ public class MenuTriPoker {
                     mostrarPagos(juego, asientos);      /// SE REALIZAN LOS PAGOS Y SE MUESTRA CUANTO GANO
                     pago = juego.pagarFichas();
                     jugador.cargarSaldo(pago);
+                    GestionMenu.guardadoAutomatico();
 
                         /// CREO LAS STATS DE LA JUGADA QUE SE REALIZO
                     if(pago > 0){
