@@ -4,6 +4,7 @@ import Exceptions.ColleccionVaciaException;
 import Modelo.Usuarios.Admin;
 import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
+import Modelo.Utiles.CodPassword;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -26,19 +27,19 @@ public class MenuAdmin {
                     listarUsuarios();
                     break;
                 case 2:
-                    /// Ingresos
+                    mostrarStats();
                     break;
                 case 3:
-                    /// Retiros
+                    mostrarStatsTotales();
                     break;
                 case 4:
-
+                    cambiarContraseniaUser();
                     break;
                 case 5:
-                    //cargarSaldo(a);
+                    CargarSaldo(admin);
                     break;
                 case 6:
-                    //cambiarEstadoBaneo(a)
+                    cambiarEstadoBaneo(admin);
                     break;
                 case 0:
                     System.out.println("Cerrando sesion, hasta la proxima " + admin.getNombre());
@@ -51,27 +52,29 @@ public class MenuAdmin {
 
         } while (true);
     }
+    ///---------- MENU BASICO DE ADMIN ----------
     public static int menuInicial(){
         System.out.println("Elija una opcion");
         System.out.println("1. Lista de usuarios");
-        System.out.println("2. Ingresos");
-        System.out.println("3. Retiros");
+        System.out.println("2. Ultimos 10 movimientos de un usuario");
+        System.out.println("3. Todos los movimientos de un usuario");
         System.out.println("4. Cambiar password de usuario");
         System.out.println("5. Cargar saldo a usuario");
         System.out.println("6. Bloquear/Desbloquear usuario");
         System.out.println("0. Salir");
 
         try {
-            String opcionLista = sc.nextLine();
-            int opcion = Integer.parseInt(opcionLista);
+            int opcion = sc.nextInt();
+            sc.nextLine();
 
             return opcion;
-        }catch (NumberFormatException e){
+        }catch (InputMismatchException e){
             System.out.println("Error: debe ingresar un numero");
+            sc.nextLine();
             return -1;
         }
     }
-
+    ///---------- LISTADO DE USUARIOS -----------
     public static void listarUsuarios () {
         try {
             String listaUsuarios = GestionMenu.User.listar();
@@ -81,7 +84,68 @@ public class MenuAdmin {
         }
 
     }
+    ///---------- MOSTRAR ULTIMOS 10 MOVIMIENTOS DE UN SOLO USUARIO -----------
+    public static void mostrarStats (){
+        try{
+            System.out.println("Ingrese el DNI del usuario para ver sus movimientos");
+            int dni = sc.nextInt();
+            sc.nextLine();
 
+            String stats = GestionMenu.stats.listarStats(dni, 10);
+            System.out.println(stats);
+
+        } catch (InputMismatchException e){
+            System.out.println("Error: el DNI debe ser numerico");
+            sc.nextLine();
+        }
+    }
+    ///---------- MOSTRAR TODOS LOS MOVIMIENTOS DE UN USUARIO -----------
+    public static void mostrarStatsTotales (){
+        try{
+            System.out.println("Ingrese el DNI del usuario para ver TODOS sus movimientos");
+            int dni = sc.nextInt();
+            sc.nextLine();
+
+            String stats = GestionMenu.stats.listarStats(dni);
+            System.out.println(stats);
+
+        } catch (InputMismatchException e){
+            System.out.println("Error: el DNI debe ser numerico");
+            sc.nextLine();
+        }
+    }
+    ///---------- RESTAURAR CONTRASEÑA DE USUARIO -----------
+    public static void cambiarContraseniaUser(){
+        try{
+            System.out.println("Ingrese el DNI del usuario a modificar");
+            int dni = sc.nextInt();
+            sc.nextLine();
+
+            Cliente buscado = new Cliente(dni);
+
+            Usuario encontrado = (Usuario) GestionMenu.User.getDato(buscado);
+
+            if(encontrado != null){
+                System.out.println("Ingrese nueva contraseña para " + encontrado.getNombre());
+                String nuevaContrasenia = sc.nextLine();
+
+                if (nuevaContrasenia.isEmpty()){
+                    System.out.println("Error. La contrasenia no puede estar vacia");
+                } else {
+                    encontrado.setPassword(CodPassword.codificarPassword(nuevaContrasenia));
+
+                    System.out.println("Contraseña reestablecida correctamente");
+                }
+            } else {
+                System.out.println("Usuario no encontrado");
+            }
+        } catch (InputMismatchException e){
+            System.out.println("Error: el DNI debe ser numerico");
+        } catch (ColleccionVaciaException e){
+            System.out.println("No hay usuarios en el sistema");
+        }
+    }
+    ///---------- CARGAR SALDO A UN USUARIO -----------
     public static void CargarSaldo(Admin a) {
         try{
             System.out.println("Ingrese el DNI del cliente a modificar el saldo: ");
@@ -115,7 +179,7 @@ public class MenuAdmin {
         
         
     }
-
+    ///---------- BOQUEAR / DESBLOQUEAR CLIENTE -----------
     public static void cambiarEstadoBaneo(Admin a) {
         try{
             System.out.println("Ingrese el DNI del cliente a banear / desbanear: ");

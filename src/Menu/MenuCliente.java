@@ -4,6 +4,7 @@ import Modelo.Utiles.CodPassword;
 
 import Modelo.Usuarios.Cliente;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuCliente {
@@ -44,6 +45,7 @@ public class MenuCliente {
                     System.out.println(GestionMenu.stats.listarStats(cliente.getDni()));
                     System.out.println("Presione enter para continuar...");
                     sc.nextLine();
+                    break;
                 case 0:
                     System.out.println("Cerrando sesion, hasta la proxima " + cliente.getNombre());
                     break;
@@ -69,12 +71,13 @@ public class MenuCliente {
         System.out.println("0. Salir");
 
         try {
-            String opcionLista = sc.nextLine();
-            int opcion = Integer.parseInt(opcionLista);
+            int opcion =  sc.nextInt();
+            sc.nextLine();
 
             return opcion;
-        }catch (NumberFormatException e){
+        }catch (InputMismatchException e){
             System.out.println("Error: debe ingresar un numero");
+            sc.nextLine();
             return -1;
         }
     }
@@ -92,8 +95,8 @@ public class MenuCliente {
 
             try {
                 System.out.println("Seleccione un juego:");
-                String juego = sc.nextLine();
-                opcionJuego = Integer.parseInt(juego);
+                opcionJuego = sc.nextInt();
+                sc.nextLine();
 
                 switch (opcionJuego) {
                     case 1:
@@ -127,38 +130,38 @@ public class MenuCliente {
                         System.out.println("Opcion invalida, intente nuevamente");
                         break;
                 }
-            }catch (NumberFormatException e){
+            }catch (InputMismatchException e){
                 System.out.println("Error: debe ingresar un numero");
+                sc.nextLine();
                 opcionJuego = -1;
             }
         }while(opcionJuego!=0);
     }
     ///---------- MENU DE CARGO DE SALDO ----------
-    ///
     public static void cargarSaldo(Cliente cliente) {
         System.out.println("Carga de saldo");
         System.out.println("Saldo actual: " + cliente.getSaldo());
 
         try{
             System.out.println("Ingrese el monto que quiera cargar");
-            String monto = sc.nextLine();
-            Double montoDouble = Double.parseDouble(monto);
+            Double monto = sc.nextDouble();
+            sc.nextLine();
 
-            if(montoDouble <= 0){
+            if(monto <= 0){
                 System.out.println("Error: el monto debe ser positivo");
                 return;
             }
-            cliente.cargarSaldo(montoDouble);
-            GestionMenu.crearStats(cliente.getDni(), "Carga de Saldo", montoDouble);
+            cliente.cargarSaldo(monto);
+            GestionMenu.crearStats(cliente.getDni(), "Carga de Saldo", monto);
 
 
 
             System.out.println("Carga realizada exitosamente!");
             System.out.println("Saldo actual: " + cliente.getSaldo());
-        } catch (NumberFormatException e){
+        } catch (InputMismatchException e){
             System.out.println("Error: debe ingresar un numero valido");
+            sc.nextLine();
         }
-        GestionMenu.guardaoAutomatico();
     }
     ///---------- MENU DE RETIRO DE SALDO ----------
     public static void retiroSaldo(Cliente cliente) {
@@ -167,27 +170,27 @@ public class MenuCliente {
 
         try{
             System.out.println("Ingrese el monto que quiera retirar");
-            String monto = sc.nextLine();
-            Double montoDouble = Double.parseDouble(monto);
+            Double monto = sc.nextDouble();
+            sc.nextLine();
 
-            if(montoDouble <= 0){
+            if(monto <= 0){
                 System.out.println("Error: el monto debe ser positivo");
                 return;
             }
 
-            if(cliente.getSaldo() < montoDouble){
+            if(cliente.getSaldo() < monto){
                 System.out.println("Error: saldo insuficiente para retirar");
             }else {
-                cliente.retirarSaldo(montoDouble);
-                GestionMenu.crearStats(cliente.getDni(), "Retiro de saldo", (-1)*montoDouble);
+                cliente.retirarSaldo(monto);
+                GestionMenu.crearStats(cliente.getDni(), "Retiro de saldo", (-1)*monto);
                 System.out.println("Carga realiada exitosamente!");
                 System.out.println("Saldo actual: " + cliente.getSaldo());
             }
 
-        } catch (NumberFormatException e){
+        } catch (InputMismatchException e){
             System.out.println("Error: debe ingresar un numero valido");
+            sc.nextLine();
         }
-        GestionMenu.guardaoAutomatico();
     }
     ///---------- MENU DE CAMBIO DE CUENTA BANCARIA ----------
     public static void cambiarCuentaBancaria(Cliente cliente) {
@@ -199,7 +202,6 @@ public class MenuCliente {
         cliente.setCuentaBancaria(nuevaCuentaBancaria);
 
         System.out.println("Cuenta bancaria actualizada: " + cliente.getCuentaBancaria());
-        GestionMenu.guardaoAutomatico();
     }
     ///---------- MENU DE CAMBIO DE CONTRASEÑA ----------
     public static void cambiarContrasenia(Cliente cliente) {
@@ -207,7 +209,7 @@ public class MenuCliente {
         System.out.println("Ingrese su contrasenia actual:");
         String contrasenia = sc.nextLine();
 
-        if(cliente.getPassword().equals(contrasenia)){
+        if(cliente.getPassword().equals(CodPassword.codificarPassword(contrasenia))){
             System.out.println("Ingrese una nueva contrasenia");
             String nuevaContrasenia = sc.nextLine();
             System.out.println("Confirme su nueva contrasenia");
@@ -225,6 +227,5 @@ public class MenuCliente {
         }else {
             System.out.println("Contrasenia incorrecta");
         }
-        GestionMenu.guardaoAutomatico();
     }
 }
