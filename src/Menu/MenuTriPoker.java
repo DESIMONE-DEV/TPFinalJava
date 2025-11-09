@@ -105,10 +105,10 @@ public class MenuTriPoker {
                     jugador.cargarSaldo(pago);
 
                         /// CREO LAS STATS DE LA JUGADA QUE SE REALIZO
-                    if(pago >= 0){
-                        GestionMenu.crearStats(jugador.getNombre(), "Jugada TriPoker", pago - sumaApostado(juego) );
+                    if(pago > 0){
+                        GestionMenu.crearStats(jugador.getDni(), "Jugada TriPoker", pago - sumaApostado(juego) );
                     }else{
-                        GestionMenu.crearStats(jugador.getNombre(), "Jugada TriPoker", (-1)* sumaApostado(juego));
+                        GestionMenu.crearStats(jugador.getDni(), "Jugada TriPoker", (-1)* sumaApostado(juego));
                     }
                     System.out.println("\nJugador: " + jugador.getNombre() + " ---- Saldo: $" + jugador.getSaldo() + "\n");
 

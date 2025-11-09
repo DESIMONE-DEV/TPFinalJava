@@ -1,7 +1,7 @@
 package Modelo.Gestores;
 
-import Interfaces.IJson;
 import Modelo.Stats.Estadistica;
+import Modelo.Usuarios.Cliente;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -34,29 +34,29 @@ public class GestorStats {
         return false;
     }
 
-    public String listarStats(String nombreJugador){
-        StringBuilder msj = new StringBuilder(" - jugador -           - fecha -           - nombreMovimiento -            - monto -\n");
+    public String listarStats(int jugador){
+        StringBuilder msj = new StringBuilder(" - jugador -           - fecha -          - Hora -           - nombreMovimiento -            - monto -\n");
         for(Estadistica e : stats){
-            if(e.getJugador().equals(nombreJugador))
+            if(e.getJugador() == jugador)
                 msj.append(e.toString() + "\n");
         }
         return msj.toString();
     }
 
-    public ArrayList<Estadistica> arrayJugador(String nombreJugador){
+    public ArrayList<Estadistica> arrayJugador(int jugador){
         ArrayList<Estadistica> array = new ArrayList<>();
 
         for(Estadistica e : stats){
-            if(e.getJugador().equals(nombreJugador)){
+            if(e.getJugador() == jugador){
                 array.add(e);
             }
         }
         return array;
     }
 
-    public String listarStats(String nombreJugador, int cantidadStats){
-        StringBuilder msj = new StringBuilder(" - jugador -           - fecha -           - nombreMovimiento -            - monto -\n");
-        ArrayList<Estadistica> array = arrayJugador(nombreJugador);
+    public String listarStats(int jugador, int cantidadStats){
+        StringBuilder msj = new StringBuilder(" - jugador -           - fecha -          - Hora -           - nombreMovimiento -            - monto -\n");
+        ArrayList<Estadistica> array = arrayJugador(jugador);
 
         for(int i= array.size() - 1; i >= (array.size() - cantidadStats) && i >= 0; i--){
             msj.append(array.get(i).toString() + "\n");

@@ -36,12 +36,12 @@ public class MenuCliente {
                     cambiarContrasenia(cliente);
                     break;
                 case 6:
-                    System.out.println(GestionMenu.stats.listarStats(cliente.getNombre(), 25));
+                    System.out.println(GestionMenu.stats.listarStats(cliente.getDni(), 25));
                     System.out.println("Presione enter para continuar...");
                     sc.nextLine();
                     break;
                 case 7:
-                    System.out.println(GestionMenu.stats.listarStats(cliente.getNombre()));
+                    System.out.println(GestionMenu.stats.listarStats(cliente.getDni()));
                     System.out.println("Presione enter para continuar...");
                     sc.nextLine();
                 case 0:
@@ -149,7 +149,7 @@ public class MenuCliente {
                 return;
             }
             cliente.cargarSaldo(montoDouble);
-            GestionMenu.crearStats(cliente.getNombre(), "Carga de Saldo", montoDouble);
+            GestionMenu.crearStats(cliente.getDni(), "Carga de Saldo", montoDouble);
 
 
 
@@ -178,7 +178,7 @@ public class MenuCliente {
                 System.out.println("Error: saldo insuficiente para retirar");
             }else {
                 cliente.retirarSaldo(montoDouble);
-                GestionMenu.crearStats(cliente.getNombre(), "Retiro de saldo", (-1)*montoDouble);
+                GestionMenu.crearStats(cliente.getDni(), "Retiro de saldo", (-1)*montoDouble);
                 System.out.println("Carga realiada exitosamente!");
                 System.out.println("Saldo actual: " + cliente.getSaldo());
             }

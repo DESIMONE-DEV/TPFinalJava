@@ -4,6 +4,7 @@ import Exceptions.*;
 import Modelo.Gestores.GestorGenerico;
 import Modelo.Gestores.GestorStats;
 import Modelo.Stats.Estadistica;
+import Modelo.Usuarios.Cliente;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -154,8 +155,8 @@ public class GestionMenu {
 
     /// ---------------- CREACION ESTADISTICA NUEVA ---------------------- ////
 
-    public static void crearStats(String nombreJugador, String tipoMovimiento, double monto){
-        stats.agregarStats(new Estadistica(nombreJugador, tipoMovimiento, monto));
+    public static void crearStats(int jugador, String tipoMovimiento, double monto){
+        stats.agregarStats(new Estadistica(jugador, tipoMovimiento, monto));
     }
  }
 

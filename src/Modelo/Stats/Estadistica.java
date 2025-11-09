@@ -1,21 +1,23 @@
 package Modelo.Stats;
 
+import Exceptions.ColleccionVaciaException;
 import Interfaces.IJson;
+import Menu.GestionMenu;
+import Modelo.Usuarios.Cliente;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Estadistica implements IJson {
-    private String jugador;
+    private int jugador;
     private LocalDateTime fecha;
     private String nombreMovimiento;
     private double monto;
 
 
     /// CONSTRUCTORES
-    public Estadistica(String jugador, String nombreMovimiento, double monto) {
+    public Estadistica(int jugador, String nombreMovimiento, double monto) {
         this.jugador = jugador;
         this.fecha = LocalDateTime.now();
         this.nombreMovimiento = nombreMovimiento;
@@ -23,7 +25,7 @@ public class Estadistica implements IJson {
     }
 
     public Estadistica(JSONObject objeto){
-        jugador = objeto.getString("jugador");
+        jugador = objeto.getInt("jugador");
         fecha = LocalDateTime.parse(objeto.getString("fecha"));
         nombreMovimiento = objeto.getString("nombreMovimiento");
         monto = objeto.getDouble("monto");
@@ -31,11 +33,11 @@ public class Estadistica implements IJson {
 
     /// ----------- GETTERS AND SETTERS --------------------------
 
-    public String getJugador() {
+    public int getJugador() {
         return jugador;
     }
 
-    public void setJugador(String jugador) {
+    public void setJugador(int jugador) {
         this.jugador = jugador;
     }
 
@@ -66,20 +68,18 @@ public class Estadistica implements IJson {
     /// ---------- FIN GETTERS AND SETTERS -------------------------------
 
     /// ------- METODOS --------------------------------------------------
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Estadistica that)) return false;
-        return Objects.equals(jugador, that.jugador) && Objects.equals(fecha, that.fecha);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(jugador, fecha);
-    }
 
     @Override
     public String toString() {
-        return jugador + "         " + fecha + "         " + nombreMovimiento + "          $" + monto;
+        try {
+            return ((Cliente)GestionMenu.User.getDato(new Cliente(jugador))).getNombre() + "         " +
+                    fecha.getDayOfMonth()+ '/' + fecha.getMonth() + '/' + fecha.getYear() + "      "
+                    + fecha.getHour() + ':' + fecha.getMinute() + "                 " + nombreMovimiento +
+                    "                $" + monto;
+        } catch (ColleccionVaciaException e) {
+            System.out.println("error");
+        }
+        return "";
     }
 
     @Override
