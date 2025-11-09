@@ -90,30 +90,77 @@ public class BlackJack21 extends Juego implements IRepartidor {
             for (int i = 0; i < banca.cantidadDeCartas(); i++) {
                 Carta carta = banca.buscarCarta(i);
                 if (true == encontrarAs(carta)) {
-                    suma +=11;
+                    suma += 11;
                 } else if (true == cambiarValores(carta)) {
-                    suma +=11;
+                    suma += 10;
                 } else {
-                    suma +=carta.getValor().getValorNum();
+                    suma += carta.getValor().getValorNum();
                     if (suma > 16 && suma < 22) {
                         return suma;
                     }
                 }
-            }
-            if (suma < 16) {
-                banca.agregarCarta(mazo.repartir(1));
-                suma +=banca.buscarCarta(2).getValor().getValorNum();
-                if (banca.getCarta().get(0).getValor().getValorSimb().equals("A") && suma < 21) {
-                    suma -=10;
+                if (suma < 16) {
                     banca.agregarCarta(mazo.repartir(1));
-                    suma +=banca.buscarCarta(3).getValor().getValorNum();
-                } else if (banca.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
-                    suma -=10;
-                    banca.agregarCarta(mazo.repartir(1));
-                    suma = +banca.buscarCarta(4).getValor().getValorNum();
-                } else if (suma > 21) {
-                    suma = -1;
-                    return suma;
+                    suma += banca.buscarCarta(2).getValor().getValorNum();
+                     if (suma < 16) {
+                         mano1.agregarCarta(mazo.repartir(1));
+                     }
+                    if (suma > 16 && suma < 22) {
+                        return suma;
+                    } else if (banca.getCarta().get(0).getValor().getValorSimb().equals("A") && suma > 21) {
+                        suma -= 10;
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }
+                    } else if (banca.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
+                        suma -= 10;
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }
+                    } else if (banca.getCarta().get(2).getValor().getValorSimb().equals("A") && suma > 21) {
+                        suma -= 10;
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }
+                    }else if (suma<16){
+                        mano1.agregarCarta(mazo.repartir(1));
+                        suma += mano1.buscarCarta(mano1.cantidadDeCartas()-1).getValor().getValorNum();
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }
+                        if(mano1.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
+                            suma -= 10;
+                        }
+                    }
+
+                }
+                if (suma > 22) {
+                     if (banca.getCarta().get(0).getValor().getValorSimb().equals("A") && suma > 21) {
+                        suma -= 10;
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }
+                    } else if (banca.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
+                        suma -= 10;
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }else if(suma<16){
+                            banca.agregarCarta(mazo.repartir(1));
+                        }
+                    } else if (banca.getCarta().get(2).getValor().getValorSimb().equals("A") && suma > 21) {
+                        suma -= 10;
+                         if (suma > 16 && suma < 22) {
+                             return suma;
+                         }
+                    }else if (suma<16){
+                        suma += mano1.buscarCarta(mano1.cantidadDeCartas()-1).getValor().getValorNum();
+                        if (suma > 16 && suma < 22) {
+                            return suma;
+                        }
+                        if(mano1.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
+                            suma -= 10;
+                        }
+                    }
                 }
             }
         }
@@ -128,7 +175,7 @@ public class BlackJack21 extends Juego implements IRepartidor {
             if ( true == encontrarAs(carta)){
                 suma += 11 ;
             }else if ( true == cambiarValores(carta)){
-                suma += 11;
+                suma += 10;
             }else {
                 suma +=carta.getValor().getValorNum();
             }
@@ -165,6 +212,23 @@ public class BlackJack21 extends Juego implements IRepartidor {
                 return suma;
             }
 
+        }
+        return suma;
+    }
+    public int pedirCartaUsuario ( int suma) throws MazoVacioException {
+        mazo.mezclar();
+        mano1.agregarCarta(mazo.repartir(1));
+        if(mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorSimb().equals("A")){
+            suma +=11;
+            if(suma > 21) {
+                suma -=10;
+            }
+        }else if(mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorSimb().equals("J") ||
+                mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorSimb().equals("Q") ||
+                mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorSimb().equals("K") ){
+            suma +=10;
+        }else{
+            suma += mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorNum();
         }
         return suma;
     }
