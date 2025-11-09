@@ -277,7 +277,7 @@ public class MenuRuleta {
                         System.out.println("Numero ganador: " + ruleta.getNumeroSalidor());
                         System.out.println("Pago recibido: " + ganancia);
                         System.out.println("Nuevo saldo: " + jugador.getSaldo());
-
+                        GestionMenu.guardadoAutomatico();
                         ruleta.limpiarApuestas();
 
                         break;
