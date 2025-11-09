@@ -35,10 +35,10 @@ public class MenuAdmin {
 
                     break;
                 case 5:
-                    cargarSaldo(a);
+                    //cargarSaldo(a);
                     break;
                 case 6:
-                    cambiarEstadoBaneo(a)
+                    //cambiarEstadoBaneo(a)
                     break;
                 case 0:
                     System.out.println("Cerrando sesion, hasta la proxima " + admin.getNombre());
@@ -94,7 +94,7 @@ public class MenuAdmin {
 
             Cliente buscado = new Cliente(dni);
 
-            Usuario encontrado = GestionMenu.User.getDato(buscado);
+            Usuario encontrado = (Usuario) GestionMenu.User.getDato(buscado);
 
             if(encontrado != null && encontrado instanceof Cliente){
                 Cliente real = (Cliente) encontrado;
@@ -124,7 +124,7 @@ public class MenuAdmin {
 
             Cliente buscado = new Cliente(dni);
 
-            Usuario encontrado = GestionMenu.User.getDato(buscado);
+            Usuario encontrado = (Usuario) GestionMenu.User.getDato(buscado);
 
             if(encontrado != null && encontrado instanceof Cliente){
                 Cliente real = (Cliente) encontrado;
