@@ -1,5 +1,6 @@
 package Modelo.Gestores;
 
+import Interfaces.IJson;
 import Modelo.Stats.Estadistica;
 import org.json.JSONArray;
 import org.json.JSONException;

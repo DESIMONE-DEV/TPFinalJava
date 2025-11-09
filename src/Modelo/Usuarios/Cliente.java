@@ -81,6 +81,7 @@ public class Cliente extends Usuario {
     ///
     /// ----------------------TO JSON  -----------------------------///
     ///
+    @Override
     public  JSONObject toJSON() throws JSONException {
 
         JSONObject objeto = new JSONObject();

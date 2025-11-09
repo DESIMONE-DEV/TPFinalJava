@@ -3,7 +3,9 @@ package Menu;
 import Exceptions.ColleccionVaciaException;
 import Modelo.Usuarios.Admin;
 import Modelo.Usuarios.Cliente;
+import Modelo.Usuarios.Usuario;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuAdmin {

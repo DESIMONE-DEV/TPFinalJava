@@ -1,12 +1,13 @@
 package Modelo.Stats;
 
+import Interfaces.IJson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Estadistica {
+public class Estadistica implements IJson {
     private String jugador;
     private LocalDateTime fecha;
     private String nombreMovimiento;
@@ -81,6 +82,7 @@ public class Estadistica {
         return jugador + "         " + fecha + "         " + nombreMovimiento + "          $" + monto;
     }
 
+    @Override
     public JSONObject toJSON() throws JSONException{
         JSONObject objeto = new JSONObject();
         objeto.put("jugador", jugador);

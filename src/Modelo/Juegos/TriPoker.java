@@ -91,10 +91,12 @@ public class TriPoker extends Juego implements IRepartidor {
         mazo.recibirCarta(mano1.getCartas());
         mazo.recibirCarta(mano2.getCartas());
         mazo.recibirCarta(mano3.getCartas());
+        mazo.recibirCarta(manoBanca.getCartas());
 
         mano1.getCartas().clear();
         mano2.getCartas().clear();
         mano3.getCartas().clear();
+        manoBanca.getCartas().clear();
 
         removerApuestaMano1();
         removerApuestaMano2();
