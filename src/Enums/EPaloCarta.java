@@ -1,9 +1,9 @@
 package Enums;
 public enum EPaloCarta {
-    CORAZONES("Corazones"),
-    PICAS("Picas"),
-    TREBOL("Trebol"),
-    DIAMANTES("Diamantes");
+    CORAZONES("♥"),
+    PICAS("♠"),
+    TREBOL("♣"),
+    DIAMANTES("♦");
 
     private String palo;
 
