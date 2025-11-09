@@ -162,6 +162,7 @@ public class MenuCliente {
             System.out.println("Error: debe ingresar un numero valido");
             sc.nextLine();
         }
+        GestionMenu.guardaoAutomatico();
     }
     ///---------- MENU DE RETIRO DE SALDO ----------
     public static void retiroSaldo(Cliente cliente) {
@@ -191,6 +192,7 @@ public class MenuCliente {
             System.out.println("Error: debe ingresar un numero valido");
             sc.nextLine();
         }
+        GestionMenu.guardaoAutomatico();
     }
     ///---------- MENU DE CAMBIO DE CUENTA BANCARIA ----------
     public static void cambiarCuentaBancaria(Cliente cliente) {
@@ -202,6 +204,7 @@ public class MenuCliente {
         cliente.setCuentaBancaria(nuevaCuentaBancaria);
 
         System.out.println("Cuenta bancaria actualizada: " + cliente.getCuentaBancaria());
+        GestionMenu.guardaoAutomatico();
     }
     ///---------- MENU DE CAMBIO DE CONTRASEÑA ----------
     public static void cambiarContrasenia(Cliente cliente) {
@@ -227,5 +230,6 @@ public class MenuCliente {
         }else {
             System.out.println("Contrasenia incorrecta");
         }
+        GestionMenu.guardaoAutomatico();
     }
 }
