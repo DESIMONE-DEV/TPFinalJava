@@ -117,11 +117,10 @@ public class Cliente extends Usuario {
 
     @Override
     public String toString() {
-        return "Cliente{"+ super.toString() +
-                ", Saldo=" + saldo +
-                ", NºBancaria='" + cuentaBancaria + '\'' +
-                ", Habilitado=" + estadoCuenta +
-                "} " ;
+        return "Cliente: "+ super.toString() +
+                " - Saldo: " + saldo +
+                " - NºBancaria: " + cuentaBancaria +
+                " - Habilitado: " + estadoCuenta;
     }
 }
 

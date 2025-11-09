@@ -11,11 +11,11 @@ public class MenuCliente {
     public static Scanner sc = new Scanner(System.in);
 
     public static void menuInicialCliente(Cliente cliente) {
-        System.out.println("Bienvenido a nuestro casino, " + cliente.getNombre());
 
         int opcion = -1;
 
         do{
+            System.out.println("Bienvenido a nuestro casino, " + cliente.getNombre());
             System.out.println("\n Menu Principal | Saldo actual: $: " + cliente.getSaldo());
 
             opcion = menuInicial();

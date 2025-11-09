@@ -69,7 +69,6 @@ public class Admin extends Usuario {
 
     @Override
     public String toString() {
-        return "Admin{" + super.toString()+
-                "} " ;
+        return "Admin: " + super.toString();
     }
 }
