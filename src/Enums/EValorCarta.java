@@ -33,6 +33,10 @@ public enum EValorCarta {
         return valorSimb;
     }
 
+    public int getValorBlackJack() {
+        return valorBlackJack;
+    }
+
     @Override
     public String toString() {
         return valorSimb;

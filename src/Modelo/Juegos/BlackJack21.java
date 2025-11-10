@@ -80,6 +80,37 @@ public class BlackJack21 extends Juego implements IRepartidor {
         }
         return false;
     }
+
+    public int jugarBanca() throws MazoVacioException{
+        int suma;
+        int j;
+        if(mazo.hayCartas()){
+            do{
+                j = 0;
+                suma = 0;       /// INICIALIZO LAS VARIABLES PARA CADA VUELA
+
+                for(int i = 0; i < banca.cantidadDeCartas(); i++){      ///  SUMO LAS CARTAS QUE TENGO
+                    suma += banca.buscarCarta(i).getValor().getValorBlackJack();
+                }
+                while(suma > 21 && j < banca.cantidadDeCartas()){  /// SI TENGO MAS DE 21 Y TENGO UN AS, LO CONVIERTO EN 1 AL AS
+                    if(encontrarAs(banca.buscarCarta(j))){
+                        suma -= 10;
+                    }
+                    j++;
+                }
+
+                if(suma < 17){
+                    banca.agregarCarta(mazo.repartir(1));   /// SI TODAVIA NO LLEGUE A 17, AGREGO CARTA Y HACE UNA NUEVA VUELTA
+                }
+
+            }while(suma < 17); /// CUANDO YA TENGO 17 O MAS, TERMINO DE AGREGAR CARTAS Y RETORNO EL NUMERO
+
+            return suma;
+        }else{
+            throw new MazoVacioException();
+        }
+    }
+
     public int manoBancar ( ) throws MazoVacioException {
         int suma = 0;
         if (mazo.hayCartas() == false) {
@@ -262,7 +293,24 @@ public class BlackJack21 extends Juego implements IRepartidor {
             mano1.getCarta().clear();
             banca.getCarta().clear();
         }
-
+    public String listarBancaConJuego(){
+        StringBuilder listaCartas = new StringBuilder();
+        for (int i = 0 ; i < banca.cantidadDeCartas() ; i++){
+            Carta carta = banca.buscarCarta(i);
+            listaCartas.append(carta.toString());
+            listaCartas.append(" - ");
+        }
+        return listaCartas.toString();
+    }
+    public String listarJugadorJuego(){
+        StringBuilder listaCartas = new StringBuilder();
+        for (int i = 0 ; i < mano1.cantidadDeCartas() ; i++){
+            Carta carta = mano1.buscarCarta(i);
+            listaCartas.append(carta.toString());
+            listaCartas.append(" - ");
+        }
+        return listaCartas.toString();
+    }
     @Override
     public double pagarFichas() {
         return 0;

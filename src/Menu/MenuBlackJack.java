@@ -37,11 +37,10 @@ public class MenuBlackJack {
                 break;
             }
             limpiar();
-            System.out.println(" ...............COMENZAR EL JEUEGO..............");
+            System.out.println(" ...............COMIENZA EL JEUEGO..............");
 
                     try {
                         System.out.println("SE MEZCLAN LAS CARTAS...");
-                        scan.nextLine();
                         System.out.println("EL PAGADOR REPARTE LAS CARTAS... ");
                         blackJack21.repartir();
 
@@ -53,6 +52,7 @@ public class MenuBlackJack {
                     limpiar();
                     System.out.println("..........TUS......CARTAS.............");
                     dibujoCarta();
+                    System.out.println(blackJack21.listarJugadorJuego());
                     try {
                         sumaJugador= blackJack21.manoUsuario();
                         System.out.println("SACASTE = " + sumaJugador+ " Puntos");
@@ -82,7 +82,9 @@ public class MenuBlackJack {
                             case 1:
                                 try {
                                     sumaJugador += blackJack21.pedirCartaUsuario(sumaJugador);
+                                    System.out.println(blackJack21.listarJugadorJuego());
                                     System.out.println("LA SUMA DE SUS CARTAS ES = " + sumaJugador + " Puntos");
+
                                     if (sumaJugador > 21) {
                                         System.out.println("USTED SE PASO DE 21 ");
                                         op=2;
@@ -101,14 +103,18 @@ public class MenuBlackJack {
                     try {
                         System.out.println(ROJO+"ENTER para continuar..."+RESET);
                         scan.nextLine();
-                        sumaBanca = blackJack21.manoBancar();
+                        sumaBanca = blackJack21.jugarBanca();
+                        System.out.println(blackJack21.listarBancaConJuego());
                         System.out.println("LA BANCA SACO = " + sumaBanca+ " Puntos");
                     } catch (MazoVacioException e) {
                         System.out.println(e.getMessage());
                     }
                         System.out.println("LOS PUNTOS TOTALES FUERON........");
                             scan.nextLine();
+                        System.out.println(blackJack21.listarJugadorJuego());
                         System.out.println("Puntos Jugador = "+sumaJugador);
+                        System.out.println("\n\n");
+                        System.out.println(blackJack21.listarBancaConJuego());
                         System.out.println("Puntos Banca = "+sumaBanca);
                         if(sumaJugador <22 && sumaBanca >21) {
                             System.out.println(VERDE);
