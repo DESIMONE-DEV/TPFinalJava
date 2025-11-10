@@ -79,9 +79,8 @@ public class MenuBlackJack {
                     } catch (MazoVacioException e) {
                         System.out.println(e.getMessage());
                     }
-                    if(sumaJugador== 21) {
-                        break;
-                    }else{
+                    if(sumaJugador!= 21) {
+
                         try {
                             System.out.println("DESEA PEDIR OTRA CARTA ?? Presione si lo desea''1'' , sino lo desea presione cualquier otro numero");
                             opcion = scan.nextInt();
