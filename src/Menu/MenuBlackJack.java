@@ -7,23 +7,36 @@ import Modelo.Usuarios.Cliente;
 import java.util.Scanner;
 
 public class MenuBlackJack {
+    public static final String RESET = "\u001B[0m";
+    public static final String VERDE = "\u001B[32m";
     public static Scanner scan = new Scanner(System.in);
 
     public static void start(Cliente jugador) {
         BlackJack21 blackJack21 = new BlackJack21();
         int opcion = 0;
         String salir = "s";
-        int sal=1;
+        String r= "f" ;
+        int sal=0;
         int sumaJugador=0;
         int sumaBanca=0;
         double apostar=0;
         double pago=0;
 
-        System.out.println(".............BIENVENIDOS....A....BLACKJACK.......21.........");
-        System.out.println("\n\n\n");
+        System.out.println(VERDE+".............BIENVENIDOS....A....BLACKJACK.......21........."+RESET);
         dibujoCarta();
         do {
-            System.out.println("HAGA SU APUESTA , presione 10");
+            System.out.println("               HAGA SU APUESTA        ");
+            try {
+                System.out.println("Su saldo es = $ " + jugador.getSaldo());
+                System.out.println("cuanto desea apostar ? ");
+                apostar = scan.nextDouble();
+                scan.nextLine();
+                jugador.retirarSaldo(apostar);
+            }catch (Exception e) {
+                System.out.println("Saldo insuficiente");
+                break;
+            }
+            limpiar();
             System.out.println("1-COMENZAR EL JEUEGO");
             System.out.println("4-VERIFICAR QUE SACO LA BANCA");
             System.out.println("5-COMPARA VALORES");
@@ -32,19 +45,7 @@ public class MenuBlackJack {
 
 
             switch (opcion) {
-                case 10:
 
-                    try {
-                        System.out.println("Su saldo es = $ " + jugador.getSaldo());
-                        System.out.println("cuanto desea apostar ? ");
-                        apostar = scan.nextDouble();
-                        scan.nextLine();
-                        jugador.retirarSaldo(apostar);
-                    }catch (Exception e) {
-                        System.out.println("Saldo insuficiente");
-                        break;
-                    }
-                    limpiar();
                 case 1:
                     try {
                         System.out.println("SE MEZCLAN LAS CARTAS");
@@ -79,7 +80,7 @@ public class MenuBlackJack {
                     if(sumaJugador== 21) {
                         break;
                     }else{
-                        System.out.println("\n\nDesea agregar otro carta ?s/n");
+                        System.out.println("\n\nDesea agregar otra carta ?s/n");
                         salir = scan.nextLine();
                         if(salir.equals("s")) {
                             System.out.println("APRETE ESPACIO PARA RECIBIR CARTA");
@@ -97,9 +98,8 @@ public class MenuBlackJack {
                             System.out.println(e.getMessage());
                         }
                         System.out.println("Quiere seguir pidiendo carta? s/n");
-                        String r="f";
                         r=scan.nextLine();
-                    }while( salir.equalsIgnoreCase("s"));
+                    }while( r.equalsIgnoreCase("s"));
                     break;
                 case 4:
                     try {
@@ -108,6 +108,7 @@ public class MenuBlackJack {
                     } catch (MazoVacioException e) {
                         System.out.println(e.getMessage());
                     }
+                    break;
                     case 5:
                         System.out.println("Puntos Jugador = "+sumaJugador);
                         System.out.println("Puntos Banca = "+sumaBanca);
@@ -145,7 +146,6 @@ public class MenuBlackJack {
                         sal=1;
                         break;
             }
-
         } while (sal==1);
     }
 
@@ -155,6 +155,7 @@ public class MenuBlackJack {
     }
 
     public static void dibujoCarta (){
+        System.out.println(VERDE);
         System.out.println("+----------+");
         System.out.println("| A        |");
         System.out.println("|          |");
@@ -164,5 +165,6 @@ public class MenuBlackJack {
         System.out.println("|          |");
         System.out.println("|        A |");
         System.out.println("+----------+");
+        System.out.println(RESET);
     }
 }
