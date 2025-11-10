@@ -52,5 +52,11 @@
         "monto": 1000,
         "jugador": 3333333,
         "nombreMovimiento": "Carga de Saldo"
+    },
+    {
+        "fecha": "2025-11-10T08:38:30.033799100",
+        "monto": 20000,
+        "jugador": 11111111,
+        "nombreMovimiento": "Carga de Saldo"
     }
 ]

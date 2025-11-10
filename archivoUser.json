@@ -1,5 +1,12 @@
 [
     {
+        "Nombre": "Emanuel",
+        "Tipo": "Admin",
+        "Id": "e0e5922c-1d34-4348-9049-ed8855ea01d0",
+        "Dni": 38497177,
+        "Password": "6a1e3e1dca9e7cfe3f0a20d600643d9870f9a7f59ffc5c64cf62f46ec29e70f3"
+    },
+    {
         "Nombre": "Ludopata Feroz",
         "Tipo": "Cliente",
         "Saldo": 3000,
@@ -15,5 +22,15 @@
         "Id": "da2a1399-dcbc-431e-adce-def4e8636b1d",
         "Dni": 34955698,
         "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+    },
+    {
+        "Nombre": "Ema Ludopata",
+        "Tipo": "Cliente",
+        "Saldo": 20000,
+        "Id": "a3ea4965-22ba-4ac8-9834-726f51f11971",
+        "CuentaBancaria": "1234567890",
+        "Dni": 11111111,
+        "Password": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+        "EstadoCuenta": true
     }
 ]
