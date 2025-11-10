@@ -39,6 +39,12 @@ public class MenuTriPoker {
                     salir = 0;
                     break;
 
+                case 2:
+                    comoJugar();
+                    enterContinue();
+                    limpiarPantalla();
+                    break;
+
                 case 1:
                     try {
                         System.out.println("Jugador: " + jugador.getNombre() + " ---- Saldo: $" + jugador.getSaldo() + "\n");
@@ -128,6 +134,7 @@ public class MenuTriPoker {
 
     public static void menuInicial(){
         System.out.println("1- Jugar");
+        System.out.println("2- Como Jugar?");
         System.out.println("0- Salir");
         System.out.print("Su opcion: ");
     }
@@ -137,9 +144,15 @@ public class MenuTriPoker {
         double aux;
 
         if(cantAsientos >= 1){
+            do {
             System.out.print("Ingrese su apuesta en el Bonus 1: ");
-            aux = scan.nextDouble();
-            scan.nextLine();
+                aux = scan.nextDouble();
+                scan.nextLine();
+                if(aux<0){
+                    System.out.println("Ingrese un numero positivo por favor!");
+                }
+            }while(aux < 0);        /// PEDIMOS APUESTA POSITIVA SIEMPRE
+
             if(jugador.getSaldo() >= aux) {
                 juego.getMano1().setBonus(aux);
                 jugador.retirarSaldo(aux);
@@ -147,9 +160,15 @@ public class MenuTriPoker {
                 throw new SaldoInsuficienteException();
             }
 
-            System.out.print("Ingrese su apuesta en el Ante 1: ");
-            aux = scan.nextDouble();
-            scan.nextLine();
+            do{
+                System.out.print("Ingrese su apuesta en el Ante 1: ");
+                aux = scan.nextDouble();
+                scan.nextLine();
+                if(aux<0){
+                    System.out.println("Ingrese un numero positivo por favor!");
+                }
+            }while(aux < 0);
+
             if(jugador.getSaldo() >= aux) {
                 juego.getMano1().setAnte(aux);
                 jugador.retirarSaldo(aux);
@@ -159,9 +178,15 @@ public class MenuTriPoker {
         }
 
         if(cantAsientos >=2){
-            System.out.print("Ingrese su apuesta en el Bonus 2: ");
-            aux = scan.nextDouble();
-            scan.nextLine();
+            do{
+                System.out.print("Ingrese su apuesta en el Bonus 2: ");
+                aux = scan.nextDouble();
+                scan.nextLine();
+                if(aux<0){
+                    System.out.println("Ingrese un numero positivo por favor!");
+                }
+            }while(aux < 0);
+
             if(jugador.getSaldo() >= aux) {
                 juego.getMano2().setBonus(aux);
                 jugador.retirarSaldo(aux);
@@ -169,9 +194,15 @@ public class MenuTriPoker {
                 throw new SaldoInsuficienteException();
             }
 
-            System.out.print("Ingrese su apuesta en el Ante 2: ");
-            aux = scan.nextDouble();
-            scan.nextLine();
+            do{
+                System.out.print("Ingrese su apuesta en el Ante 2: ");
+                aux = scan.nextDouble();
+                scan.nextLine();
+                if(aux<0){
+                    System.out.println("Ingrese un numero positivo por favor!");
+                }
+            }while(aux < 0);
+
             if(jugador.getSaldo() >= aux) {
                 juego.getMano2().setAnte(aux);
                 jugador.retirarSaldo(aux);
@@ -181,9 +212,15 @@ public class MenuTriPoker {
         }
 
         if(cantAsientos >=3){
-            System.out.print("Ingrese su apuesta en el Bonus 3: ");
-            aux = scan.nextDouble();
-            scan.nextLine();
+            do{
+                System.out.print("Ingrese su apuesta en el Bonus 3: ");
+                aux = scan.nextDouble();
+                scan.nextLine();
+                if(aux<0){
+                    System.out.println("Ingrese un numero positivo por favor!");
+                }
+            }while(aux < 0);
+
             if(jugador.getSaldo() >= aux) {
                 juego.getMano3().setBonus(aux);
                 jugador.retirarSaldo(aux);
@@ -191,9 +228,15 @@ public class MenuTriPoker {
                 throw new SaldoInsuficienteException();
             }
 
-            System.out.print("Ingrese su apuesta en el Ante 3: ");
-            aux = scan.nextDouble();
-            scan.nextLine();
+            do{
+                System.out.print("Ingrese su apuesta en el Ante 3: ");
+                aux = scan.nextDouble();
+                scan.nextLine();
+                if(aux<0){
+                    System.out.println("Ingrese un numero positivo por favor!");
+                }
+            }while(aux < 0);
+
             if(jugador.getSaldo() >= aux) {
                 juego.getMano3().setAnte(aux);
                 jugador.retirarSaldo(aux);
@@ -207,52 +250,67 @@ public class MenuTriPoker {
     public static void apuestaBet(int asientos, TriPoker juego, Cliente jugador){
         String yesNo;
         if(asientos >= 1){
-            System.out.print("Apuesta en mano 1? (s/n): ");
-            yesNo =  scan.nextLine().toLowerCase();
-            if(yesNo.equals("s")) {
-                if (jugador.getSaldo() >= juego.getMano1().getAnte()) {
-                    jugador.retirarSaldo(juego.getMano1().getAnte());
-                    juego.asignarBetMano1();
-                } else {
-                    System.out.println("No posee suficiente saldo, por esta mano se le permite jugar, luego debe cargar saldo");
+            do {
+                System.out.print("Apuesta en mano 1? (s/n): ");
+                yesNo = scan.nextLine().toLowerCase();
+                if (yesNo.equals("s")) {
+                    if (jugador.getSaldo() >= juego.getMano1().getAnte()) {
+                        jugador.retirarSaldo(juego.getMano1().getAnte());
+                        juego.asignarBetMano1();
+                    } else {
+                        System.out.println("No posee suficiente saldo, por esta mano se le permite jugar, luego debe cargar saldo");
+                    }
+                } else if(yesNo.equals("n")){
+                    System.out.println("Apuestas removidas");
+                    juego.removerApuestaMano1();
+                    enterContinue();
+                }else{
+                    System.out.println("Ingrese 's' o 'n' por favor");
+                    enterContinue();
                 }
-            }else{
-                System.out.println("Apuestas removidas");
-                juego.removerApuestaMano1();
-                enterContinue();
-            }
+            }while(!yesNo.equals("s") && !yesNo.equals("n"));
         }
         if(asientos >= 2){
-            System.out.print("Apuesta en mano 2? (s/n): ");
-            yesNo =  scan.nextLine().toLowerCase();
-            if(yesNo.equals("s")){
-                if(jugador.getSaldo() >= juego.getMano2().getAnte()){
-                    jugador.retirarSaldo(juego.getMano2().getAnte());
-                    juego.asignarBetMano2();
+            do {
+                System.out.print("Apuesta en mano 2? (s/n): ");
+                yesNo = scan.nextLine().toLowerCase();
+                if (yesNo.equals("s")) {
+                    if (jugador.getSaldo() >= juego.getMano2().getAnte()) {
+                        jugador.retirarSaldo(juego.getMano2().getAnte());
+                        juego.asignarBetMano2();
+                    } else {
+                        System.out.println("No posee suficiente saldo, por esta mano se le permite jugar, luego debe cargar saldo");
+                    }
+                } else if(yesNo.equals("n")){
+                    System.out.println("Apuestas removidas");
+                    juego.removerApuestaMano1();
+                    enterContinue();
                 }else{
-                    System.out.println("No posee suficiente saldo, por esta mano se le permite jugar, luego debe cargar saldo");
+                    System.out.println("Ingrese 's' o 'n' por favor");
+                    enterContinue();
                 }
-            }else{
-                System.out.println("Apuestas removidas");
-                juego.removerApuestaMano2();
-                enterContinue();
-            }
+            }while(!yesNo.equals("s") && !yesNo.equals("n"));
         }
         if(asientos >= 3){
-            System.out.print("Apuesta en mano 3? (s/n): ");
-            yesNo =  scan.nextLine().toLowerCase();
-            if(yesNo.equals("s")){
-                if(jugador.getSaldo() >= juego.getMano3().getAnte()){
-                    jugador.retirarSaldo(juego.getMano3().getAnte());
-                    juego.asignarBetMano3();
+            do {
+                System.out.print("Apuesta en mano 3? (s/n): ");
+                yesNo = scan.nextLine().toLowerCase();
+                if (yesNo.equals("s")) {
+                    if (jugador.getSaldo() >= juego.getMano3().getAnte()) {
+                        jugador.retirarSaldo(juego.getMano3().getAnte());
+                        juego.asignarBetMano3();
+                    } else {
+                        System.out.println("No posee suficiente saldo, por esta mano se le permite jugar, luego debe cargar saldo");
+                    }
+                } else if(yesNo.equals("n")){
+                    System.out.println("Apuestas removidas");
+                    juego.removerApuestaMano1();
+                    enterContinue();
                 }else{
-                    System.out.println("No posee suficiente saldo, por esta mano se le permite jugar, luego debe cargar saldo");
+                    System.out.println("Ingrese 's' o 'n' por favor");
+                    enterContinue();
                 }
-            }else{
-                System.out.println("Apuestas removidas");
-                juego.removerApuestaMano3();
-                enterContinue();
-            }
+            }while(!yesNo.equals("s") && !yesNo.equals("n"));
         }
     }
 
@@ -263,14 +321,17 @@ public class MenuTriPoker {
             if (juego.pagarBonus(juego.getMano1()) > 0) {
                 bonus = juego.pagarBonus(juego.getMano1());
                 System.out.println("GANA BONUS: $" + bonus);
-            } else {
+            } else if(juego.getMano1().getBonus() == 0){
+                System.out.println("BONUS NO JUGADO");
+            }else{
                 System.out.println("PIERDE BONUS");
             }
+
             if (juego.jugadorGana(juego.getMano1()) > 0) {
                 bet = juego.pagarBet(juego.getMano1());
                 System.out.println("GANA ANTE: $" + bet);
                 System.out.println("GANA BET: $" + bet);
-            } else if(juego.jugadorGana(juego.getMano1()) < 0){
+            } else if(juego.jugadorGana(juego.getMano1()) < 0 || juego.getMano1().getAnte() == 0){
                 System.out.println("PIERDE ANTE");
                 System.out.println("PIERDE BET");
             }else{
@@ -282,7 +343,10 @@ public class MenuTriPoker {
             if (juego.pagarBonus(juego.getMano2()) > 0) {
                 bonus = juego.pagarBonus(juego.getMano2());
                 System.out.println("GANA BONUS: $" + bonus);
-            } else {
+
+            } else if(juego.getMano2().getBonus() == 0){
+                System.out.println("BONUS NO JUGADO");
+            }else{
                 System.out.println("PIERDE BONUS");
             }
             if (juego.jugadorGana(juego.getMano2()) > 0) {
@@ -290,7 +354,7 @@ public class MenuTriPoker {
                 System.out.println("GANA ANTE: $" + bet);
                 System.out.println("GANA BET: $" + bet);
 
-            } else if(juego.jugadorGana(juego.getMano2()) < 0){
+            } else if(juego.jugadorGana(juego.getMano2()) < 0 || juego.getMano2().getAnte() == 0){
                 System.out.println("PIERDE ANTE");
                 System.out.println("PIERDE BET");
             }else{
@@ -302,7 +366,9 @@ public class MenuTriPoker {
             if (juego.pagarBonus(juego.getMano3()) > 0) {
                 bonus = juego.pagarBonus(juego.getMano3());
                 System.out.println("GANA BONUS: $" + bonus);
-            } else {
+            } else if(juego.getMano3().getBonus() == 0){
+                System.out.println("BONUS NO JUGADO");
+            }else{
                 System.out.println("PIERDE BONUS");
             }
             if (juego.jugadorGana(juego.getMano3()) > 0) {
@@ -310,7 +376,7 @@ public class MenuTriPoker {
                 System.out.println("GANA ANTE: $" + bet);
                 System.out.println("GANA BET: $" + bet);
 
-            } else if(juego.jugadorGana(juego.getMano3()) < 0){
+            } else if(juego.jugadorGana(juego.getMano3()) < 0 || juego.getMano3().getAnte() == 0){
                 System.out.println("PIERDE ANTE");
                 System.out.println("PIERDE BET");
             }else{
@@ -323,6 +389,40 @@ public class MenuTriPoker {
         return juego.getMano1().getAnte() + juego.getMano1().getBonus() + juego.getMano1().getBet() +
                 juego.getMano2().getAnte() + juego.getMano2().getBonus() + juego.getMano2().getBet() +
                 juego.getMano3().getAnte() + juego.getMano3().getBonus() + juego.getMano3().getBet();
+    }
+
+    public static void comoJugar(){
+        System.out.println("Como Jugar:\n\n" +
+                "El juego de TriPoker es una variante del Poker pero se juega con 3 cartas\n" +
+                "contra la banca. Se puede jugar a Bonus(apuesto a que en mis cartas voy a tener un par\n" +
+                "o un juego mayor) y/o puedo jugar al Ante y competir contra las cartas de la banca.\n\n" +
+
+                "Para poder jugar a TriPoker debe conocer los juegos de poker:\n" +
+                "Carta alta: Corresponde a no tener otro juego y vale su carta mas alta,\n" +
+                "Par: Corresponde a tener dos cartas del mismo valor,\n" +
+                "Color: Corresponde a tener las 3 cartas del mismo palo,\n" +
+                "Escalera: Corresponde a tener las 3 cartas seguidas ('As' cuenta como 1 y como 'As' despues de 'K',\n" +
+                "TriPoker: Corresponde a tener las 3 cartas del mismo valor,\n" +
+                "Escalera Color: Corresponde a tener escalera y color a la vez.\n\n" +
+
+                "Pagos Bonus:\n" +
+                "Par: 1x\n" +
+                "Color: 4x\n" +
+                "Escalera: 6x\n" +
+                "TriPoker: 30x\n" +
+                "Escalera Color: 40x\n\n" +
+
+                "Pagos Ante y Bet:\n" +
+                "Siempre x2 de lo apostado\n\n" +
+
+                "Para jugar:\n" +
+                "Primero vamos a ingresar en cuantas manos vamos a realizar apuestas (puedo tener de 1 a 3 manos diferentes)\n" +
+                "luego vamos a ingresar la apuesta en el Bonus y Ante por mano, puedo jugar en uno, otro o ambos,\n" +
+                "si no quiere jugar en alguno ingrese 0, si ingresa 0 en ambos va a poder jugar pero no recibira pago\n" +
+                "el juego nos va a mostrar nuestras cartas y vamos a decidir si seguir jugando o no. Si anulamos la apuesta\n" +
+                "perderemos lo ya apostado, si continuamos vamos a asignar el 'Bet' el mismo monto apostado ya en el Ante.\n" +
+                "Con todo esto realizado el juego procede a mostrar la mano de la banca y decirnos si ganamos o perdimos\n\n" +
+                "Gracias por jugar cualquier consulta puede dirigirse a algun administrador");
     }
 
     public static void limpiarPantalla(){
