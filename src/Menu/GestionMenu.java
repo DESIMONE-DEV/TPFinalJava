@@ -149,6 +149,8 @@ public class GestionMenu {
            mLoginUsuario(dni, password,User);
         } catch (UsuarioContraseñaIncorrectaException e) {
             System.out.println(e.getMessage());
+        }catch (CuentaBloqueadaException e){
+            System.out.println(e.getMessage());
         }
 
     }
