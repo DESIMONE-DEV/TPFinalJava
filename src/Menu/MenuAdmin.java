@@ -190,6 +190,8 @@ public class MenuAdmin {
 
                 System.out.println("Saldo cargado");
                 System.out.println("Nuevo saldo de " + real.getNombre() + ":" + real.getSaldo());
+
+                GestionMenu.crearStats(real.getDni(),"Carga Admin "+ a.getNombre(),monto);
                 GestionMenu.guardadoAutomatico();
             } else {
                 System.out.println("Cliente no encontrado");
