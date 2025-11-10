@@ -34,7 +34,7 @@ public class Ruleta extends Juego {
 
     /// SE RECORREN AMBOS FOR, RELLENANDO LOS CASILLEROS EN EL HASHMAP DEL TABLERO CON KEY CORRESPONDIENTE EN VALOR 0
     private void inicializarRuleta() {
-        for (int i = 1; i <= 36; i++) apuestas.put(String.valueOf(i), 0.0);
+        for (int i = 0; i <= 36; i++) apuestas.put(String.valueOf(i), 0.0);
 
         String[] opciones = {"negro", "rojo", "primera docena", "segunda docena",
                 "tercera docena", "primera columna", "segunda columna",
