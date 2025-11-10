@@ -191,8 +191,14 @@ public class MenuBlackJack {
                 scan.nextLine();
             }
             System.out.println("QUIERE SEGUIR JUGANDO PRESIONE ? '1'");
-                    salir = scan.nextInt();
-                    scan.nextLine();
+                    try{
+                        salir = scan.nextInt();
+                        scan.nextLine();
+                    }catch(InputMismatchException e){
+                        salir=2;
+                        scan.nextLine();
+                    }
+
 
         } while (salir==1);
     }
