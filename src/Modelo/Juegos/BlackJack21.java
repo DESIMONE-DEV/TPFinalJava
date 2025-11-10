@@ -80,10 +80,8 @@ public class BlackJack21 extends Juego implements IRepartidor {
         }
         return false;
     }
-
     public int manoBancar ( ) throws MazoVacioException {
         int suma = 0;
-        boolean V = true;
         if (mazo.hayCartas() == false) {
             throw new MazoVacioException();
         } else {
@@ -227,34 +225,7 @@ public class BlackJack21 extends Juego implements IRepartidor {
         return suma;
     }
 
-    public int pedirCarta () throws MazoVacioException {
-        int suma = manoUsuario();
-        if (false == mazo.hayCartas()) {
-            throw new MazoVacioException();
-        } else
-            mano1.agregarCarta(mazo.repartir(1));
-        suma +=mano1.buscarCarta(2).getValor().getValorNum();
-        if (suma > 21) {
-            if (mano1.getCarta().get(0).getValor().getValorSimb().equals("A") && suma > 21) {
-                suma -=10;
-                mano1.agregarCarta(mazo.repartir(1));
-                suma +=mano1.buscarCarta(2).getValor().getValorNum();
-                return suma;
-            } else if (mano1.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
-                suma -=10;
-                mano1.agregarCarta(mazo.repartir(1));
-                suma +=mano1.buscarCarta(3).getValor().getValorNum();
-                return suma;
-            } else if (mano1.getCarta().get(2).getValor().getValorSimb().equals("A") && suma > 21) {
-                suma -=10;
-                mano1.agregarCarta(mazo.repartir(1));
-                suma +=mano1.buscarCarta(4).getValor().getValorNum();
-                return suma;
-            }
 
-        }
-        return suma;
-    }
     public int pedirCartaUsuario (int suma) throws MazoVacioException {
         int valor = 0;
         mazo.mezclar();
