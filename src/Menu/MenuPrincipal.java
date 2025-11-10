@@ -82,6 +82,7 @@ public class MenuPrincipal  {
             System.out.println("La cuenta ya existe");
         }
 
+        System.out.println("Cuenta creada exitosamente");
         GestionMenu.guardadoAutomatico();
     }
     ///
@@ -105,7 +106,7 @@ public class MenuPrincipal  {
         if (dni < 3000000){
             throw new CaracteresMinimoException("Ingrese un dni valido");
         }
-        // Validar máximo de caracteres
+        /// -------------Validar máximo de caracteres-----///
         if (nombre.length() > 30) {
             throw new CaracteresMaximoException("El nombre no debe superar los 30 caracteres");
         }
@@ -122,10 +123,11 @@ public class MenuPrincipal  {
 
         try {
             GestionMenu.User.agregar(b);
+
         } catch (CuentaExistenteException e) {
             System.out.println("La cuenta ya existe");
         }
-
+        System.out.println("Cuenta creada exitosamente");
         GestionMenu.guardadoAutomatico();
     }
     ///
