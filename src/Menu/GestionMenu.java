@@ -70,9 +70,11 @@ public class GestionMenu {
         int dni=0;
         try{
             dni = sc.nextInt();
-            sc.nextLine();
         }catch(InputMismatchException e){
             System.out.println("No sea  malo ingrese un numero");
+            return;
+        }finally {
+            sc.nextLine();
         }
         System.out.print("Ingrese password: ");
         String password = sc.nextLine();
@@ -105,6 +107,9 @@ public class GestionMenu {
             sc.nextLine();
         }catch(InputMismatchException e){
             System.out.println("No sea  malo ingrese un numero");
+            return;
+        }finally {
+            sc.nextLine();
         }
         System.out.print("Ingrese password: ");
         String password = sc.nextLine();
