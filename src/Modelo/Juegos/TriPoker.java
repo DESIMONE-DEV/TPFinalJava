@@ -3,13 +3,10 @@ package Modelo.Juegos;
 import Enums.EValorCarta;
 import Exceptions.MazoVacioException;
 import Interfaces.IRepartidor;
-import Modelo.Juegos.MazoCartas.Carta;
 import Modelo.Juegos.MazoCartas.ManoTriPoker;
 import Modelo.Juegos.MazoCartas.Mazo;
-
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+
 
 public class TriPoker extends Juego implements IRepartidor {
     private Mazo mazo;
