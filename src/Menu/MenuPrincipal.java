@@ -17,7 +17,7 @@ public class MenuPrincipal  {
 
     ///----------------------- METODO PARA LOGUEAR------------------------------///
     ///
-    public static boolean mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException {
+    public static boolean mLoginUsuario(int dni, String pass, GestorGenerico<Usuario> T) throws UsuarioContraseñaIncorrectaException,CuentaBloqueadaException {
         pass = CodPassword.codificarPassword(pass);
 
         for (Usuario user : T.getConjunto()) {
@@ -27,6 +27,9 @@ public class MenuPrincipal  {
                     return true;
                 }
                 if (user instanceof Cliente) {
+                    if(((Cliente) user).getEstadoCuenta()==false){
+                        throw new CuentaBloqueadaException("Esta cuenta esta bloqueada");
+                    }
                     menuInicialCliente((Cliente)user);
                     return true;
                 }

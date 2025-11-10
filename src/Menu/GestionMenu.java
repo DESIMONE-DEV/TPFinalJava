@@ -137,16 +137,19 @@ public class GestionMenu {
             System.out.print("Ingrese DNI: ");
             dni = sc.nextInt();
             sc.nextLine();
-            System.out.print("Ingrese password: ");
-            password= sc.nextLine();
 
         }catch(InputMismatchException e) {
             System.out.println("No sea  malo ingrese un numero correcto");
+            sc.nextLine();
+            return;
         }
-
+        System.out.print("Ingrese password: ");
+        password= sc.nextLine();
         try {
            mLoginUsuario(dni, password,User);
         } catch (UsuarioContraseñaIncorrectaException e) {
+            System.out.println(e.getMessage());
+        }catch (CuentaBloqueadaException e){
             System.out.println(e.getMessage());
         }
 
