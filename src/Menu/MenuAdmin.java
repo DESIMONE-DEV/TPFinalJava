@@ -91,13 +91,24 @@ public class MenuAdmin {
             int dni = sc.nextInt();
             sc.nextLine();
 
-            String stats = GestionMenu.stats.listarStats(dni, 10);
-            System.out.println(stats);
+            Cliente buscado = new Cliente(dni);
 
+            Usuario encontrado = (Usuario) GestionMenu.User.getDato(buscado);
+
+            if(encontrado != null && encontrado instanceof Cliente) {
+                String stats = GestionMenu.stats.listarStats(dni, 10);
+                System.out.println(stats);
+            }else if(encontrado != null && encontrado instanceof Admin){
+                System.out.println("Usuario Admin, no tiene movimientos!");
+            }else{
+                System.out.println("Cliente no encontrado");
+            }
         } catch (InputMismatchException e){
             System.out.println("Error: el DNI debe ser numerico");
             sc.nextLine();
-        }
+        }catch (ColleccionVaciaException e){
+                System.out.println("Error. No hay usuarios");
+            }
     }
     ///---------- MOSTRAR TODOS LOS MOVIMIENTOS DE UN USUARIO -----------
     public static void mostrarStatsTotales (){
@@ -106,12 +117,23 @@ public class MenuAdmin {
             int dni = sc.nextInt();
             sc.nextLine();
 
-            String stats = GestionMenu.stats.listarStats(dni);
-            System.out.println(stats);
+            Cliente buscado = new Cliente(dni);
 
+            Usuario encontrado = (Usuario) GestionMenu.User.getDato(buscado);
+
+            if(encontrado != null && encontrado instanceof Cliente) {
+                String stats = GestionMenu.stats.listarStats(dni);
+                System.out.println(stats);
+            }else if(encontrado != null && encontrado instanceof Admin){
+                System.out.println("Usuario Admin, no tiene movimientos!");
+            }else{
+                System.out.println("Cliente no encontrado");
+            }
         } catch (InputMismatchException e){
             System.out.println("Error: el DNI debe ser numerico");
             sc.nextLine();
+        }catch(ColleccionVaciaException e){
+            System.out.println("Error. No hay usuarios");
         }
     }
     ///---------- RESTAURAR CONTRASEÑA DE USUARIO -----------
