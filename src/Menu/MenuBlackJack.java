@@ -74,6 +74,8 @@ public class MenuBlackJack {
                             pago= apostar + (apostar+apostar * 2);
                             System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
                             jugador.cargarSaldo(pago);
+                            GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                            GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", pago);
 
                         }
                     } catch (MazoVacioException e) {
@@ -142,13 +144,19 @@ public class MenuBlackJack {
                             pago= apostar + apostar ;
                             System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
                             jugador.cargarSaldo(pago);
+                            GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                            GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", pago);
                         }
                         if(sumaJugador >21 && sumaBanca <22) {
                             System.out.println("JUGADOR PIERDE =( ..... VUELVA A INTENTARLO");
+                            GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                            GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", (-1)*apostar);
                         }
                         if(sumaBanca >21 && sumaJugador >21) {
                             System.out.println("EMPATE");
                             jugador.cargarSaldo(apostar);
+                            GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                            GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", 0);
                         }
                         if(sumaJugador <22 && sumaBanca <22 ) {
                             if(sumaBanca<sumaJugador) {
@@ -160,11 +168,17 @@ public class MenuBlackJack {
                                 pago = apostar + apostar;
                                 System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
                                 jugador.cargarSaldo(pago);
+                                GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                                GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", pago);
                             }else if ( sumaBanca == sumaJugador) {
                                 System.out.println("EMPATE");
                                 jugador.cargarSaldo(apostar);
+                                GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                                GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", 0);
                             }else{
                                 System.out.println("JUGADOR PIERDE =( ..... VUELVA A INTENTARLO");
+                                GestionMenu.guardadoAutomatico();           /// GUARDADO DEL JUGADOR Y SU STAT
+                                GestionMenu.crearStats(jugador.getDni(), "Jugada BlackJack", (-1)*apostar);
                             }
                         }
             }
