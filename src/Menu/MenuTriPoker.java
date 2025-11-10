@@ -28,7 +28,7 @@ public class MenuTriPoker {
                 menuInicial();
                 opcion = scan.nextInt();
             }catch(InputMismatchException e){
-                System.out.println("No sea  malo ingrese un numero");
+                System.out.println("No sea malo, ingrese un numero");
             } finally {
                 scan.nextLine();
                 limpiarPantalla();
@@ -76,7 +76,7 @@ public class MenuTriPoker {
                             jugador.cargarSaldo(juego.getMano3().getAnte() + juego.getMano3().getBonus());
                             break;
                         } catch (InputMismatchException e) {
-                            System.out.println("No sea malo ingrese un numero");
+                            System.out.println("No sea malo, ingrese un numero");
                             scan.nextLine();
                         }
                     }while(flag == 0);
@@ -120,7 +120,7 @@ public class MenuTriPoker {
                     break;
 
                 default:
-                    System.out.println("Opcion invalida intente nuevamente");
+                    System.out.println("Opcion invalida, intente nuevamente");
                     break;
             }
         }while (salir == 1) ;

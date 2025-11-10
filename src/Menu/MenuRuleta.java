@@ -25,7 +25,7 @@ public class MenuRuleta {
             int salir = 1;
 
             do {
-                System.out.println("Ingrese un numero: ");
+                System.out.print("Ingrese una opcion: ");
                 int opcion = sc.nextInt();
                 sc.nextLine();
                 switch (opcion) {
@@ -46,7 +46,7 @@ public class MenuRuleta {
             System.out.println("0. Salir");
         }
     public static void mostrarSaldo(Cliente jugador) {
-        System.out.println("----- Saldo actual: " + jugador.getSaldo());
+        System.out.println("Jugador: " + jugador.getNombre() + " ---- Saldo: $" + jugador.getSaldo() + "\n");
     }
     public static void mostrarTablero() {
         System.out.println("\n");
@@ -71,8 +71,6 @@ public class MenuRuleta {
 
             do {
                 mostrarTablero();
-
-                System.out.println("Elija las opciones");
                 System.out.println("1. Jugar plenos ");
                 System.out.println("2. Color ");
                 System.out.println("3. Docenas ");
@@ -81,6 +79,8 @@ public class MenuRuleta {
                 System.out.println("6. ParImpar ");
                 System.out.println("7. Girar ruleta");
                 System.out.println("8. Salir");
+
+                System.out.print("Ingrese la opcion a la que quiera apostar: ");
 
                 opcion = sc.nextInt();
                 sc.nextLine();
@@ -94,15 +94,20 @@ public class MenuRuleta {
                             int num =  sc.nextInt();
                             sc.nextLine();
 
-                            if (num < 0 || num > 36) {
-                                throw new NumeroFueraDeRangoException();
+                            if (num < 0 || num > 36) { /// SE COMPRUEBA QUE EL NUMERO APOSTADO ESTÉ DENTRO DEL TABLERO
+                                throw new NumeroFueraDeRangoException(); ///SI NO, LANZA EXCEPCION
                             }
 
                             System.out.println("Ingrese monto a apostar: ");
                             double monto =  sc.nextDouble();
                             sc.nextLine();
 
-                            if(jugador.getSaldo() < monto){
+                            if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
+                                System.out.println("Error: El monto a apostar debe ser positivo.");
+                                break;
+                            }
+
+                            if(jugador.getSaldo() < monto){ /// COMPRUEBA QUE EL JUGADOR TIENE MAS SALDO QUE EL QUE QUIERE APOSTAR
                                 throw new SaldoInsuficienteException();
                             }
 
@@ -125,14 +130,19 @@ public class MenuRuleta {
                         System.out.println("Apuesta de color:");
                         try {
                             System.out.println("Ingrese un color para apostar (rojo/negro): ");
-                            String color = sc.nextLine().toLowerCase(); //convierte el string ingresado en minusculas
+                            String color = sc.nextLine().toLowerCase(); ///CONVIERTE EL STRING INGRESADO EN MINUSCULAS
 
                             if (!color.equals("rojo") && !color.equals("negro")) {
-                                throw new DatoIncorrectoException();
+                                throw new DatoIncorrectoException(); ///SI EL STRING NO ES rojo o negro SE RECHAZA Y SE VUELVE A INGRESAR
                             }
                             System.out.println("Ingrese monto a apostar: ");
                             double monto =  sc.nextDouble();
                             sc.nextLine();
+
+                            if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
+                                System.out.println("Error: El monto a apostar debe ser positivo.");
+                                break;
+                            }
 
                             if(jugador.getSaldo() < monto){
                                 throw new SaldoInsuficienteException();
@@ -142,7 +152,7 @@ public class MenuRuleta {
 
                             ruleta.apostar(color, monto);
 
-                            System.out.println("Apuesta realizada a " + color);
+                            System.out.println("Apuesta realizada al color " + color);
 
                         } catch (InputMismatchException e){
                             System.out.println("Error: debe ingresar un numero valido");
@@ -162,7 +172,7 @@ public class MenuRuleta {
 
                             String doc;
 
-                            if (num == 1) {
+                            if (num == 1) { /// CON 1, 2 O 3 SE LE ASIGNA UNA DOCENA, SI SALE DE ESE RANGO, EXCEPCION
                                 doc = "primera docena";
                             } else if (num == 2) {
                                 doc = "segunda docena";
@@ -176,14 +186,19 @@ public class MenuRuleta {
                             double monto =  sc.nextDouble();
                             sc.nextLine();
 
-                            if(jugador.getSaldo() < monto){
+                            if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
+                                System.out.println("Error: El monto a apostar debe ser positivo.");
+                                break;
+                            }
+
+                            if(jugador.getSaldo() < monto){ /// COMPRUEBA QUE EL JUGADOR TIENE MAS SALDO QUE EL QUE QUIERE APOSTAR
                                 throw new SaldoInsuficienteException();
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(doc, monto);
 
-                            System.out.println("Apuesta realizada a " + doc);
+                            System.out.println("Apuesta realizada a " + doc + "era docena");
 
                         } catch (InputMismatchException e) {
                             System.out.println("Error: debe ingresar un numero valido");
@@ -202,7 +217,7 @@ public class MenuRuleta {
                             sc.nextLine();
 
                             String col;
-                            if (num == 1) {
+                            if (num == 1) { /// CON 1, 2 O 3 SE LE ASIGNA UNA COLUMNA, SI SALE DE ESE RANGO, EXCEPCION
                                 col = "primera columna";
                             } else if (num == 2) {
                                 col = "segunda columna";
@@ -216,14 +231,19 @@ public class MenuRuleta {
                             double  monto =  sc.nextDouble();
                             sc.nextLine();
 
-                            if(jugador.getSaldo() < monto){
+                            if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
+                                System.out.println("Error: El monto a apostar debe ser positivo.");
+                                break;
+                            }
+
+                            if(jugador.getSaldo() < monto){ /// COMPRUEBA QUE EL JUGADOR TIENE MAS SALDO QUE EL QUE QUIERE APOSTAR
                                 throw new SaldoInsuficienteException();
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
                             ruleta.apostar(col, monto);
 
-                            System.out.println("Apuesta realizada a " + col);
+                            System.out.println("Apuesta realizada a " + col + "era columna");
 
                         } catch (InputMismatchException e) {
                             System.out.println("Error: debe ingresar un numero valido");
@@ -247,7 +267,12 @@ public class MenuRuleta {
                             double monto =   sc.nextDouble();
                             sc.nextLine();
 
-                            if(jugador.getSaldo() < monto){
+                            if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
+                                System.out.println("Error: El monto a apostar debe ser positivo.");
+                                break;
+                            }
+
+                            if(jugador.getSaldo() < monto){ /// COMPRUEBA QUE EL JUGADOR TIENE MAS SALDO QUE EL QUE QUIERE APOSTAR
                                 throw new SaldoInsuficienteException();
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
@@ -279,7 +304,12 @@ public class MenuRuleta {
                             double monto = sc.nextDouble();
                             sc.nextLine();
 
-                            if(jugador.getSaldo() < monto){
+                            if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
+                                System.out.println("Error: El monto a apostar debe ser positivo.");
+                                break;
+                            }
+
+                            if(jugador.getSaldo() < monto){ /// COMPRUEBA QUE EL JUGADOR TIENE MAS SALDO QUE EL QUE QUIERE APOSTAR
                                 throw new SaldoInsuficienteException();
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
@@ -297,11 +327,11 @@ public class MenuRuleta {
                         break;
 
                     case 7:
-                        double ganancia = ruleta.pagarFichas();
-                        jugador.setSaldo(jugador.getSaldo() + ganancia);
+                        double ganancia = ruleta.pagarFichas(); ///SE LLAMA AL METODO QUE DEVUELVE LA GANANCIA
+                        jugador.setSaldo(jugador.getSaldo() + ganancia); ///SE LE SUMA A LA CUENTA DEL JUGADOR
 
-                        int numeroGanador = ruleta.getNumeroSalidor();
-                        String color = ENumerosRuleta.getColorMayuscula(numeroGanador);
+                        int numeroGanador = ruleta.getNumeroSalidor(); ///NUMERO QUE SALIÓ
+                        String color = ENumerosRuleta.getColorMayuscula(numeroGanador); ///COLOR DEL NUMERO QUE SALIO
 
                         System.out.println("Numero ganador: " + numeroGanador + " - " + color);
                         System.out.println("Pago recibido: " + ganancia);

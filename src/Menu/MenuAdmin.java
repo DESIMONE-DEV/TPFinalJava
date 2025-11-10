@@ -13,12 +13,12 @@ public class MenuAdmin {
     public static Scanner sc = new Scanner(System.in);
 
     public static void menuInicialAdmin(Admin admin) {
-        System.out.println("Bienvenido a nuestro casino, " + admin.getNombre());
 
         int opcion = -1;
 
         do {
-            System.out.println("\n Menu Principal ");
+            System.out.println("Bienvenido, " + admin.getNombre());
+            System.out.println("Menu Principal \n");
 
             opcion = menuInicial();
 
@@ -54,7 +54,6 @@ public class MenuAdmin {
     }
     ///---------- MENU BASICO DE ADMIN ----------
     public static int menuInicial(){
-        System.out.println("Elija una opcion");
         System.out.println("1. Lista de usuarios");
         System.out.println("2. Ultimos 10 movimientos de un usuario");
         System.out.println("3. Todos los movimientos de un usuario");
@@ -62,6 +61,8 @@ public class MenuAdmin {
         System.out.println("5. Cargar saldo a usuario");
         System.out.println("6. Bloquear/Desbloquear usuario");
         System.out.println("0. Salir");
+
+        System.out.println("Ingrese una opcion:");
 
         try {
             int opcion = sc.nextInt();

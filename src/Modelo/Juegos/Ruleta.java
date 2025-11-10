@@ -33,7 +33,7 @@ public class Ruleta extends Juego {
     }
 
 
-    //Metodo para inicializacion de ruleta con valores 0
+    /// SE RECORREN AMBOS FOR, RELLENANDO LOS CASILLEROS EN EL HASHMAP DEL TABLERO CON KEY CORRESPONDIENTE EN VALOR 0
     private void inicializarRuleta() {
         for (int i = 1; i <= 36; i++) apuestas.put(String.valueOf(i), 0.0);
 
@@ -46,6 +46,7 @@ public class Ruleta extends Juego {
         }
     }
 
+    /// INGRESA EL NUMERO QUE SALIO Y PASA LAS DEBIDAS COMPROBACIONES DEVOLVIENDO EL CALCULO DE LA APUESTA
     public double pleno(int numeroSalidor) {
         double valor = 0;
         for (String key : apuestas.keySet()) {
@@ -64,6 +65,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    /// SE COMPRUEBA A QUE "GRUPO DE COLOR" PERTENECE EL NUMERO SALIDOR, COMPARA CON LO APOSTADO Y SE DEVUELVE EL CALCULO
     public double color (int numeroSalidor) {
         if (numeroSalidor == 0) { return 0; }
 
@@ -85,6 +87,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    /// INGRESA EL NUMERO QUE SALIO, SE COMPRUEBA EN QUE RANGO DE DOCENA ESTA, SE COMPARA CON EL KEY CORRESPONDIENTE DEL HASHMAP Y DEVUELVE EL CALCULO
     public double docenas (int numeroSalidor) {
         if (numeroSalidor == 0) { return 0; }
         double valor = 0;
@@ -104,6 +107,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    /// SE RECORREN AMBOS FOR, RELLENANOD LOS CASILLEROS EN EL HASHMAP DEL TABLERO
     public double columna(int numeroSalidor) {
         if (numeroSalidor == 0) { return 0; }
         double valor = 0;
@@ -125,6 +129,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    /// SE CALCULA A QUE MITAD CORRESPONDE EL NUMERO QUE SALIO, Y SE DEVUELVE EL CALCULO DE LO APOSTADO
     public double menorMayor(int numeroSalidor) {
         if (numeroSalidor == 0) { return 0; }
 
@@ -146,6 +151,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    /// SE COMPRUEBA SI EL NUMERO QUE SALIO ES PAR O IMPAR, SE COMPARA CON EL KEY DEL HASHMAP Y SE RETORNA EL CALCULO DE LO APOSTADO
     public double parImpar(int numeroSalidor) {
         if (numeroSalidor == 0) { return 0; }
         double valor = 0;
@@ -164,6 +170,7 @@ public class Ruleta extends Juego {
         return valor;
     }
 
+    /// METODO UTILIZADO EN CADA CASE PARA INGRESAR LA APUESTA A SU DEBIDA KEY
     public void apostar (String apuesta, double valor ) {
         apuestas.put (apuesta, valor);
     }
@@ -172,6 +179,7 @@ public class Ruleta extends Juego {
         inicializarRuleta();
     }
 
+    /// LLAMA A TODOS LOS METODOS, INGRESANDO EL NUMERO QUE SALIO Y DEVOLVIENDO LA CUENTA TOTAL DE LA GANANCIA
     @Override
     public double pagarFichas() {
         double ganancia = 0;

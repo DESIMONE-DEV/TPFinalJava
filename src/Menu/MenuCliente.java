@@ -16,7 +16,7 @@ public class MenuCliente {
 
         do{
             System.out.println("Bienvenido a nuestro casino, " + cliente.getNombre());
-            System.out.println("\n Menu Principal | Saldo actual: $: " + cliente.getSaldo());
+            System.out.println("Menu Principal | Saldo actual: $: " + cliente.getSaldo() + "\n");
 
             opcion = menuInicial();
 
@@ -60,7 +60,6 @@ public class MenuCliente {
     }
 
     public static int menuInicial(){
-        System.out.println("Elija una opcion");
         System.out.println("1. Lista de juegos");
         System.out.println("2. Cargar saldo");
         System.out.println("3. Retirar saldo");
@@ -69,6 +68,8 @@ public class MenuCliente {
         System.out.println("6. Ver Ultimos 25 movimientos");
         System.out.println("7. Ver todos los movimientos");
         System.out.println("0. Salir");
+
+        System.out.print("Ingrese una opcion:");
 
         try {
             int opcion =  sc.nextInt();
@@ -94,7 +95,7 @@ public class MenuCliente {
             System.out.println("0. Salir al menu principal");
 
             try {
-                System.out.println("Seleccione un juego:");
+                System.out.print("Seleccione un juego:");
                 opcionJuego = sc.nextInt();
                 sc.nextLine();
 

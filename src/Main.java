@@ -46,7 +46,7 @@ public class Main {
                        }
                     break;
                 case 4:
-                    System.out.println("No se valla la suerte esta de su lado");
+                    System.out.println("No se vaya, la suerte esta de su lado");
                     break;
                 default:
                     System.out.println("Opcion invalida");

@@ -28,7 +28,7 @@ public class MenuPrincipal  {
                 }
                 if (user instanceof Cliente) {
                     if(((Cliente) user).getEstadoCuenta()==false){
-                        throw new CuentaBloqueadaException("Esta cuenta esta bloqueada");
+                        throw new CuentaBloqueadaException("Esta cuenta se encuentra bloqueada");
                     }
                     menuInicialCliente((Cliente)user);
                     return true;
@@ -62,7 +62,7 @@ public class MenuPrincipal  {
             throw new CaracteresMinimoException("La contraseña debe tener al menos 4 caracteres");
         }
         if (dni < 3000000){
-            throw new CaracteresMinimoException("Ingrese un dni valido");
+            throw new CaracteresMinimoException("Ingrese un DNI valido");
         }
         // Validar máximo de caracteres
         if (nombre.length() > 30) {
@@ -72,7 +72,7 @@ public class MenuPrincipal  {
             throw new CaracteresMaximoException("La contraseña no debe superar los 20 caracteres");
         }
         if (dni > 100000000) {
-            throw  new CaracteresMaximoException("Ingrese un dni valido");
+            throw  new CaracteresMaximoException("Ingrese un DNI valido");
         }
 
         Usuario u =new Cliente(nombre,dni,password,cuentaBancaria);
@@ -104,7 +104,7 @@ public class MenuPrincipal  {
             throw new CaracteresMinimoException("La contraseña debe tener al menos 4 caracteres");
         }
         if (dni < 3000000){
-            throw new CaracteresMinimoException("Ingrese un dni valido");
+            throw new CaracteresMinimoException("Ingrese un DNI valido");
         }
         /// -------------Validar máximo de caracteres-----///
         if (nombre.length() > 30) {
@@ -114,7 +114,7 @@ public class MenuPrincipal  {
             throw new CaracteresMaximoException("La contraseña no debe superar los 20 caracteres");
         }
         if (dni > 100000000) {
-            throw  new CaracteresMaximoException("Ingrese un dni valido");
+            throw  new CaracteresMaximoException("Ingrese un DNI valido");
         }
         if(!codigo.equals("ABC123")){
             throw new CodigoIncorrectoException("Solicite el Codigo a un Administrador");

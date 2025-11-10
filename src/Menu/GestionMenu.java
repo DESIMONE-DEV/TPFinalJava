@@ -30,7 +30,7 @@ public class GestionMenu {
         try {
             return sc.nextInt();
         }catch(InputMismatchException e){
-            System.out.println("No sea  malo ingrese un numero");
+            System.out.println("No sea malo, ingrese un numero");
         }finally {
             sc.nextLine();
         }
@@ -49,7 +49,7 @@ public class GestionMenu {
         try {
             return sc.nextInt();
         }catch(InputMismatchException e){
-            System.out.println("No sea  malo ingrese un numero");
+            System.out.println("No sea malo, ingrese un numero");
         }finally {
             sc.nextLine();
         }
@@ -72,7 +72,7 @@ public class GestionMenu {
             dni = sc.nextInt();
             sc.nextLine();
         }catch(InputMismatchException e){
-            System.out.println("No sea  malo ingrese un numero");
+            System.out.println("No sea malo, ingrese un numero");
             sc.nextLine();
             return;
         }
@@ -106,7 +106,7 @@ public class GestionMenu {
             dni = sc.nextInt();
             sc.nextLine();
         }catch(InputMismatchException e){
-            System.out.println("No sea  malo ingrese un numero");
+            System.out.println("No sea malo, ingrese un numero");
             sc.nextLine();
             return;
         }
@@ -143,7 +143,7 @@ public class GestionMenu {
             sc.nextLine();
 
         }catch(InputMismatchException e) {
-            System.out.println("No sea  malo ingrese un numero correcto");
+            System.out.println("No sea malo, ingrese un numero correcto");
             sc.nextLine();
             return;
         }

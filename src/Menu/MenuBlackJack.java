@@ -37,7 +37,7 @@ public class MenuBlackJack {
                 break;
             }
             limpiar();
-            System.out.println(" ...............COMIENZA EL JEUEGO..............");
+            System.out.println(" ...............COMIENZA EL JUEGO..............");
 
                     try {
                         System.out.println("SE MEZCLAN LAS CARTAS...");
