@@ -12,19 +12,17 @@ import java.util.Scanner;
 
 public class MenuRuleta {
 
-        public static Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
 
-        public static void Start(Cliente jugador) {
-
-/// -------------------- Menu base -----------------------------------
+    /// -------------------- MENU BASE RULETA -------------------------------///
+    public static void Start(Cliente jugador) {
 
             System.out.println("Bienvenido a Ruleta");
-
-
-            menuInicial();
             int salir = 1;
 
             do {
+                menuInicial();
+
                 System.out.print("Ingrese una opcion: ");
                 int opcion = sc.nextInt();
                 sc.nextLine();
@@ -34,6 +32,9 @@ public class MenuRuleta {
                         ingresarApuestas(ruleta, jugador);
                         salir = 0;
                         break;
+                    case 2:
+                        comojugar();
+                        break;
                     case 0:
                         salir = 0;
                         break;
@@ -41,13 +42,25 @@ public class MenuRuleta {
             } while (salir == 1);
 
         }
-        public static void menuInicial(){
+    /// --------------------FIN MENU BASE RULETA -------------------------------///
+    ///
+    /// -------------------- OPCIONES MENU INICIAL -------------------------------///
+    ///
+    public static void menuInicial(){
             System.out.println("1. Jugar");
+            System.out.println("2. Como Jugar");
             System.out.println("0. Salir");
         }
+    /// -------------------- FIN MENU INICIAL -------------------------------///
+    ///
+    /// -------------------- MUESTRA DE SALDO-------------------------------///
+
     public static void mostrarSaldo(Cliente jugador) {
         System.out.println("Jugador: " + jugador.getNombre() + " ---- Saldo: $" + jugador.getSaldo() + "\n");
     }
+    /// -------------------- FIN MUESTRA DE SALDO -------------------------------///
+    ///
+    /// -------------------- MUESTRA DE TABLERO -------------------------------///
     public static void mostrarTablero() {
         System.out.println("\n");
         System.out.println("+---+-------------------------------------------------------------+---------+");
@@ -61,11 +74,11 @@ public class MenuRuleta {
         System.out.println("+-------------------+---------+-------+-------+---------+------------------+");
         System.out.println("\n");
     }
-
-
-    /// -------------------- Menu apuestas -----------------------------------
-        public static void ingresarApuestas(Ruleta ruleta, Cliente jugador) throws RuntimeException, SaldoInsuficienteException {
-            //Menu con opciones
+    /// -------------------- FIN MUESTRA TABLERO -------------------------------///
+    ///
+    ///
+    /// -------------------- MENU BASE DE RULETA -------------------------------///
+    public static void ingresarApuestas(Ruleta ruleta, Cliente jugador) throws RuntimeException, SaldoInsuficienteException {
 
             int opcion = 0;
 
@@ -350,6 +363,29 @@ public class MenuRuleta {
                 }
             } while (opcion != 8);
         }
+
+    /// -------------------- FIN MENU BASE DE RULETA -------------------------------///
+    ///
+    /// -------------------- INFO DE JUEGO -------------------------------///
+
+    public static void comojugar(){
+        System.out.println("\n\nEn cada partida ,después de que la bola gire varias vueltas caerá sobre una de las casillas de la ruleta.\n" +
+                "El objetivo del juego es predecir en que casilla caerá la bola.\n" +
+                "Después de cerrar las apuestas, se anunciará el numero ganador y las apuestas ganadoras,\n" +
+                "seguidamente se procederá a retirar las apuestas perdedoras y a pagar las apuestas ganadoras.\n" +
+                "\n" +
+                "Apuesta      Pago + apuesta\n" +
+                "Rojo/Negro     1x  +    1x   \n" +
+                "Par/Impar      1x  +    1x   \n" +
+                "Menor/Mayor    1x  +    1x   \n" +
+                "Docena         2x  +    1x   \n" +
+                "Columna        2x  +    1x   \n" +
+                "Pleno         35x  +    1x   \n" +
+                "Siendo x lo apostado \n\n");
+
+
+    }
+    /// -------------------- FIN DE INFO DE JUEGO -------------------------------///
 }
 
 
