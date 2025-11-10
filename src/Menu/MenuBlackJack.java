@@ -1,9 +1,11 @@
 package Menu;
 
 import Exceptions.MazoVacioException;
+import Exceptions.SaldoInsuficienteException;
 import Modelo.Juegos.BlackJack21;
 import Modelo.Usuarios.Cliente;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuBlackJack {
@@ -28,19 +30,27 @@ public class MenuBlackJack {
             System.out.println("               HAGA SU APUESTA        ");
             try {
                 System.out.println("SU SALDO = $ " + jugador.getSaldo());
-                System.out.println("CUANTO DESEA APOSTAR ");
-                apostar = scan.nextDouble();
-                scan.nextLine();
-                jugador.retirarSaldo(apostar);
-            }catch (Exception e) {
-                System.out.println("Saldo insuficiente");
-                break;
-            }
+                do {
+                    System.out.println("CUANTO DESEA APOSTAR ");
+                    apostar = scan.nextDouble();
+                    scan.nextLine();
+                    if(apostar<= 0){
+                        System.out.println("Ingresa un numero positivo");
+                    }
+                }while (apostar <= 0 );
+                if(jugador.getSaldo() < apostar){
+                    throw new SaldoInsuficienteException();
+                }else{
+                    jugador.retirarSaldo(apostar);
+                }
+
+
             limpiar();
             System.out.println(" ...............COMIENZA EL JEUEGO..............");
 
+            System.out.println("\n\n\n");
                     try {
-                        System.out.println("SE MEZCLAN LAS CARTAS...");
+                        System.out.println("SE MEZCLAN LAS CARTAS...\n");
                         System.out.println("EL PAGADOR REPARTE LAS CARTAS... ");
                         blackJack21.repartir();
 
@@ -51,7 +61,6 @@ public class MenuBlackJack {
                     scan.nextLine();
                     limpiar();
                     System.out.println("..........TUS......CARTAS.............");
-                    dibujoCarta();
                     System.out.println(blackJack21.listarJugadorJuego());
                     try {
                         sumaJugador= blackJack21.manoUsuario();
@@ -59,10 +68,10 @@ public class MenuBlackJack {
                         if (sumaJugador == 21) {
                             System.out.println(VERDE);
                             System.out.println("*****************************");
-                            System.out.println("*********Jugador Gana********");
+                            System.out.println("*********Jugador Gana******** ESTO ES BLACKJACK ");
                             System.out.println("*****************************\n");
                             System.out.println(RESET);
-                            pago= apostar + (apostar+apostar * 0.5);
+                            pago= apostar + (apostar+apostar * 2);
                             System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
                             jugador.cargarSaldo(pago);
 
@@ -73,10 +82,14 @@ public class MenuBlackJack {
                     if(sumaJugador== 21) {
                         break;
                     }else{
-
-                        System.out.println("DESEA PEDIR OTRA CARTA ?? Presione '1' ");
-                        opcion = scan.nextInt();
-                        scan.nextLine();
+                        try {
+                            System.out.println("DESEA PEDIR OTRA CARTA ?? Presione si lo desea''1'' , sino lo desea presione cualquier otro numero");
+                            opcion = scan.nextInt();
+                            scan.nextLine();
+                        } catch (InputMismatchException e) {
+                             opcion = 2;
+                             scan.nextLine();   /// POR INGRESAR 1 , NO PIDE CARTA
+                        }
                         do{
                         switch (opcion) {
                             case 1:
@@ -89,13 +102,17 @@ public class MenuBlackJack {
                                         System.out.println("USTED SE PASO DE 21 ");
                                         op=2;
                                     }else {
-                                        System.out.println("Quiere seguir pidiendo carta? Presione '1' ");
+                                        System.out.println("DESEA PEDIR OTRA CARTA ?? Presione si lo desea''1'' , sino lo desea presione cualquier otro numero");
                                         op = scan.nextInt();
                                         scan.nextLine();
                                     }
                                 } catch (MazoVacioException e) {
                                     System.out.println(e.getMessage());
+                                }catch (InputMismatchException e) {
+                                    op = 2;
+                                    scan.nextLine();
                                 }
+
                                 break;
                         }
                     }while(op ==1 );
@@ -111,11 +128,12 @@ public class MenuBlackJack {
                     }
                         System.out.println("LOS PUNTOS TOTALES FUERON........");
                             scan.nextLine();
+                        System.out.println(blackJack21.listarBancaConJuego());
+                        System.out.println("Puntos Banca = "+sumaBanca);
+                        System.out.println("\n\n");
                         System.out.println(blackJack21.listarJugadorJuego());
                         System.out.println("Puntos Jugador = "+sumaJugador);
                         System.out.println("\n\n");
-                        System.out.println(blackJack21.listarBancaConJuego());
-                        System.out.println("Puntos Banca = "+sumaBanca);
                         if(sumaJugador <22 && sumaBanca >21) {
                             System.out.println(VERDE);
                             System.out.println("*****************************");
@@ -152,9 +170,17 @@ public class MenuBlackJack {
                         }
             }
                     blackJack21.recuperarMazo();
+            }catch (SaldoInsuficienteException e) {
+                System.out.println("Saldo insuficiente");
+                break;
+            }catch (InputMismatchException e) {
+                System.out.println("Ingresa un numero");
+                scan.nextLine();
+            }
             System.out.println("QUIERE SEGUIR JUGANDO PRESIONE ? '1'");
                     salir = scan.nextInt();
                     scan.nextLine();
+
         } while (salir==1);
     }
 
@@ -166,7 +192,7 @@ public class MenuBlackJack {
     public static void dibujoCarta (){
         System.out.println(VERDE);
         System.out.println("+----------+");
-        System.out.println("| A        |");
+        System.out.println("|          |");
         System.out.println("|          |");
         System.out.println("|    ♣♣    |");
         System.out.println("|   ♣  ♣   |");
@@ -180,13 +206,13 @@ public class MenuBlackJack {
     public static void dibujoCarta2 (){
         System.out.println(ROJO);
         System.out.println("+----------+  "+"+----------+");
-        System.out.println("| A        |  "+"| k        |");
+        System.out.println("|         |  "+"| k        |");
         System.out.println("|          |  "+"|          |");
         System.out.println("|    ♣♣    |  "+"|    ♣♣    |");
         System.out.println("|   ♣  ♣   |  "+"|   ♣  ♣   |");
         System.out.println("|    ♣♣    |  "+"|    ♣♣    |");
         System.out.println("|          |  "+"|          |");
-        System.out.println("|        A |  "+"|        kw |");
+        System.out.println("|        A |  "+"|        k |");
         System.out.println("+----------+  "+"+----------+");
         System.out.println(RESET);
     }
