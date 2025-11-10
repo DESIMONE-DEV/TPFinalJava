@@ -23,7 +23,7 @@ public class MenuBlackJack {
         double pago=0;
 
         System.out.println(VERDE+".............BIENVENIDOS....A....BLACKJACK.......21........."+RESET);
-        dibujoCarta();
+        dibujoCarta2();
         do {
             System.out.println("               HAGA SU APUESTA        ");
             try {
@@ -168,6 +168,20 @@ public class MenuBlackJack {
         System.out.println("|          |");
         System.out.println("|        A |");
         System.out.println("+----------+");
+        System.out.println(RESET);
+    }
+
+    public static void dibujoCarta2 (){
+        System.out.println(ROJO);
+        System.out.println("+----------+  "+"+----------+");
+        System.out.println("| A        |  "+"| k        |");
+        System.out.println("|          |  "+"|          |");
+        System.out.println("|    ♣♣    |  "+"|    ♣♣    |");
+        System.out.println("|   ♣  ♣   |  "+"|   ♣  ♣   |");
+        System.out.println("|    ♣♣    |  "+"|    ♣♣    |");
+        System.out.println("|          |  "+"|          |");
+        System.out.println("|        A |  "+"|        kw |");
+        System.out.println("+----------+  "+"+----------+");
         System.out.println(RESET);
     }
 }
