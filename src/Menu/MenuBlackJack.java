@@ -9,14 +9,14 @@ import java.util.Scanner;
 public class MenuBlackJack {
     public static final String RESET = "\u001B[0m";
     public static final String VERDE = "\u001B[32m";
+    public static final String ROJO   = "\u001B[31m";
     public static Scanner scan = new Scanner(System.in);
 
     public static void start(Cliente jugador) {
         BlackJack21 blackJack21 = new BlackJack21();
         int opcion = 0;
-        String salir = "s";
-        String r= "f" ;
-        int sal=0;
+        int op = 2;
+        int salir=0;
         int sumaJugador=0;
         int sumaBanca=0;
         double apostar=0;
@@ -27,8 +27,8 @@ public class MenuBlackJack {
         do {
             System.out.println("               HAGA SU APUESTA        ");
             try {
-                System.out.println("Su saldo es = $ " + jugador.getSaldo());
-                System.out.println("cuanto desea apostar ? ");
+                System.out.println("SU SALDO = $ " + jugador.getSaldo());
+                System.out.println("CUANTO DESEA APOSTAR ");
                 apostar = scan.nextDouble();
                 scan.nextLine();
                 jugador.retirarSaldo(apostar);
@@ -37,39 +37,32 @@ public class MenuBlackJack {
                 break;
             }
             limpiar();
-            System.out.println("1-COMENZAR EL JEUEGO");
-            System.out.println("4-VERIFICAR QUE SACO LA BANCA");
-            System.out.println("5-COMPARA VALORES");
-            opcion = scan.nextInt();
-            scan.nextLine();
+            System.out.println(" ...............COMENZAR EL JEUEGO..............");
 
-
-            switch (opcion) {
-
-                case 1:
                     try {
-                        System.out.println("SE MEZCLAN LAS CARTAS");
+                        System.out.println("SE MEZCLAN LAS CARTAS...");
                         scan.nextLine();
-                        System.out.println("EL PAGADOR REPARTE LAS CARTAS ");
+                        System.out.println("EL PAGADOR REPARTE LAS CARTAS... ");
                         blackJack21.repartir();
 
                     } catch (MazoVacioException e) {
                         System.out.println(e.getMessage());
                     }
-                    System.out.println("Aprete ENTER para continuar...");
+                    System.out.println(ROJO+"ENTER para continuar..."+RESET);
                     scan.nextLine();
                     limpiar();
-                case 2:
                     System.out.println("..........TUS......CARTAS.............");
+                    dibujoCarta();
                     try {
                         sumaJugador= blackJack21.manoUsuario();
                         System.out.println("SACASTE = " + sumaJugador+ " Puntos");
                         if (sumaJugador == 21) {
-                            System.out.println("SACASTE BLACKJACK ............... SE PAGA POR EL 150%\n");
-                            System.out.println("             ......................");
-                            System.out.println("             ......GANADOR..21.....");
-                            System.out.println("             ......................");
-                            pago= apostar + (apostar * 1.5);
+                            System.out.println(VERDE);
+                            System.out.println("*****************************");
+                            System.out.println("*********Jugador Gana********");
+                            System.out.println("*****************************\n");
+                            System.out.println(RESET);
+                            pago= apostar + (apostar+apostar * 0.5);
                             System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
                             jugador.cargarSaldo(pago);
 
@@ -80,73 +73,83 @@ public class MenuBlackJack {
                     if(sumaJugador== 21) {
                         break;
                     }else{
-                        System.out.println("\n\nDesea agregar otra carta ?s/n");
-                        salir = scan.nextLine();
-                        if(salir.equals("s")) {
-                            System.out.println("APRETE ESPACIO PARA RECIBIR CARTA");
-                            scan.nextLine();
-                        }else {
-                            break;
+
+                        System.out.println("DESEA PEDIR OTRA CARTA ?? Presione '1' ");
+                        opcion = scan.nextInt();
+                        scan.nextLine();
+                        do{
+                        switch (opcion) {
+                            case 1:
+                                try {
+                                    sumaJugador += blackJack21.pedirCartaUsuario(sumaJugador);
+                                    System.out.println("LA SUMA DE SUS CARTAS ES = " + sumaJugador + " Puntos");
+                                    if (sumaJugador > 21) {
+                                        System.out.println("USTED SE PASO DE 21 ");
+                                        op=2;
+                                    }else {
+                                        System.out.println("Quiere seguir pidiendo carta? Presione '1' ");
+                                        op = scan.nextInt();
+                                        scan.nextLine();
+                                    }
+                                } catch (MazoVacioException e) {
+                                    System.out.println(e.getMessage());
+                                }
+                                break;
                         }
-                    }
-                case 3:
-                    do {
-                        try {
-                            sumaJugador += blackJack21.pedirCartaUsuario(sumaBanca);
-                            System.out.println("LA SUMA DE SUS CARTAS ES = " + sumaJugador + " Puntos");
-                        } catch (MazoVacioException e) {
-                            System.out.println(e.getMessage());
-                        }
-                        System.out.println("Quiere seguir pidiendo carta? s/n");
-                        r=scan.nextLine();
-                    }while( r.equalsIgnoreCase("s"));
-                    break;
-                case 4:
+                    }while(op ==1 );
+
                     try {
+                        System.out.println(ROJO+"ENTER para continuar..."+RESET);
+                        scan.nextLine();
                         sumaBanca = blackJack21.manoBancar();
                         System.out.println("LA BANCA SACO = " + sumaBanca+ " Puntos");
                     } catch (MazoVacioException e) {
                         System.out.println(e.getMessage());
                     }
-                    break;
-                    case 5:
+                        System.out.println("LOS PUNTOS TOTALES FUERON........");
+                            scan.nextLine();
                         System.out.println("Puntos Jugador = "+sumaJugador);
                         System.out.println("Puntos Banca = "+sumaBanca);
                         if(sumaJugador <22 && sumaBanca >21) {
+                            System.out.println(VERDE);
                             System.out.println("*****************************");
                             System.out.println("*********Jugador Gana********");
                             System.out.println("*****************************\n");
-                            System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
+                            System.out.println(RESET);
                             pago= apostar + apostar ;
+                            System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
                             jugador.cargarSaldo(pago);
                         }
                         if(sumaJugador >21 && sumaBanca <22) {
-                            System.out.println("Banca Gana , vuelva a intentar");
+                            System.out.println("JUGADOR PIERDE =( ..... VUELVA A INTENTARLO");
                         }
                         if(sumaBanca >21 && sumaJugador >21) {
                             System.out.println("EMPATE");
                             jugador.cargarSaldo(apostar);
                         }
-                        if (sumaBanca <22 && sumaJugador <22 && sumaBanca == sumaJugador) {
-                            System.out.println("EMPATE");
-                            jugador.cargarSaldo(apostar);
-                        }
                         if(sumaJugador <22 && sumaBanca <22 ) {
                             if(sumaBanca<sumaJugador) {
+                                System.out.println(VERDE);
                                 System.out.println("*****************************");
                                 System.out.println("*********Jugador Gana********");
                                 System.out.println("*****************************\n");
+                                System.out.println(RESET);
+                                pago = apostar + apostar;
                                 System.out.println("Su pago es=$ " + pago + " Y ya fue acreditado");
-                                pago= apostar + apostar ;
                                 jugador.cargarSaldo(pago);
-                            }else {
-                                System.out.println("JUGADOR PIERDE");
+                            }else if ( sumaBanca == sumaJugador) {
+                                System.out.println("EMPATE");
+                                jugador.cargarSaldo(apostar);
+                            }else{
+                                System.out.println("JUGADOR PIERDE =( ..... VUELVA A INTENTARLO");
                             }
                         }
-                        sal=1;
-                        break;
             }
-        } while (sal==1);
+                    blackJack21.recuperarMazo();
+            System.out.println("QUIERE SEGUIR JUGANDO PRESIONE ? '1'");
+                    salir = scan.nextInt();
+                    scan.nextLine();
+        } while (salir==1);
     }
 
     public static void limpiar() {
