@@ -84,89 +84,129 @@ public class BlackJack21 extends Juego implements IRepartidor {
     public int manoBancar ( ) throws MazoVacioException {
         int suma = 0;
         boolean V = true;
-        if(mazo.hayCartas()== false){
+        if (mazo.hayCartas() == false) {
             throw new MazoVacioException();
-        }else {
-            for (int i = 0; i < banca.cantidadDeCartas(); i++) {
-                Carta carta = banca.buscarCarta(i);
-                if (true == encontrarAs(carta)) {
+        } else {
+            if (encontrarAs(banca.buscarCarta(0)) == true) { ///  si encuentra el A vale 11
+                suma += 11;
+            } else if (cambiarValores(banca.buscarCarta(0)) == true) { /// si encuentra una J Q K hace que valga 10
+                suma += 10;
+            } else {
+                suma += banca.getCarta().get(0).getValor().getValorNum();
+            }
+                if (encontrarAs(banca.buscarCarta(1)) == true) { ///  si encuentra el A vale 11
                     suma += 11;
-                } else if (true == cambiarValores(carta)) {
+                } else if (cambiarValores(banca.buscarCarta(1)) == true) { /// si encuentra una J Q K hace que valga 10
                     suma += 10;
                 } else {
-                    suma += carta.getValor().getValorNum();
-                    if (suma > 16 && suma < 22) {
-                        return suma;
-                    }
+                    suma += banca.getCarta().get(1).getValor().getValorNum();
                 }
-                if (suma < 16) {
-                    banca.agregarCarta(mazo.repartir(1));
-                    suma += banca.buscarCarta(2).getValor().getValorNum();
-                     if (suma < 16) {
-                         mano1.agregarCarta(mazo.repartir(1));
-                     }
-                    if (suma > 16 && suma < 22) {
-                        return suma;
-                    } else if (banca.getCarta().get(0).getValor().getValorSimb().equals("A") && suma > 21) {
-                        suma -= 10;
-                        if (suma > 16 && suma < 22) {
-                            return suma;
-                        }
-                    } else if (banca.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
-                        suma -= 10;
-                        if (suma > 16 && suma < 22) {
-                            return suma;
-                        }
-                    } else if (banca.getCarta().get(2).getValor().getValorSimb().equals("A") && suma > 21) {
-                        suma -= 10;
-                        if (suma > 16 && suma < 22) {
-                            return suma;
-                        }
-                    }else if (suma<16){
+
+                if (16 < suma && suma < 22) {
+                    return suma;
+                } else {
+                    if (suma < 17) {
+                        mazo.mezclar();
                         banca.agregarCarta(mazo.repartir(1));
-                        suma += banca.buscarCarta(banca.cantidadDeCartas()-1).getValor().getValorNum();
-                        if (suma > 16 && suma < 22) {
+                        if (encontrarAs(banca.buscarCarta(2)) == true) { ///  si encuentra el A vale 11
+                            suma += 11;
+                        } else if (cambiarValores(banca.buscarCarta(2)) == true) { /// si encuentra una J Q K hace que valga 10
+                            suma += 10;
+                        } else {
+                            suma += banca.getCarta().get(1).getValor().getValorNum();
+                        }
+                        if (16 < suma && suma < 22) {
                             return suma;
                         }
-                        if(banca.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
-                            suma -= 10;
+                        if (suma > 21) {
+                            for (Carta c : banca.getCarta()) {
+                                if (c.getValor().getValorSimb() == "A")
+                                    suma -= 10;
+                                if (16 < suma && suma < 22) {
+                                    return suma;
+                                }
+                            }
+                            if (suma < 17) {
+                                mazo.mezclar();
+                                banca.agregarCarta(mazo.repartir(1));
+                                if (encontrarAs(banca.buscarCarta(3)) == true) { ///  si encuentra el A vale 11
+                                    suma += 11;
+                                } else if (cambiarValores(banca.buscarCarta(3)) == true) { /// si encuentra una J Q K hace que valga 10
+                                    suma += 10;
+                                } else {
+                                    suma += banca.getCarta().get(3).getValor().getValorNum();
+                                }
+                                if (16 < suma && suma < 22) {
+                                    return suma;
+                                }
+                                if (suma > 21) {
+                                    if (encontrarAs(banca.buscarCarta(3)) == true) {
+                                        suma -= 10;
+                                        if (16 < suma && suma < 22) {
+                                            return suma;
+                                        }
+                                    }
+
+                                }
+                            }
+
                         }
                     }
 
-                }
-                if (suma > 22) {
-                     if (banca.getCarta().get(0).getValor().getValorSimb().equals("A") && suma > 21) {
-                        suma -= 10;
-                        if (suma > 16 && suma < 22) {
-                            return suma;
+                    if (suma > 21) {
+                        for (Carta c : banca.getCarta()) {
+                            if (c.getValor().getValorSimb() == "A")
+                                suma -= 10;
+                            if (16 < suma && suma < 22) {
+                                return suma;
+                            }
                         }
-                    } else if (banca.getCarta().get(1).getValor().getValorSimb().equals("A") && suma > 21) {
-                        suma -= 10;
-                        if (suma > 16 && suma < 22) {
-                            return suma;
-                        }else if(suma<16){
+                        if(suma == 2){
+                            suma += 10;
+                        }
+                        if (suma < 17) {
+                            mazo.mezclar();
                             banca.agregarCarta(mazo.repartir(1));
+                            if (encontrarAs(banca.buscarCarta(2)) == true) { ///  si encuentra el A vale 11
+                                suma += 11;
+                            } else if (cambiarValores(banca.buscarCarta(2)) == true) { /// si encuentra una J Q K hace que valga 10
+                                suma += 10;
+                            } else {
+                                suma += banca.getCarta().get(2).getValor().getValorNum();
+                            }
                         }
-                    } else if (banca.getCarta().get(2).getValor().getValorSimb().equals("A") && suma > 21) {
-                        suma -= 10;
-                         if (suma > 16 && suma < 22) {
-                             return suma;
-                         }
-                    }else if (suma<16){
-                        suma += banca.buscarCarta(banca.cantidadDeCartas()-1).getValor().getValorNum();
-                        if (suma > 16 && suma < 22) {
-                            return suma;
-                        }
-                        if(banca.getCarta().get(3).getValor().getValorSimb().equals("A") && suma>21) {
-                            suma -= 10;
+                        if (suma > 21) {
+                            if (encontrarAs(banca.buscarCarta(2)) == true) {
+                                suma -= 10;
+                                if (16 < suma && suma < 22) {
+                                    return suma;
+                                }
+                            }
+                            if (suma < 17) {
+                                mazo.mezclar();
+                                banca.agregarCarta(mazo.repartir(1));
+                                if (encontrarAs(banca.buscarCarta(3)) == true) { ///  si encuentra el A vale 11
+                                    suma += 11;
+                                } else if (cambiarValores(banca.buscarCarta(3)) == true) { /// si encuentra una J Q K hace que valga 10
+                                    suma += 10;
+                                } else {
+                                    suma += banca.getCarta().get(3).getValor().getValorNum();
+                                }
+                            }
+                            if (suma > 21) {
+                                if (encontrarAs(banca.buscarCarta(3)) == true) {
+                                    suma -= 10;
+                                    if (16 < suma && suma < 22) {
+                                        return suma;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
         return suma;
-    }
-
+        }
     public int manoUsuario ( ) throws MazoVacioException {
         int suma = 0;
         boolean V = true;
