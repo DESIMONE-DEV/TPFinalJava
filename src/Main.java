@@ -3,6 +3,7 @@ import Modelo.Gestores.GestorJson;
 import Modelo.Usuarios.Cliente;
 
 import static Menu.GestionMenu.*;
+import static Menu.MenuPrincipal.creditos;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,11 +40,7 @@ public class Main {
                     }while(opcion != 0);
                     break;
                 case 3:
-                       try{
-                           System.out.println(User.listar());
-                       }catch(Exception e){
-                           System.out.println(e.getMessage());
-                       }
+                       creditos();
                     break;
                 case 4:
                     System.out.println("No se vaya, la suerte esta de su lado");

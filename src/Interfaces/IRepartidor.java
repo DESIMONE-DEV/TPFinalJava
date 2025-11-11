@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IRepartidor {
     void repartir() throws MazoVacioException;
+    void recuperarMazo();
 }
