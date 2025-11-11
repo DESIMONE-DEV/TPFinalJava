@@ -18,7 +18,7 @@ public class MenuRuleta {
 
 
     public static Scanner sc = new Scanner(System.in);
-
+    public static double sumaApuesta =0;
     /// -------------------- MENU BASE RULETA -------------------------------///
     public static void Start(Cliente jugador) {
 
@@ -121,6 +121,7 @@ public class MenuRuleta {
                             double monto =  sc.nextDouble();
                             sc.nextLine();
 
+
                             if (monto <= 0) { /// EL MONTO APOSTADO NO PUEDE SER NEGATIVO
                                 System.out.println("Error: El monto a apostar debe ser positivo.");
                                 break;
@@ -131,6 +132,8 @@ public class MenuRuleta {
                             }
 
                             jugador.setSaldo(jugador.getSaldo() - monto);
+
+                            sumaApuesta += monto;  /// Acumula el saldo gastado para guardad en el stat
 
                             ruleta.apostar(String.valueOf(num), monto);
 
@@ -168,6 +171,8 @@ public class MenuRuleta {
                             }
 
                             jugador.setSaldo(jugador.getSaldo() - monto);
+
+                            sumaApuesta += monto;
 
                             ruleta.apostar(color, monto);
 
@@ -215,6 +220,8 @@ public class MenuRuleta {
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
+                            sumaApuesta += monto;
+
                             ruleta.apostar(doc, monto);
 
                             System.out.println("Apuesta realizada a " + doc + "era docena");
@@ -260,6 +267,8 @@ public class MenuRuleta {
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
+                            sumaApuesta += monto;
+
                             ruleta.apostar(col, monto);
 
                             System.out.println("Apuesta realizada a " + col + "era columna");
@@ -295,6 +304,8 @@ public class MenuRuleta {
                                 throw new SaldoInsuficienteException();
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
+
+                            sumaApuesta += monto;
 
                             ruleta.apostar(menorMayor, monto);
 
@@ -333,6 +344,8 @@ public class MenuRuleta {
                             }
                             jugador.setSaldo(jugador.getSaldo() - monto);
 
+                            sumaApuesta += monto;
+
                             ruleta.apostar(parImpar, monto);
 
                             System.out.println("Apuesta realizada a " + parImpar);
@@ -356,8 +369,13 @@ public class MenuRuleta {
                         System.out.println("Pago recibido: " + ganancia);
                         System.out.println("Nuevo saldo: " + jugador.getSaldo());
 
+                        if(sumaApuesta > 0){
+                             GestionMenu.crearStats(jugador.getDni(),"Jugada Ruleta",ganancia-sumaApuesta);
+                        }
+
                         GestionMenu.guardadoAutomatico();
                         ruleta.limpiarApuestas();
+                        sumaApuesta = 0;
 
                         break;
                     case 8:

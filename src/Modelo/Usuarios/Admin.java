@@ -11,7 +11,7 @@ public class Admin extends Usuario {
     public Admin(String nombre, int dni ,String password) {
         super(nombre,dni, password);
     }
-    
+
     /// -----------FUNCIONES DE ADMIN---------------///
 
     //Modificar fichas
