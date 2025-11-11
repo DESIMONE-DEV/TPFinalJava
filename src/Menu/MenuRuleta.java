@@ -11,6 +11,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuRuleta {
+    public static final String R = "\u001B[31m"; // ROJO
+    public static final String G = "\u001B[32m"; // VERDE
+    public static final String B = "\u001B[90m"; // NEGRO
+    public static final String Z = "\u001B[0m"; // RESET
+
 
     public static Scanner sc = new Scanner(System.in);
 
@@ -64,16 +69,17 @@ public class MenuRuleta {
     public static void mostrarTablero() {
         System.out.println("\n");
         System.out.println("+---+-------------------------------------------------------------+---------+");
-        System.out.println("|   | ( 3) ( 6) ( 9) (12) (15) (18) (21) (24) (27) (30) (33) (36) | 3ra Col |");
-        System.out.println("| 0 | ( 2) ( 5) ( 8) (11) (14) (17) (20) (23) (26) (29) (32) (35) | 2da Col |");
-        System.out.println("|   | ( 1) ( 4) ( 7) (10) (13) (16) (19) (22) (25) (28) (31) (34) | 1ra Col |");
+        System.out.println("|   | ("+R+" 3"+Z+") ("+B+" 6"+Z+") ("+R+" 9"+Z+") ("+R+"12"+Z+") ("+B+"15"+Z+") ("+R+"18"+Z+") ("+R+"21"+Z+") ("+B+"24"+Z+") ("+R+"27"+Z+") ("+R+"30"+Z+") ("+B+"33"+Z+") ("+R+"36"+Z+") | 3ra Col |");
+        System.out.println("| "+G+"0"+Z+" | ("+B+" 2"+Z+") ("+R+" 5"+Z+") ("+B+" 8"+Z+") ("+B+"11"+Z+") ("+R+"14"+Z+") ("+B+"17"+Z+") ("+B+"20"+Z+") ("+R+"23"+Z+") ("+B+"26"+Z+") ("+B+"29"+Z+") ("+R+"32"+Z+") ("+B+"35"+Z+") | 2da Col |");
+        System.out.println("|   | ("+R+" 1"+Z+") ("+B+" 4"+Z+") ("+R+" 7"+Z+") ("+B+"10"+Z+") ("+B+"13"+Z+") ("+R+"16"+Z+") ("+R+"19"+Z+") ("+B+"22"+Z+") ("+R+"25"+Z+") ("+B+"28"+Z+") ("+B+"31"+Z+") ("+R+"34"+Z+") | 1ra Col |");
         System.out.println("+---+-------------------------------------------------------------+---------+");
         System.out.println("|   1ra Doc. (1-12)   |  2da Doc. (13-24)   |   3ra Doc. (25-36)  |");
         System.out.println("+-------------------+-----------------+------------------------------------+");
-        System.out.println("|   1 al 18 (MENOR) |   PAR   |  ROJO | NEGRO |  IMPAR  | 19 al 36 (MAYOR) |");
+        System.out.println("|   1 al 18 (MENOR) |   PAR   | "+R+" ROJO "+Z+"|"+B+" NEGRO "+Z+"|  IMPAR  | 19 al 36 (MAYOR) |");
         System.out.println("+-------------------+---------+-------+-------+---------+------------------+");
         System.out.println("\n");
     }
+
     /// -------------------- FIN MUESTRA TABLERO -------------------------------///
     ///
     ///
