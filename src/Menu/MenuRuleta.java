@@ -29,8 +29,16 @@ public class MenuRuleta {
                 menuInicial();
 
                 System.out.print("Ingrese una opcion: ");
-                int opcion = sc.nextInt();
-                sc.nextLine();
+
+                int opcion=777;
+                try{
+                    opcion = sc.nextInt();
+                    sc.nextLine();
+                }catch(InputMismatchException e){
+                    System.out.println("Opcion invalida\n");
+                    sc.nextLine();
+                }
+
                 switch (opcion) {
                     case 1:
                         Ruleta ruleta = new Ruleta();
