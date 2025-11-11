@@ -134,9 +134,17 @@ public class MenuPrincipal  {
     /// -------------------------FIN METODO PARA CREAR ACCOUNT-------------------///
     ///
     /// -------------------------METODO
-    public static String creditos(){
-        return "Gracias por Todo";
-
+    public static void creditos(){
+        System.out.println( " *******************************************************  \n" +
+                "*    Este proyecto fue creado por:                           *\n\n" +
+                "*           Emanuel Paez                                     *\n" +
+                "*           Fernando Suarez                                  *\n" +
+                "*           German Paez                                      *\n" +
+                "*           Oscar Desimone                                   *\n" +
+                "*                                                            *\n" +
+                "*           Gracias por Todo                                 *\n" +
+                              "*******************************************************\n\n"
+                                                );
     }
 
 
