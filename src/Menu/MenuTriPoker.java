@@ -283,7 +283,7 @@ public class MenuTriPoker {
                     }
                 } else if(yesNo.equals("n")){
                     System.out.println("Apuestas removidas");
-                    juego.removerApuestaMano1();
+                    juego.removerApuestaMano2();
                     enterContinue();
                 }else{
                     System.out.println("Ingrese 's' o 'n' por favor");
@@ -304,7 +304,7 @@ public class MenuTriPoker {
                     }
                 } else if(yesNo.equals("n")){
                     System.out.println("Apuestas removidas");
-                    juego.removerApuestaMano1();
+                    juego.removerApuestaMano3();
                     enterContinue();
                 }else{
                     System.out.println("Ingrese 's' o 'n' por favor");
