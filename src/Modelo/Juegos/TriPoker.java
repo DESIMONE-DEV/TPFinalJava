@@ -128,6 +128,7 @@ public class TriPoker extends Juego implements IRepartidor {
         mano3.setBet(0);
     }
 
+    /// ------------------- METODOS COMPROBADORES DE SI TIENE ESE JUEGO -------------
     public boolean esPoker(ManoTriPoker mano){
         /// si las 3 cartas son iguales tiene poker
         if(mano.getCartas().get(0).getValor() == mano.getCartas().get(1).getValor() &&
@@ -176,6 +177,7 @@ public class TriPoker extends Juego implements IRepartidor {
         }else return false;
     }
 
+
     public boolean esEscaleraColor(ManoTriPoker mano){
         if(esColor(mano) && esEscalera(mano)){
             return true;
@@ -183,7 +185,10 @@ public class TriPoker extends Juego implements IRepartidor {
             return false;
         }
     }
+    /// ------------------- FIN METODOS COMPROBADORES DE SI TIENE ESE JUEGO -------------///
 
+
+    /// METODO QUE DEVUELVE EL PAGO DE BONUS DE CADA JUEGO SIRVE PARA COMPARAR DESPUES CUAL JUEGO ES MAYOR
     public double valorizarJuego(ManoTriPoker mano){
         if(esEscaleraColor(mano)){
             return 41;
@@ -206,14 +211,16 @@ public class TriPoker extends Juego implements IRepartidor {
      * @return -1 SI PIERDE, 0 SI HAY EMPATE, 1 SI GANA
     * */
     public int jugadorGana(ManoTriPoker mano){
-        double valorJugador = valorizarJuego(mano);
+        double valorJugador = valorizarJuego(mano);     /// SE VALORIZAN LOS JUEGOS
         double valorBanca = valorizarJuego(manoBanca);
 
-        if(valorJugador > valorBanca){
+        if(valorJugador > valorBanca){  /// PRIMERO COMPROBAMOS LOS VALORES DE JUEGO QUE TIENE CADA UNO
+                                        ///  EL VALOR MAYOR GANA
             return 1;
         }else if(valorJugador == valorBanca){
             Collections.sort(mano.getCartas());
-            Collections.sort(manoBanca.getCartas());
+            Collections.sort(manoBanca.getCartas());            /// SI HAY EMPATE EN LOS JUEGOS SE ORDENAN LAS CARTAS
+                                                                /// Y SE ASIGNA SU VALOR A UNA VARIABLE
             int cartaJug0 = mano.getCartas().get(0).getValor().getValorNum();
             int cartaJug1 = mano.getCartas().get(1).getValor().getValorNum();
             int cartaJug2 = mano.getCartas().get(2).getValor().getValorNum();
@@ -222,7 +229,7 @@ public class TriPoker extends Juego implements IRepartidor {
             int cartaBanca1 = manoBanca.getCartas().get(1).getValor().getValorNum();
             int cartaBanca2 = manoBanca.getCartas().get(2).getValor().getValorNum();
 
-            if(cartaJug2 > cartaBanca2){
+            if(cartaJug2 > cartaBanca2){        ///  COMPARAMOS CARTAS POR CARTAS PARA VER QUIEN TIENE MAYOR CARTA
                 return 1;
             }else if(cartaJug2 == cartaBanca2){
                 if(cartaJug1 > cartaBanca1){
