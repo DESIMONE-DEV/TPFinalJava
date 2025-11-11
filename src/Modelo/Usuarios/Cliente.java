@@ -74,9 +74,6 @@ public class Cliente extends Usuario {
         return true;
     }
 
-    public boolean cambioBancario(String nuevaBancaria) {
-       return true;
-    }
     /// ----------------------FIN METODOS CLIENTES -----------------------///
     ///
     /// ----------------------TO JSON  -----------------------------///
