@@ -61,13 +61,13 @@ public class BlackJack21 extends Juego implements IRepartidor {
 
     @Override
     public void repartir() throws MazoVacioException {
-        mazo.mezclar();
-        mano1.agregarCarta(mazo.repartir(cantidadCartas));
+        mazo.mezclar();                                         /// Mezclan cartas
+        mano1.agregarCarta(mazo.repartir(cantidadCartas));      /// Reparte las cartas inicales 2 para cada uno
         banca.agregarCarta(mazo.repartir(cantidadCartas));
     }
     public boolean encontrarAs (Carta carta) {
 
-        if(carta.getValor().getValorSimb().equals("A")) {
+        if(carta.getValor().getValorSimb().equals("A")) {         ///  Busca el AS Para cambiar valor a 11
             return true;
         }
       return false;
@@ -75,7 +75,7 @@ public class BlackJack21 extends Juego implements IRepartidor {
 
     public boolean cambiarValores (Carta carta) {
         if (carta.getValor().getValorSimb().equals("J") ||  carta.getValor().getValorSimb().equals("Q")
-            || carta.getValor().getValorSimb().equals("K") ){
+            || carta.getValor().getValorSimb().equals("K") ){           /// Busca J Q K para cambiar valores por 10
             return true;
         }
         return false;
@@ -110,146 +110,20 @@ public class BlackJack21 extends Juego implements IRepartidor {
             throw new MazoVacioException();
         }
     }
-
-    public int manoBancar ( ) throws MazoVacioException {
-        int suma = 0;
-        if (mazo.hayCartas() == false) {
-            throw new MazoVacioException();
-        } else {
-            if (encontrarAs(banca.buscarCarta(0)) == true) { ///  si encuentra el A vale 11
-                suma += 11;
-            } else if (cambiarValores(banca.buscarCarta(0)) == true) { /// si encuentra una J Q K hace que valga 10
-                suma += 10;
-            } else {
-                suma += banca.getCarta().get(0).getValor().getValorNum();
-            }
-            if (encontrarAs(banca.buscarCarta(1)) == true) { ///  si encuentra el A vale 11
-                suma += 11;
-            } else if (cambiarValores(banca.buscarCarta(1)) == true) { /// si encuentra una J Q K hace que valga 10
-                suma += 10;
-            } else {
-                suma += banca.getCarta().get(1).getValor().getValorNum();
-            }
-
-            if (16 < suma && suma < 22) {
-                return suma;
-            } else {
-                    if (suma < 17) {
-                        mazo.mezclar();
-                        banca.agregarCarta(mazo.repartir(1));
-                        if (encontrarAs(banca.buscarCarta(2)) == true) { ///  si encuentra el A vale 11
-                            suma += 11;
-                        } else if (cambiarValores(banca.buscarCarta(2)) == true) { /// si encuentra una J Q K hace que valga 10
-                            suma += 10;
-                        } else {
-                            suma += banca.getCarta().get(1).getValor().getValorNum();
-                        }
-                        if (16 < suma && suma < 22) {
-                            return suma;
-                        }
-                        if (suma > 21) {
-                            for (Carta c : banca.getCarta()) {
-                                if (c.getValor().getValorSimb() == "A")
-                                    suma -= 10;
-                                if (16 < suma && suma < 22) {
-                                    return suma;
-                                }
-                            }
-                            if (suma < 17) {
-                                mazo.mezclar();
-                                banca.agregarCarta(mazo.repartir(1));
-                                if (encontrarAs(banca.buscarCarta(3)) == true) { ///  si encuentra el A vale 11
-                                    suma += 11;
-                                } else if (cambiarValores(banca.buscarCarta(3)) == true) { /// si encuentra una J Q K hace que valga 10
-                                    suma += 10;
-                                } else {
-                                    suma += banca.getCarta().get(3).getValor().getValorNum();
-                                }
-                                if (16 < suma && suma < 22) {
-                                    return suma;
-                                }
-                                if (suma > 21) {
-                                    if (encontrarAs(banca.buscarCarta(3)) == true) {
-                                        suma -= 10;
-                                        if (16 < suma && suma < 22) {
-                                            return suma;
-                                        }
-                                    }
-
-                                }
-                            }
-
-                        }
-                    }
-
-                    if (suma > 21) {
-                        for (Carta c : banca.getCarta()) {
-                            if (c.getValor().getValorSimb() == "A")
-                                suma -= 10;
-                            if (16 < suma && suma < 22) {
-                                return suma;
-                            }
-                        }
-                        if (suma == 2) {
-                            suma += 10;
-                        }
-                        if (suma < 17) {
-                            mazo.mezclar();
-                            banca.agregarCarta(mazo.repartir(1));
-                            if (encontrarAs(banca.buscarCarta(2)) == true) { ///  si encuentra el A vale 11
-                                suma += 11;
-                            } else if (cambiarValores(banca.buscarCarta(2)) == true) { /// si encuentra una J Q K hace que valga 10
-                                suma += 10;
-                            } else {
-                                suma += banca.getCarta().get(2).getValor().getValorNum();
-                        if (suma > 21) {
-                            if (encontrarAs(banca.buscarCarta(2)) == true) {
-                                suma -= 10;
-                                if (16 < suma && suma < 22) {
-                                    return suma;
-                                }
-                            }
-                        }}
-                            if (suma < 17) {
-                                mazo.mezclar();
-                                banca.agregarCarta(mazo.repartir(1));
-                                if (encontrarAs(banca.buscarCarta(3)) == true) { ///  si encuentra el A vale 11
-                                    suma += 11;
-                                } else if (cambiarValores(banca.buscarCarta(3)) == true) { /// si encuentra una J Q K hace que valga 10
-                                    suma += 10;
-                                } else {
-                                    suma += banca.getCarta().get(3).getValor().getValorNum();
-                                }
-
-                            if (suma > 21) {
-                                if (encontrarAs(banca.buscarCarta(3)) == true) {
-                                    suma -= 10;
-                                    if (16 < suma && suma < 22) {
-                                        return suma;
-                                    }
-                                }
-
-                            }}
-                        }
-                    }
-            }
-        }
-        return suma;
-        }
     public int manoUsuario ( ) throws MazoVacioException {
-        int suma = 0;
+        int suma = 0;                                                                    /// Primera 2 cartas del Jugador
         boolean V = true;
         for (int i = 0 ; i < mano1.cantidadDeCartas() ; i++){
             Carta carta = mano1.buscarCarta(i);
-            if ( true == encontrarAs(carta)){
+            if ( true == encontrarAs(carta)){               ///  Si encuentra el As pone q vale 11  por que en la primer parte del enum valia 1
                 suma += 11 ;
-            }else if ( true == cambiarValores(carta)){
+            }else if ( true == cambiarValores(carta)){    ///  si encuentra J Q K   pone q vale 10
                 suma += 10;
             }else {
-                suma +=carta.getValor().getValorNum();
+                suma +=carta.getValor().getValorNum();     /// valor normal de la carta que no sean ninguna anteriores
             }
             if (suma == 22){
-                mano1.getCarta().contains("A");
+                mano1.getCarta().contains("A");           /// Si la suma vale mas que 22  resta 10 para q valga 1 el AS
                 suma -=10;
             }
         }
@@ -259,16 +133,16 @@ public class BlackJack21 extends Juego implements IRepartidor {
 
     public int pedirCartaUsuario (int suma) throws MazoVacioException {
         int valor = 0;
-        mazo.mezclar();
-        mano1.agregarCarta(mazo.repartir(1));
+        mazo.mezclar();                                  /// se mezcla el mazo
+        mano1.agregarCarta(mazo.repartir(1));           /// Agrega carta cada vez que se pide desde el menu Black Jack
         if(mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("A") ||
                 mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("J") ||
-                mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("Q") ||
-                mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("K")){
-            if (mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("A")) {
+                mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("Q") ||   /// Iguala valores
+                mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("K")){   /// para pone el valor
+            if (mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("A")) {  ///  corrsponiente
                 suma += 11;
                 valor  =11;
-                if (suma > 21) {
+                if (suma > 21) {      /// suma y si la carta vale 10 y se pasa de 21 , el as vale 1
                     suma -= 10;
                     valor =10;
                 }
@@ -277,23 +151,23 @@ public class BlackJack21 extends Juego implements IRepartidor {
                     mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("Q") ||
                     mano1.getCarta().get(mano1.cantidadDeCartas() - 1).getValor().getValorSimb().equals("K")) {
                 suma += 10;
-                valor =10;
+                valor =10;     /// Si vale J Q K  vale 10
             }
         }else{
-            suma += mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorNum();
-            valor = mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorNum();
+            suma += mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorNum();  /// Carta con valor normal
+            valor = mano1.getCarta().get(mano1.cantidadDeCartas()-1).getValor().getValorNum(); /// suma normal
         }
         return valor;
     }
 
-        public void recuperarMazo(){
+        public void recuperarMazo(){                                     ///  Recupera el mazo despues de la partida
             mazo.recibirCarta(mano1.getCarta());
             mazo.recibirCarta(banca.getCarta());
 
             mano1.getCarta().clear();
             banca.getCarta().clear();
         }
-    public String listarBancaConJuego(){
+    public String listarBancaConJuego(){                                   ///  ToString de la cartas que tiene la Banca
         StringBuilder listaCartas = new StringBuilder();
         for (int i = 0 ; i < banca.cantidadDeCartas() ; i++){
             Carta carta = banca.buscarCarta(i);
@@ -302,7 +176,7 @@ public class BlackJack21 extends Juego implements IRepartidor {
         }
         return listaCartas.toString();
     }
-    public String listarJugadorJuego(){
+    public String listarJugadorJuego(){                                      ///  ToString de la cartas que tiene el Jugador
         StringBuilder listaCartas = new StringBuilder();
         for (int i = 0 ; i < mano1.cantidadDeCartas() ; i++){
             Carta carta = mano1.buscarCarta(i);
