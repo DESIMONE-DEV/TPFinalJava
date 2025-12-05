@@ -107,7 +107,7 @@ public class MenuBlackJack {
 
                                 try {
                                     System.out.println("DESEA PEDIR OTRA CARTA ?? Presione si lo desea''1'' , sino lo desea presione cualquier otro numero");
-                                    opcion = scan.nextInt();                                                    /// si presiona 1 piede
+                                    opcion = scan.nextInt();                                                    /// si presiona 1 pierde
                                     scan.nextLine();                                                            /// otra carta
                                 } catch (InputMismatchException e) {
                                     opcion = 2;
